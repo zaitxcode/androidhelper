@@ -346,6 +346,14 @@ export default function ArabicPage() {
               <span className="pill"><AndroidIcon /> {t.pillAndroid}</span>
               <span className="pill"><KotlinIcon /> {t.pillCoroutines}</span>
               <span className="pill"><FlutterIcon /> {t.pillBridge}</span>
+              <a
+                href="/androidhelper/app-release.apk"
+                download="AndroidHelper-Demo-v1.0.0-alpha03.apk"
+                className="pill"
+                style={{ backgroundColor: "var(--accent-green)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
+              >
+                <i className="bi bi-download"></i> تحميل تطبيق التجربة APK (v1.0.0-alpha03)
+              </a>
             </div>
 
             {/* AI Prompt Copy & Chat Bar */}

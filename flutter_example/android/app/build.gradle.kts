@@ -9,7 +9,7 @@ flutter {
 
 android {
     namespace = "com.zaitxcode.android.apps.flutterapphelper"
-    compileSdk = 35
+    compileSdk = 37
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId = "com.zaitxcode.android.apps.flutterapphelper"
         minSdk = 28
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 102
         versionName = "1.0.0-alpha03"
     }
