@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Android Helper Documentation",
-  description: "Lightweight Android & Flutter utility helpers documentation.",
+  title: "ZaitXCode Documentation Portal",
+  description: "Official developer documentation portal for ZaitXCode open-source libraries, APIs, and frameworks.",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.jpeg"
