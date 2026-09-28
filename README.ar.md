@@ -22,7 +22,7 @@
 ```kotlin
 // إضافة الإصدار في gradle/libs.versions.toml
 [versions]
-androidHelper = "1.0.0-alpha01"
+androidHelper = "1.0.0-alpha02"
 
 [libraries]
 androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }

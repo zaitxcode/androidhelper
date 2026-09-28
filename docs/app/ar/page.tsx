@@ -245,7 +245,7 @@ export default function ArabicPage() {
           <a href="/ar" className="nav-brand">
             <img src="/logo.jpeg" alt="Android Helper Logo" height="28" style={{ borderRadius: "6px", objectFit: "cover" }} />
             <span>{t.brandName}</span>
-            <span className="brand-badge">v1.0.0-alpha01</span>
+            <span className="brand-badge">v1.0.0-alpha02</span>
           </a>
         </div>
 
@@ -401,11 +401,11 @@ export default function ArabicPage() {
                     {activeTab === "kotlin" ? "Kotlin" : "Flutter"}
                   </span>
                   {activeTab === "kotlin" ? (
-                    <button className="copy-btn" onClick={() => handleCopy("install-kotlin", `// 1. Add in gradle/libs.versions.toml\n[versions]\nandroidhelper = "1.0.0-alpha01"\n\n[libraries]\nandroidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }\n\n// 2. Add in settings.gradle.kts\nrepositories {\n    google()\n    mavenCentral()\n    maven { url = uri("https://jitpack.io") }\n}\n\n// 3. Add in app/build.gradle.kts\ndependencies {\n    implementation(libs.androidhelper)\n}\n\n// 4. Initialize in Application class\nimport com.zaitxcode.android.core.AppHelper\n\nclass ExampleApplication : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        AppHelper.initialize(this)\n    }\n}`)}>
+                    <button className="copy-btn" onClick={() => handleCopy("install-kotlin", `// 1. Add in gradle/libs.versions.toml\n[versions]\nandroidhelper = "1.0.0-alpha02"\n\n[libraries]\nandroidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }\n\n// 2. Add in settings.gradle.kts\nrepositories {\n    google()\n    mavenCentral()\n    maven { url = uri("https://jitpack.io") }\n}\n\n// 3. Add in app/build.gradle.kts\ndependencies {\n    implementation(libs.androidhelper)\n}\n\n// 4. Initialize in Application class\nimport com.zaitxcode.android.core.AppHelper\n\nclass ExampleApplication : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        AppHelper.initialize(this)\n    }\n}`)}>
                       {copiedId === "install-kotlin" ? "✓ تم نسخ الكل" : "نسخ الكل"}
                     </button>
                   ) : (
-                    <button className="copy-btn" onClick={() => handleCopy("install-flutter", `// 1. Add in gradle/libs.versions.toml\n[versions]\nandroidhelper = "1.0.0-alpha01"\n\n[libraries]\nandroidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }\n\n// 2. Add in android/settings.gradle.kts\nrepositories {\n    google()\n    mavenCentral()\n    maven { url = uri("https://jitpack.io") }\n}\n\n// 3. Add in android/app/build.gradle.kts\ndependencies {\n    implementation(libs.androidhelper)\n}\n\n// 4. Initialize in Flutter Android Application (MyApp.kt)\nimport com.zaitxcode.android.core.AppHelper\n\nclass MyApp : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        AppHelper.initialize(this)\n    }\n}`)}>
+                    <button className="copy-btn" onClick={() => handleCopy("install-flutter", `// 1. Add in gradle/libs.versions.toml\n[versions]\nandroidhelper = "1.0.0-alpha02"\n\n[libraries]\nandroidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }\n\n// 2. Add in android/settings.gradle.kts\nrepositories {\n    google()\n    mavenCentral()\n    maven { url = uri("https://jitpack.io") }\n}\n\n// 3. Add in android/app/build.gradle.kts\ndependencies {\n    implementation(libs.androidhelper)\n}\n\n// 4. Initialize in Flutter Android Application (MyApp.kt)\nimport com.zaitxcode.android.core.AppHelper\n\nclass MyApp : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        AppHelper.initialize(this)\n    }\n}`)}>
                       {copiedId === "install-flutter" ? "✓ تم نسخ الكل" : "نسخ الكل"}
                     </button>
                   )}
@@ -416,9 +416,9 @@ export default function ArabicPage() {
               {activeTab === "kotlin" ? (
                 <div className="code-snippet">
                   <div className="code-block" id="code-install-kotlin">
-                    <CodeLineRow rawCode='androidhelper = "1.0.0-alpha01"'>
+                    <CodeLineRow rawCode='androidhelper = "1.0.0-alpha02"'>
                       <span className="keyword">[versions]</span>{"\n"}
-                      androidhelper = <span className="string">&quot;1.0.0-alpha01&quot;</span>
+                      androidhelper = <span className="string">&quot;1.0.0-alpha02&quot;</span>
                     </CodeLineRow>
                     <CodeLineRow rawCode='androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }'>
                       <span className="keyword">[libraries]</span>{"\n"}
@@ -435,9 +435,9 @@ export default function ArabicPage() {
               ) : (
                 <div className="code-snippet">
                   <div className="code-block" id="code-install-flutter">
-                    <CodeLineRow rawCode='androidhelper = "1.0.0-alpha01"'>
+                    <CodeLineRow rawCode='androidhelper = "1.0.0-alpha02"'>
                       <span className="keyword">[versions]</span>{"\n"}
-                      androidhelper = <span className="string">&quot;1.0.0-alpha01&quot;</span>
+                      androidhelper = <span className="string">&quot;1.0.0-alpha02&quot;</span>
                     </CodeLineRow>
                     <CodeLineRow rawCode='import com.zaitxcode.android.core.AppHelper'>
                       <span className="keyword">import</span> com.zaitxcode.android.Android Helper
