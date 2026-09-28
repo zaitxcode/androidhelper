@@ -15,13 +15,13 @@ export const sections: DocSection[] = [
   {
     title: "Download & Setup (Gradle KTS & Groovy)",
     meta:
-      "Add GitHub Packages repository and the AppUtilX dependency.\nPackage: Public package - no token required for usage.",
+      "Add GitHub Packages repository and the Android Helper dependency.\nPackage: Public package - no token required for usage.",
     blocks: [
       {
         label: "Kotlin DSL (build.gradle.kts)",
         code: `// Add in gradle/libs.versions.toml
-apputilx = "1.4.0"
-apputilx = { group = "com.github.mohamed-zaitoon", name = "apputilx", version.ref = "apputilx" }
+androidhelper = "1.4.0"
+androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }
 
 // Add in settings.gradle.kts
 repositories {
@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-  implementation(libs.apputilx)
+  implementation(libs.androidhelper)
 }
 `
       }

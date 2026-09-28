@@ -58,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:maxLines="3"
-                        android:text="Hello AppUtilx" />
+                        android:text="Hello Android Helper" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AppUtilX Documentation",
+  title: "Android Helper Documentation",
   description: "Lightweight Android & Flutter utility helpers documentation.",
   manifest: "/manifest.json",
   icons: {

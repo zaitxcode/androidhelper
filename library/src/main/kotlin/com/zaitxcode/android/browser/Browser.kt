@@ -7,7 +7,7 @@ import android.net.Uri
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 
 object Browser {
 

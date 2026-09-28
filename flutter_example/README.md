@@ -7,13 +7,13 @@ This example demonstrates how to integrate the **Android Helper** library (v1.5.
 ## 🚀 Setup Instructions
 
 ### 1. Android Application Class (`MyApp.kt`)
-In `android/app/src/main/kotlin/com/mohamedzaitoon/apputilx/apps/exampleflutter/MyApp.kt`:
+In `android/app/src/main/kotlin/com/mohamedzaitoon/androidhelper/apps/exampleflutter/MyApp.kt`:
 
 ```kotlin
 package com.zaitxcode.android.apps.exampleflutter
 
 import android.app.Application
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 
 class MyApp : Application() {
     override fun onCreate() {
@@ -24,12 +24,12 @@ class MyApp : Application() {
 ```
 
 ### 2. MethodChannel Handler (`MainActivity.kt`)
-In `android/app/src/main/kotlin/com/mohamedzaitoon/apputilx/apps/exampleflutter/MainActivity.kt`:
+In `android/app/src/main/kotlin/com/mohamedzaitoon/androidhelper/apps/exampleflutter/MainActivity.kt`:
 
 ```kotlin
 package com.zaitxcode.android.apps.exampleflutter
 
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 import com.zaitxcode.android.net.Network
 import com.zaitxcode.android.content.Clipboard
 import com.zaitxcode.android.hardware.Vibration
@@ -39,7 +39,7 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterFragmentActivity() {
-    private val channel = "apputilx/core"
+    private val channel = "androidhelper/core"
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -72,7 +72,7 @@ In `lib/main.dart`:
 ```dart
 import 'package:flutter/services.dart';
 
-const _channel = MethodChannel('apputilx/core');
+const _channel = MethodChannel('androidhelper/core');
 
 // Check connectivity
 final isOnline = await _channel.invokeMethod<bool>('isConnected');

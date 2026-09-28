@@ -49,7 +49,7 @@ import com.zaitxcode.android.apps.apphelper.theme.ThemeMode
 import com.zaitxcode.android.apps.apphelper.theme.glassAppBackground
 import com.zaitxcode.android.apps.apphelper.theme.glassContainer
 import com.zaitxcode.android.apps.apphelper.theme.resolveDarkMode
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 import com.zaitxcode.android.app.AppInfo
 import com.zaitxcode.android.app.AppState
 import com.zaitxcode.android.app.Notification
@@ -208,7 +208,7 @@ private fun Material3HomeScreen(
             SectionTitle(stringResource(R.string.section_intents))
             M3CardContainer {
                 M3Item(stringResource(R.string.action_open_url)) {
-                    Browser.openUrl("https://apputilx.mohamedzaitoon.com")
+                    Browser.openUrl("https://docs.zaitxcode.com/androidhelper")
                 }
                 M3Item(stringResource(R.string.action_open_settings)) {
                     Intent.openAppSettings()
@@ -229,7 +229,7 @@ private fun Material3HomeScreen(
                     Intent.shareText(inputText.ifBlank { "Shared from AppHelper" })
                 }
                 M3Item(stringResource(R.string.action_share_file)) {
-                    val file = File(context.cacheDir, "apputilx-demo.txt")
+                    val file = File(context.cacheDir, "androidhelper-demo.txt")
                     file.writeText(inputText.ifBlank { "Demo file content" })
                     val uri = FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
                     Intent.shareFile(uri, "text/plain", "Share file")
@@ -590,7 +590,7 @@ private fun MiuixHomeScreen(
                 MiuixArrowPreference(
                     title = stringResource(R.string.action_open_url),
                     onClick = {
-                        Browser.openUrl("https://apputilx.mohamedzaitoon.com")
+                        Browser.openUrl("https://docs.zaitxcode.com/androidhelper")
                     }
                 )
                 MiuixArrowPreference(
@@ -632,7 +632,7 @@ private fun MiuixHomeScreen(
                 MiuixArrowPreference(
                     title = stringResource(R.string.action_share_file),
                     onClick = {
-                        val file = File(context.cacheDir, "apputilx-demo.txt")
+                        val file = File(context.cacheDir, "androidhelper-demo.txt")
                         file.writeText(inputText.ifBlank { "Demo file content" })
                         val uri = FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
                         Intent.shareFile(uri, "text/plain", "Share file")

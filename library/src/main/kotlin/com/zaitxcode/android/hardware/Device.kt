@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.os.SystemClock
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 import java.util.Locale
 
 object Device {

@@ -5,7 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.PowerManager
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 
 object Battery {
 

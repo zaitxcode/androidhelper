@@ -28,7 +28,7 @@ const translations = {
     tabFlutter: "Flutter Bridge",
     secInstall: "📦 Installation & Setup",
     secInstallDesc: "Add the library dependency to your build file then initialize inside Application class.",
-    flutterBridgeExplain: "🌉 How Flutter MethodChannel Bridge Works: Flutter communicates asynchronously with native Android Kotlin code via MethodChannel ('apputilx/core'). Calling await _channel.invokeMethod<T>('methodName') invokes Android Helper helpers natively without UI blocking.",
+    flutterBridgeExplain: "🌉 How Flutter MethodChannel Bridge Works: Flutter communicates asynchronously with native Android Kotlin code via MethodChannel ('androidhelper/core'). Calling await _channel.invokeMethod<T>('methodName') invokes Android Helper helpers natively without UI blocking.",
     secNetwork: "🌐 Network Helpers",
     secNetworkDesc: "Check internet connectivity, validated connection, transport type, and IP address via Network module.",
     secIntents: "🔗 External Intents & Actions",
@@ -76,7 +76,7 @@ const translations = {
     tabFlutter: "فلاتر (Flutter)",
     secInstall: "📦 التثبيت والإعداد (Installation)",
     secInstallDesc: "أضف التبعية الخاصة بالمكتبة ثم قم بتهيئتها داخل Application class.",
-    flutterBridgeExplain: "🌉 كيف يعمل جسر التواصل في فلاتر (MethodChannel Bridge)؟ يتصل تطبيق Flutter بكود أندرويد الكوتلن الأصلي لا تزامندياً عبر قناة تواصل موحدة ('apputilx/core'). يرسل كود فلاتر الأمر عبر await _channel.invokeMethod<T>('methodName')، فيستقبل كلاس MainActivity.kt الأمر وينفذ دالة المكتبة المطلوبة دون إيقاف سلاسة الواجهة.",
+    flutterBridgeExplain: "🌉 كيف يعمل جسر التواصل في فلاتر (MethodChannel Bridge)؟ يتصل تطبيق Flutter بكود أندرويد الكوتلن الأصلي لا تزامندياً عبر قناة تواصل موحدة ('androidhelper/core'). يرسل كود فلاتر الأمر عبر await _channel.invokeMethod<T>('methodName')، فيستقبل كلاس MainActivity.kt الأمر وينفذ دالة المكتبة المطلوبة دون إيقاف سلاسة الواجهة.",
     secNetwork: "🌐 الشبكة والاتصال (Network)",
     secNetworkDesc: "التحقق من حالة الاتصال بالإنترنت والاتصال المزدوج والإنترنت المؤكد وعنوان الـ IP عبر كلاس Network.",
     secIntents: "🔗 المقاصد والأفعال الخارجية (Intents)",
@@ -106,9 +106,9 @@ const translations = {
 
 const getAiPromptText = (lang: Lang) => {
   if (lang === "ar") {
-    return "اقرأ من https://apputilx.mohamedzaitoon.com/llms-full.txt حتى أتمكن من طرح أسئلة حوله.";
+    return "اقرأ من https://docs.zaitxcode.com/androidhelper/llms-full.txt حتى أتمكن من طرح أسئلة حوله.";
   }
-  return "Read from https://apputilx.mohamedzaitoon.com/llms-full.txt so I can ask questions about it.";
+  return "Read from https://docs.zaitxcode.com/androidhelper/llms-full.txt so I can ask questions about it.";
 };
 
 function KotlinIcon() {
@@ -332,7 +332,7 @@ export default function Home() {
             <i className={themeMode === "dark" ? "bi bi-moon-stars-fill" : themeMode === "light" ? "bi bi-sun-fill" : "bi bi-gear-fill"}></i>
           </button>
 
-          <a href="https://github.com/mohamed-zaitoon/apputilx" target="_blank" className="btn-icon" rel="noreferrer">
+          <a href="https://github.com/zaitxcode/androidhelper" target="_blank" className="btn-icon" rel="noreferrer">
             <i className="fa-brands fa-github"></i>
             <span className="btn-label">GitHub</span>
           </a>
@@ -365,8 +365,8 @@ export default function Home() {
 
             {/* Badges Bar */}
             <div className="badge-bar">
-              <a href="https://jitpack.io/#mohamed-zaitoon/apputilx" target="_blank" rel="noreferrer">
-                <img src="https://jitpack.io/v/mohamed-zaitoon/apputilx.svg" alt="JitPack" />
+              <a href="https://jitpack.io/#mohamed-zaitoon/androidhelper" target="_blank" rel="noreferrer">
+                <img src="https://jitpack.io/v/mohamed-zaitoon/androidhelper.svg" alt="JitPack" />
               </a>
               <img src="https://img.shields.io/badge/AndroidX-Required-blue" alt="AndroidX" />
               <img src="https://img.shields.io/badge/Kotlin-First-purple" alt="Kotlin" />
@@ -449,7 +449,7 @@ export default function Home() {
             <div className="card">
               <div className="card-header">
                 <div className="card-title-group">
-                  <span className="card-title">📦 apputilx setup & Android Helper.initialize(this)</span>
+                  <span className="card-title">📦 androidhelper setup & Android Helper.initialize(this)</span>
                 </div>
                 <div className="card-actions">
                   <span className="lang-tag">
@@ -457,11 +457,11 @@ export default function Home() {
                     {activeTab === "kotlin" ? "Kotlin" : "Flutter"}
                   </span>
                   {activeTab === "kotlin" ? (
-                    <button className="copy-btn" onClick={() => handleCopy("install-kotlin", `// 1. Add in gradle/libs.versions.toml\n[versions]\napputilx = "1.5.0-beta04"\n\n[libraries]\napputilx = { group = "com.github.mohamed-zaitoon", name = "apputilx", version.ref = "apputilx" }\n\n// 2. Add in settings.gradle.kts\nrepositories {\n    google()\n    mavenCentral()\n    maven { url = uri("https://jitpack.io") }\n}\n\n// 3. Add in app/build.gradle.kts\ndependencies {\n    implementation(libs.apputilx)\n}\n\n// 4. Initialize in Application class\nimport com.zaitxcode.android.Android Helper\n\nclass ExampleApplication : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        Android Helper.initialize(this)\n    }\n}`)}>
+                    <button className="copy-btn" onClick={() => handleCopy("install-kotlin", `// 1. Add in gradle/libs.versions.toml\n[versions]\nandroidhelper = "1.5.0-beta04"\n\n[libraries]\nandroidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }\n\n// 2. Add in settings.gradle.kts\nrepositories {\n    google()\n    mavenCentral()\n    maven { url = uri("https://jitpack.io") }\n}\n\n// 3. Add in app/build.gradle.kts\ndependencies {\n    implementation(libs.androidhelper)\n}\n\n// 4. Initialize in Application class\nimport com.zaitxcode.android.Android Helper\n\nclass ExampleApplication : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        Android Helper.initialize(this)\n    }\n}`)}>
                       {copiedId === "install-kotlin" ? "✓ Copied All" : "Copy All"}
                     </button>
                   ) : (
-                    <button className="copy-btn" onClick={() => handleCopy("install-flutter", `// 1. Add in gradle/libs.versions.toml\n[versions]\napputilx = "1.5.0-beta04"\n\n[libraries]\napputilx = { group = "com.github.mohamed-zaitoon", name = "apputilx", version.ref = "apputilx" }\n\n// 2. Add in android/settings.gradle.kts\nrepositories {\n    google()\n    mavenCentral()\n    maven { url = uri("https://jitpack.io") }\n}\n\n// 3. Add in android/app/build.gradle.kts\ndependencies {\n    implementation(libs.apputilx)\n}\n\n// 4. Initialize in Flutter Android Application (MyApp.kt)\nimport com.zaitxcode.android.Android Helper\n\nclass MyApp : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        Android Helper.initialize(this)\n    }\n}`)}>
+                    <button className="copy-btn" onClick={() => handleCopy("install-flutter", `// 1. Add in gradle/libs.versions.toml\n[versions]\nandroidhelper = "1.5.0-beta04"\n\n[libraries]\nandroidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }\n\n// 2. Add in android/settings.gradle.kts\nrepositories {\n    google()\n    mavenCentral()\n    maven { url = uri("https://jitpack.io") }\n}\n\n// 3. Add in android/app/build.gradle.kts\ndependencies {\n    implementation(libs.androidhelper)\n}\n\n// 4. Initialize in Flutter Android Application (MyApp.kt)\nimport com.zaitxcode.android.Android Helper\n\nclass MyApp : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        Android Helper.initialize(this)\n    }\n}`)}>
                       {copiedId === "install-flutter" ? "✓ Copied All" : "Copy All"}
                     </button>
                   )}
@@ -472,13 +472,13 @@ export default function Home() {
               {activeTab === "kotlin" ? (
                 <div className="code-snippet">
                   <div className="code-block" id="code-install-kotlin">
-                    <CodeLineRow rawCode='apputilx = "1.5.0-beta04"'>
+                    <CodeLineRow rawCode='androidhelper = "1.5.0-beta04"'>
                       <span className="keyword">[versions]</span>{"\n"}
-                      apputilx = <span className="string">&quot;1.5.0-beta04&quot;</span>
+                      androidhelper = <span className="string">&quot;1.5.0-beta04&quot;</span>
                     </CodeLineRow>
-                    <CodeLineRow rawCode='apputilx = { group = "com.github.mohamed-zaitoon", name = "apputilx", version.ref = "apputilx" }'>
+                    <CodeLineRow rawCode='androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidhelper" }'>
                       <span className="keyword">[libraries]</span>{"\n"}
-                      apputilx = &#123; group = <span className="string">&quot;com.github.mohamed-zaitoon&quot;</span>, name = <span className="string">&quot;apputilx&quot;</span>, version.ref = <span className="string">&quot;apputilx&quot;</span> &#125;
+                      androidhelper = &#123; group = <span className="string">&quot;com.github.zaitxcode&quot;</span>, name = <span className="string">&quot;androidhelper&quot;</span>, version.ref = <span className="string">&quot;androidhelper&quot;</span> &#125;
                     </CodeLineRow>
                     <CodeLineRow rawCode='import com.zaitxcode.android.Android Helper'>
                       <span className="keyword">import</span> com.zaitxcode.android.Android Helper
@@ -491,9 +491,9 @@ export default function Home() {
               ) : (
                 <div className="code-snippet">
                   <div className="code-block" id="code-install-flutter">
-                    <CodeLineRow rawCode='apputilx = "1.5.0-beta04"'>
+                    <CodeLineRow rawCode='androidhelper = "1.5.0-beta04"'>
                       <span className="keyword">[versions]</span>{"\n"}
-                      apputilx = <span className="string">&quot;1.5.0-beta04&quot;</span>
+                      androidhelper = <span className="string">&quot;1.5.0-beta04&quot;</span>
                     </CodeLineRow>
                     <CodeLineRow rawCode='import com.zaitxcode.android.Android Helper'>
                       <span className="keyword">import</span> com.zaitxcode.android.Android Helper
@@ -593,11 +593,11 @@ export default function Home() {
                     {activeTab === "kotlin" ? "Kotlin" : "Flutter"}
                   </span>
                   {activeTab === "kotlin" ? (
-                    <button className="copy-btn" onClick={() => handleCopy("int-k", `import com.zaitxcode.android.content.Intent\nimport com.zaitxcode.android.browser.Browser\n\nBrowser.openUrl("https://apputilx.mohamedzaitoon.com")\nIntent.openWhatsApp("201234567890", "Hello")\nIntent.dial("201234567890")\nIntent.sendSms("201234567890", "Test message")\nIntent.sendEmail("info@example.com", "Subject", "Body")\nIntent.shareText("Text to share")\nIntent.openMap(30.0444, 31.2357, "Cairo")\nIntent.openAppSettings()\nIntent.openPlayStore()`)}>
+                    <button className="copy-btn" onClick={() => handleCopy("int-k", `import com.zaitxcode.android.content.Intent\nimport com.zaitxcode.android.browser.Browser\n\nBrowser.openUrl("https://docs.zaitxcode.com/androidhelper")\nIntent.openWhatsApp("201234567890", "Hello")\nIntent.dial("201234567890")\nIntent.sendSms("201234567890", "Test message")\nIntent.sendEmail("info@example.com", "Subject", "Body")\nIntent.shareText("Text to share")\nIntent.openMap(30.0444, 31.2357, "Cairo")\nIntent.openAppSettings()\nIntent.openPlayStore()`)}>
                       {copiedId === "int-k" ? "✓ Copied All" : "Copy All"}
                     </button>
                   ) : (
-                    <button className="copy-btn" onClick={() => handleCopy("int-f", `await _channel.invokeMethod('openUrl', {'url': 'https://apputilx.mohamedzaitoon.com'});\nawait _channel.invokeMethod('openWhatsApp', {'text': 'Hello'});\nawait _channel.invokeMethod('dial');\nawait _channel.invokeMethod('sendSms', {'text': 'Hello SMS'});\nawait _channel.invokeMethod('sendEmail', {'text': 'Body'});\nawait _channel.invokeMethod('shareText', {'text': 'Shared text'});\nawait _channel.invokeMethod('openMap');\nawait _channel.invokeMethod('openAppSettings');\nawait _channel.invokeMethod('openPlayStore');`)}>
+                    <button className="copy-btn" onClick={() => handleCopy("int-f", `await _channel.invokeMethod('openUrl', {'url': 'https://docs.zaitxcode.com/androidhelper'});\nawait _channel.invokeMethod('openWhatsApp', {'text': 'Hello'});\nawait _channel.invokeMethod('dial');\nawait _channel.invokeMethod('sendSms', {'text': 'Hello SMS'});\nawait _channel.invokeMethod('sendEmail', {'text': 'Body'});\nawait _channel.invokeMethod('shareText', {'text': 'Shared text'});\nawait _channel.invokeMethod('openMap');\nawait _channel.invokeMethod('openAppSettings');\nawait _channel.invokeMethod('openPlayStore');`)}>
                       {copiedId === "int-f" ? "✓ Copied All" : "Copy All"}
                     </button>
                   )}
@@ -613,8 +613,8 @@ export default function Home() {
                     <CodeLineRow rawCode="import com.zaitxcode.android.browser.Browser">
                       <span className="keyword">import</span> com.zaitxcode.android.browser.Browser
                     </CodeLineRow>
-                    <CodeLineRow rawCode='Browser.openUrl("https://apputilx.mohamedzaitoon.com")'>
-                      <span className="type">Browser</span>.<span className="function">openUrl</span>(<span className="string">&quot;https://apputilx.mohamedzaitoon.com&quot;</span>)
+                    <CodeLineRow rawCode='Browser.openUrl("https://docs.zaitxcode.com/androidhelper")'>
+                      <span className="type">Browser</span>.<span className="function">openUrl</span>(<span className="string">&quot;https://docs.zaitxcode.com/androidhelper&quot;</span>)
                     </CodeLineRow>
                     <CodeLineRow rawCode='Intent.openWhatsApp("201234567890", "Hello")'>
                       <span className="type">Intent</span>.<span className="function">openWhatsApp</span>(<span className="string">&quot;201234567890&quot;</span>, <span className="string">&quot;Hello&quot;</span>)
@@ -645,8 +645,8 @@ export default function Home() {
               ) : (
                 <div className="code-snippet">
                   <div className="code-block">
-                    <CodeLineRow rawCode="await _channel.invokeMethod('openUrl', {'url': 'https://apputilx.mohamedzaitoon.com'});">
-                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openUrl&apos;</span>, &#123;<span className="string">&apos;url&apos;</span>: <span className="string">&apos;https://apputilx.mohamedzaitoon.com&apos;</span>&#125;);
+                    <CodeLineRow rawCode="await _channel.invokeMethod('openUrl', {'url': 'https://docs.zaitxcode.com/androidhelper'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openUrl&apos;</span>, &#123;<span className="string">&apos;url&apos;</span>: <span className="string">&apos;https://docs.zaitxcode.com/androidhelper&apos;</span>&#125;);
                     </CodeLineRow>
                     <CodeLineRow rawCode="await _channel.invokeMethod('openWhatsApp', {'text': 'Hello'});">
                       <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openWhatsApp&apos;</span>, &#123;<span className="string">&apos;text&apos;</span>: <span className="string">&apos;Hello&apos;</span>&#125;);

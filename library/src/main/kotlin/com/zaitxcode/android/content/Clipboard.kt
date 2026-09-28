@@ -3,7 +3,7 @@ package com.zaitxcode.android.content
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 
 object Clipboard {
 

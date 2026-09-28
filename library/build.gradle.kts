@@ -10,7 +10,7 @@ plugins {
 }
 
 configure<LibraryExtension> {
-    namespace = "com.zaitxcode.android"
+    namespace = "com.zaitxcode.androidhelper"
 
     compileSdk = libs.versions.compileSdk.get().toInt()
     buildToolsVersion = libs.versions.buildTools.get()

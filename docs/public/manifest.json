@@ -1,9 +1,9 @@
 {
-  "name": "AppUtilX Documentation",
-  "short_name": "AppUtilX Docs",
+  "name": "Android Helper Documentation",
+  "short_name": "Android Helper Docs",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#f5f7fe",
   "theme_color": "#6750a4",
-  "description": "AppUtilX Documentation - GitHub Packages"
+  "description": "Android Helper Documentation - GitHub Packages"
 }

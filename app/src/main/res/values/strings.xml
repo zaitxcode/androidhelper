@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AppUtilX Demo</string>
+    <string name="app_name">Android Helper Demo</string>
 
     <!-- Navigation -->
     <string name="nav_home">Home</string>
@@ -27,7 +27,7 @@
     <string name="settings_language_arabic">العربية</string>
 
     <!-- Home -->
-    <string name="home_title">AppUtilX Demo</string>
+    <string name="home_title">Android Helper Demo</string>
     <string name="home_subtitle">All helpers in one place</string>
     <string name="home_input_hint">Text for helpers</string>
     <string name="home_output_hint">Results will appear here</string>

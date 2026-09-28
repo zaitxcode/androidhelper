@@ -41,7 +41,7 @@ class EncryptionTest {
 
     @Test
     fun testBase64UrlEncodingDecoding() {
-        val original = "https://apputilx.mohamedzaitoon.com/test?a=1&b=2"
+        val original = "https://docs.zaitxcode.com/androidhelper/test?a=1&b=2"
         val encoded = Encryption.base64UrlEncode(original)
         val decoded = Encryption.base64UrlDecode(encoded)
 

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-const _channel = MethodChannel('apputilx/core');
+const _channel = MethodChannel('androidhelper/core');
 
 Future<T?> _invoke<T>(String method, [Map<String, dynamic>? args]) async {
   if (!Platform.isAndroid) return null;
@@ -423,7 +423,7 @@ class _DemoPageState extends State<DemoPage> {
                 children: [
                   _ActionTile(
                     title: widget.isRtl ? 'فتح رابط' : 'Open URL',
-                    onTap: () => _invoke('openUrl', {'url': 'https://apputilx.mohamedzaitoon.com'}),
+                    onTap: () => _invoke('openUrl', {'url': 'https://docs.zaitxcode.com/androidhelper'}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(

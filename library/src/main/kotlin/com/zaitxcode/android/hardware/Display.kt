@@ -2,7 +2,7 @@ package com.zaitxcode.android.hardware
 
 import android.content.Context
 import android.content.res.Configuration
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 
 object Display {
 

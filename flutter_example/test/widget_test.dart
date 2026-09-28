@@ -4,12 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_example/main.dart';
 
 void main() {
-  testWidgets('AppUtilx demo renders core controls', (
+  testWidgets('Android Helper demo renders core controls', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('AppUtilx (Android)'), findsOneWidget);
+    expect(find.text('Android Helper (Android)'), findsOneWidget);
     expect(find.byType(TextField), findsOneWidget);
     expect(find.text('Toast'), findsOneWidget);
     expect(find.text('Network state'), findsOneWidget);

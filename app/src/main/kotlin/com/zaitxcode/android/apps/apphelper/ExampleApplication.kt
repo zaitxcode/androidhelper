@@ -1,7 +1,7 @@
 package com.zaitxcode.android.apps.apphelper
 
 import android.app.Application
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 
 class ExampleApplication : Application() {
     override fun onCreate() {

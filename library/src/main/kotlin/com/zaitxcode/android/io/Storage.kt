@@ -3,7 +3,7 @@ package com.zaitxcode.android.io
 import android.content.Context
 import android.os.Environment
 import android.os.StatFs
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 import java.io.File
 import java.util.Locale
 

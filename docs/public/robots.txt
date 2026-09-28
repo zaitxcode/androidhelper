@@ -19,4 +19,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://apputilx.mohamedzaitoon.com/sitemap.xml
+Sitemap: https://docs.zaitxcode.com/androidhelper/sitemap.xml

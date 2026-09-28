@@ -6,7 +6,7 @@ import com.zaitxcode.android.app.Signature
 import com.zaitxcode.android.browser.Browser
 import com.zaitxcode.android.content.Clipboard
 import com.zaitxcode.android.content.Intent
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 import com.zaitxcode.android.hardware.Audio
 import com.zaitxcode.android.hardware.Battery
 import com.zaitxcode.android.hardware.Biometric
@@ -26,7 +26,7 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterFragmentActivity() {
-    private val channel = "apputilx/core"
+    private val channel = "androidhelper/core"
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)

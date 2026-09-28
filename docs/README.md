@@ -1,6 +1,6 @@
-# AppUtilX Documentation
+# Android Helper Documentation
 
-Next.js documentation site for AppUtilX GitHub Packages usage.
+Next.js documentation site for Android Helper GitHub Packages usage.
 
 ## Development
 

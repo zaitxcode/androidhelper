@@ -5,6 +5,12 @@ pluginManagement {
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
     }
+    plugins {
+        kotlin("jvm") version "2.4.20"
+    }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 dependencyResolutionManagement {
@@ -16,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "apputilx"
+rootProject.name = "androidhelper"
 include(":app")
 include(":library")

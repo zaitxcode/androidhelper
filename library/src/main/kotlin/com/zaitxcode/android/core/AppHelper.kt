@@ -1,4 +1,4 @@
-package com.zaitxcode.android.core.apphelper
+package com.zaitxcode.android.core
 
 import android.app.Activity
 import android.app.Application

@@ -7,7 +7,7 @@ import android.os.Build
 import android.view.View
 import android.view.WindowInsets
 import android.view.inputmethod.InputMethodManager
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 
 object Keyboard {
 

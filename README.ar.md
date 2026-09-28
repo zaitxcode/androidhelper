@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/mohamed-zaitoon/apputilx.svg)](https://jitpack.io/#mohamed-zaitoon/apputilx)
+[![](https://jitpack.io/v/mohamed-zaitoon/androidhelper.svg)](https://jitpack.io/#mohamed-zaitoon/androidhelper)
 ![AndroidX](https://img.shields.io/badge/AndroidX-Required-blue)
 ![Kotlin](https://img.shields.io/badge/Kotlin-First-purple)
 ![Platform](https://img.shields.io/badge/Platform-Android-green)
@@ -6,11 +6,11 @@
 
 # Android Helper (مكتبة أندرويد هيلبر)
 
-> مكتبة أدوات وأدوات مساعدة خفيفة وموحدة لمشاريع أندرويد وفلاتر بداخل حزم برمجية نظيفة تحت `com.mohamedzaitoon.apputilx.*`.
+> مكتبة أدوات وأدوات مساعدة خفيفة وموحدة لمشاريع أندرويد وفلاتر بداخل حزم برمجية نظيفة تحت `com.mohamedzaitoon.androidhelper.*`.
 
 تجمع مكتبة **Android Helper** جميع المهام المكررة في تطوير أندرويد — مثل فحص الشبكة، الاهتزاز الفعلي، الصوتيات والشاشة، المصادقة بالبصمة، المقاصد الآمنة (Intents)، الحافظة، الإشعارات، إدارة الملفات، ومعلومات الجهاز والبطارية.
 
-🌐 **الموقع والتوثيق التفاعلي:** [apputilx.mohamedzaitoon.com](https://apputilx.mohamedzaitoon.com)  
+🌐 **الموقع والتوثيق التفاعلي:** [docs.zaitxcode.com/androidhelper](https://docs.zaitxcode.com/androidhelper)  
 📖 **English Version:** [README.md](README.md)
 
 ---
@@ -25,7 +25,7 @@
 androidHelper = "1.5.0-beta04"
 
 [libraries]
-android-helper = { group = "com.github.mohamed-zaitoon", name = "android-helper", version.ref = "androidHelper" }
+android-helper = { group = "com.github.zaitxcode", name = "android-helper", version.ref = "androidHelper" }
 
 // إضافة المستودع في settings.gradle.kts
 repositories {
@@ -44,12 +44,12 @@ dependencies {
 
 ```kotlin
 import android.app.Application
-import com.mohamedzaitoon.apputilx.AppUtilX
+import com.mohamedzaitoon.androidhelper.Android Helper
 
 class ExampleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        AppUtilX.initialize(this)
+        Android Helper.initialize(this)
     }
 }
 ```
@@ -59,12 +59,12 @@ class ExampleApplication : Application() {
 ## 🚀 أمثلة الاستخدام المباشر لقطاعات المكتبة
 
 ```kotlin
-import com.mohamedzaitoon.apputilx.net.Network
-import com.mohamedzaitoon.apputilx.hardware.Audio
-import com.mohamedzaitoon.apputilx.hardware.Vibration
-import com.mohamedzaitoon.apputilx.content.Clipboard
-import com.mohamedzaitoon.apputilx.hardware.Device
-import com.mohamedzaitoon.apputilx.hardware.Battery
+import com.mohamedzaitoon.androidhelper.net.Network
+import com.mohamedzaitoon.androidhelper.hardware.Audio
+import com.mohamedzaitoon.androidhelper.hardware.Vibration
+import com.mohamedzaitoon.androidhelper.content.Clipboard
+import com.mohamedzaitoon.androidhelper.hardware.Device
+import com.mohamedzaitoon.androidhelper.hardware.Battery
 
 // فحص الاتصال بالإنترنت
 val isOnline = Network.isConnected

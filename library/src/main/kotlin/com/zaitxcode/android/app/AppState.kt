@@ -3,7 +3,7 @@ package com.zaitxcode.android.app
 import android.app.ActivityManager
 import android.content.Context
 import android.os.PowerManager
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 
 object AppState {
 

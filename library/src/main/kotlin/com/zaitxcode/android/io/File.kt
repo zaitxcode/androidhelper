@@ -1,7 +1,7 @@
 package com.zaitxcode.android.io
 
 import android.content.Context
-import com.zaitxcode.android.core.apphelper.AppHelper
+import com.zaitxcode.android.core.AppHelper
 import java.io.File
 
 object File {

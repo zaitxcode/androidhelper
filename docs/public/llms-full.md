@@ -3,8 +3,8 @@
 Android Helper is an enterprise-grade Android and Flutter utility library designed to simplify common Android tasks: network checks, vibration, audio feedback, display metrics, biometric authentication, secure intents, clipboard, notifications, file management, and device/battery info.
 
 Current Version: 1.5.0-beta04
-Repository: https://github.com/mohamed-zaitoon/apputilx
-Website: https://apputilx.mohamedzaitoon.com/
+Repository: https://github.com/zaitxcode/androidhelper
+Website: https://docs.zaitxcode.com/androidhelper/
 
 ---
 
@@ -16,7 +16,7 @@ Website: https://apputilx.mohamedzaitoon.com/
 androidHelper = "1.5.0-beta04"
 
 [libraries]
-android-helper = { group = "com.github.mohamed-zaitoon", name = "android-helper", version.ref = "androidHelper" }
+android-helper = { group = "com.github.zaitxcode", name = "android-helper", version.ref = "androidHelper" }
 ```
 
 ### Repositories (settings.gradle.kts)
@@ -137,13 +137,13 @@ class ExampleApplication : Application() {
 
 ## 3. Flutter Integration via MethodChannel
 
-In Flutter (Dart), communicate with native Kotlin `com.zaitxcode.android.*` via `MethodChannel('apputilx/core')`:
+In Flutter (Dart), communicate with native Kotlin `com.zaitxcode.android.*` via `MethodChannel('androidhelper/core')`:
 
 ### Flutter Dart Usage Example:
 ```dart
 import 'package:flutter/services.dart';
 
-const _channel = MethodChannel('apputilx/core');
+const _channel = MethodChannel('androidhelper/core');
 
 // Check connectivity
 final isOnline = await _channel.invokeMethod<bool>('isConnected');

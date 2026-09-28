@@ -1,8 +1,8 @@
 {
-  "name": "apputilx-docs",
+  "name": "androidhelper-docs",
   "version": "1.0.0",
   "private": true,
-  "description": "AppUtilX Documentation - Next.js",
+  "description": "Android Helper Documentation - Next.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build"
