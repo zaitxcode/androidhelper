@@ -28,9 +28,9 @@ export default function PortalPage() {
       {/* Main Hero Container */}
       <main style={{ maxWidth: "1000px", margin: "0 auto", padding: "60px 24px" }}>
         {/* Status Badge */}
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 14px", borderRadius: "20px", backgroundColor: "rgba(35, 134, 54, 0.15)", border: "1px solid rgba(35, 134, 54, 0.4)", color: "#3fb950", fontSize: "0.85rem", fontWeight: "600", marginBottom: "24px" }}>
-          <span style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#3fb950" }}></span>
-          Documentation Portal Active & Operational
+        <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 14px", borderRadius: "20px", backgroundColor: "rgba(35, 134, 54, 0.15)", border: "1px solid rgba(35, 134, 54, 0.4)", color: "var(--accent-green)", fontSize: "0.85rem", fontWeight: "600", marginBottom: "24px" }}>
+          <span style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--accent-green)" }}></span>
+          Documentation Portal Active &amp; Operational
         </div>
 
         <h1 style={{ fontSize: "2.8rem", fontWeight: "800", lineHeight: "1.2", marginBottom: "16px", letterSpacing: "-1px" }}>
@@ -61,7 +61,7 @@ export default function PortalPage() {
                   <span style={{ fontSize: "1.5rem" }}>🤖</span>
                   <h3 style={{ fontSize: "1.3rem", fontWeight: "700" }}>Android Helper</h3>
                 </div>
-                <span className="brand-badge" style={{ padding: "4px 10px", borderRadius: "12px" }}>v1.0.0-alpha03</span>
+                <span className="brand-badge" style={{ padding: "4px 10px", borderRadius: "12px" }}>v1.0.0-alpha04</span>
               </div>
               <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: "1.5", marginBottom: "24px" }}>
                 Enterprise-grade Kotlin &amp; Flutter utility library for Android — Network, Audio, Vibration, Biometrics, Secure Intents, Notifications, Cryptography, and Storage.
