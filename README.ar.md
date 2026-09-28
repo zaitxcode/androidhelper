@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/mohamed-zaitoon/androidhelper.svg)](https://jitpack.io/#mohamed-zaitoon/androidhelper)
+[![](https://jitpack.io/v/zaitxcode/androidhelper.svg)](https://jitpack.io/#zaitxcode/androidhelper)
 ![AndroidX](https://img.shields.io/badge/AndroidX-Required-blue)
 ![Kotlin](https://img.shields.io/badge/Kotlin-First-purple)
 ![Platform](https://img.shields.io/badge/Platform-Android-green)
@@ -6,7 +6,7 @@
 
 # Android Helper (مكتبة أندرويد هيلبر)
 
-> مكتبة أدوات وأدوات مساعدة خفيفة وموحدة لمشاريع أندرويد وفلاتر بداخل حزم برمجية نظيفة تحت `com.mohamedzaitoon.androidhelper.*`.
+> مكتبة أدوات وأدوات مساعدة خفيفة وموحدة لمشاريع أندرويد وفلاتر بداخل حزم برمجية نظيفة تحت `com.zaitxcode.android.*`.
 
 تجمع مكتبة **Android Helper** جميع المهام المكررة في تطوير أندرويد — مثل فحص الشبكة، الاهتزاز الفعلي، الصوتيات والشاشة، المصادقة بالبصمة، المقاصد الآمنة (Intents)، الحافظة، الإشعارات، إدارة الملفات، ومعلومات الجهاز والبطارية.
 
@@ -22,10 +22,10 @@
 ```kotlin
 // إضافة الإصدار في gradle/libs.versions.toml
 [versions]
-androidHelper = "1.5.0-beta04"
+androidHelper = "1.0.0-alpha01"
 
 [libraries]
-android-helper = { group = "com.github.zaitxcode", name = "android-helper", version.ref = "androidHelper" }
+androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
 
 // إضافة المستودع في settings.gradle.kts
 repositories {
@@ -36,7 +36,7 @@ repositories {
 
 // إضافة التبعية في app/build.gradle.kts
 dependencies {
-    implementation(libs.android.helper)
+    implementation(libs.androidhelper)
 }
 ```
 
@@ -44,12 +44,12 @@ dependencies {
 
 ```kotlin
 import android.app.Application
-import com.mohamedzaitoon.androidhelper.Android Helper
+import com.zaitxcode.android.core.AppHelper
 
 class ExampleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Android Helper.initialize(this)
+        AppHelper.initialize(this)
     }
 }
 ```
@@ -59,12 +59,12 @@ class ExampleApplication : Application() {
 ## 🚀 أمثلة الاستخدام المباشر لقطاعات المكتبة
 
 ```kotlin
-import com.mohamedzaitoon.androidhelper.net.Network
-import com.mohamedzaitoon.androidhelper.hardware.Audio
-import com.mohamedzaitoon.androidhelper.hardware.Vibration
-import com.mohamedzaitoon.androidhelper.content.Clipboard
-import com.mohamedzaitoon.androidhelper.hardware.Device
-import com.mohamedzaitoon.androidhelper.hardware.Battery
+import com.zaitxcode.android.net.Network
+import com.zaitxcode.android.hardware.Audio
+import com.zaitxcode.android.hardware.Vibration
+import com.zaitxcode.android.content.Clipboard
+import com.zaitxcode.android.hardware.Device
+import com.zaitxcode.android.hardware.Battery
 
 // فحص الاتصال بالإنترنت
 val isOnline = Network.isConnected

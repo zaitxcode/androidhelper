@@ -1,8 +1,8 @@
 // Bilingual Dictionary
 const translations = {
   ar: {
-    docTitle: 'AppUtilX Documentation - توثيق مكتبة AppUtilX',
-    brandName: 'AppUtilX',
+    docTitle: 'AndroidHelper Documentation - توثيق مكتبة AndroidHelper',
+    brandName: 'AndroidHelper',
     searchPlaceholder: 'ابحث في التوثيق...',
     navOverview: '📌 النظرة العامة (Overview)',
     navInstallation: '📦 التثبيت والإعداد',
@@ -13,7 +13,7 @@ const translations = {
     navDevice: '📱 الجهاز والتطبيق والبطارية',
     navData: '💾 البيانات والتخزين والتشفير',
     navSecurity: '🔐 الأمان والبصمة واللوجر',
-    secOverviewTitle: 'AppUtilX Documentation',
+    secOverviewTitle: 'AndroidHelper Documentation',
     pillAndroid: '✓ Android 17 (API 37) Ready',
     pillCoroutines: '✓ Kotlin Coroutines & DataStore',
     pillBridge: '✓ Flutter MethodChannel Bridge',
@@ -35,11 +35,11 @@ const translations = {
     secDataDesc: 'قراءة وكتابة وحذف الملفات، تشفير SHA-256 و SHA-512 و HMAC، وتشفير Base64.',
     secSecurity: '🔐 الأمان والبصمة واللوجر',
     secSecurityDesc: 'مصادقة البصمة الفعالة، استخراج توقيع التطبيق الرقمي SHA-1، وتدقيق السجلات.',
-    footerText: 'AppUtilX Documentation © 2025-2027.'
+    footerText: 'AndroidHelper Documentation © 2025-2027.'
   },
   en: {
-    docTitle: 'AppUtilX Documentation',
-    brandName: 'AppUtilX',
+    docTitle: 'AndroidHelper Documentation',
+    brandName: 'AndroidHelper',
     searchPlaceholder: 'Search documentation...',
     navOverview: '📌 Overview',
     navInstallation: '📦 Installation',
@@ -50,7 +50,7 @@ const translations = {
     navDevice: '📱 Device, Battery & App Info',
     navData: '💾 Data, Storage & Crypto',
     navSecurity: '🔐 Security, Biometric & Logger',
-    secOverviewTitle: 'AppUtilX Documentation',
+    secOverviewTitle: 'AndroidHelper Documentation',
     pillAndroid: '✓ Android 17 (API 37) Ready',
     pillCoroutines: '✓ Kotlin Coroutines & DataStore',
     pillBridge: '✓ Flutter MethodChannel Bridge',
@@ -72,7 +72,7 @@ const translations = {
     secDataDesc: 'File write/read/delete operations, SHA-256, SHA-512, HMAC, and Base64 encoding.',
     secSecurity: '🔐 Security, Biometric & Logger',
     secSecurityDesc: 'Prompt biometric authentication, extract app SHA-1 signature, and log diagnostics.',
-    footerText: 'AppUtilX Documentation © 2025-2027.'
+    footerText: 'AndroidHelper Documentation © 2025-2027.'
   }
 };
 

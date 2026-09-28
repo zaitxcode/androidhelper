@@ -1,16 +1,16 @@
 # Android Helper Flutter Integration Example
 
-This example demonstrates how to integrate the **Android Helper** library (v1.5.0-beta04) into a Flutter application using a native Kotlin `MethodChannel` bridge.
+This example demonstrates how to integrate the **Android Helper** library (v1.0.0-alpha01) into a Flutter application using a native Kotlin `MethodChannel` bridge.
 
 ---
 
 ## 🚀 Setup Instructions
 
 ### 1. Android Application Class (`MyApp.kt`)
-In `android/app/src/main/kotlin/com/mohamedzaitoon/androidhelper/apps/exampleflutter/MyApp.kt`:
+In `android/app/src/main/kotlin/com/zaitxcode/android/apps/flutterapphelper/MyApp.kt`:
 
 ```kotlin
-package com.zaitxcode.android.apps.exampleflutter
+package com.zaitxcode.android.apps.flutterapphelper
 
 import android.app.Application
 import com.zaitxcode.android.core.AppHelper
@@ -24,10 +24,10 @@ class MyApp : Application() {
 ```
 
 ### 2. MethodChannel Handler (`MainActivity.kt`)
-In `android/app/src/main/kotlin/com/mohamedzaitoon/androidhelper/apps/exampleflutter/MainActivity.kt`:
+In `android/app/src/main/kotlin/com/zaitxcode/android/apps/flutterapphelper/MainActivity.kt`:
 
 ```kotlin
-package com.zaitxcode.android.apps.exampleflutter
+package com.zaitxcode.android.apps.flutterapphelper
 
 import com.zaitxcode.android.core.AppHelper
 import com.zaitxcode.android.net.Network

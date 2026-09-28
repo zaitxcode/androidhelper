@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="docTitle">AppUtilX Documentation</title>
+  <title data-i18n="docTitle">AndroidHelper Documentation</title>
   <link rel="icon" type="image/jpeg" href="favicon.jpeg">
   <link rel="shortcut icon" type="image/jpeg" href="favicon.jpeg">
   <link rel="stylesheet" href="styles.css">
@@ -15,9 +15,9 @@
     <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()">☰</button>
 
     <a href="#" class="nav-brand">
-      <img src="logo.jpeg" alt="AppUtilX Logo" height="32" style="border-radius: 6px; object-fit: cover;">
-      <span data-i18n="brandName">AppUtilX</span>
-      <span class="brand-badge">v1.5.0-alpha01</span>
+      <img src="logo.jpeg" alt="AndroidHelper Logo" height="32" style="border-radius: 6px; object-fit: cover;">
+      <span data-i18n="brandName">AndroidHelper</span>
+      <span class="brand-badge">v1.0.0-alpha01</span>
     </a>
 
     <div class="search-box">
@@ -37,7 +37,7 @@
       </button>
 
       <!-- GitHub Link -->
-      <a href="https://github.com/mohamed-zaitoon/apputilx" target="_blank" class="btn-icon">
+      <a href="https://github.com/mohamed-zaitoon/androidhelper" target="_blank" class="btn-icon">
         <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
           <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.78-4 .05-.62-.12-1.2-.55-1.68.08-.18.23-.74-.08-1.58 0 0-.58-.19-1.92.71A6.7 6.7 0 0 0 8 4.22c-.65.01-1.32.09-1.93.28-1.35-.9-1.92-.71-1.92-.71-.3.84-.15 1.4-.07 1.58-.43.48-.6 1.06-.56 1.68.13 3.1 2 3.79 3.78 4-.24.21-.47.6-.54 1.16-.48.22-1.72.6-2.47-.7-.46-.78-1.29-.85-1.29-.85-.82-.01-.06.52-.04.53.55.25.94 1.25.94 1.25.5 1.48 2.37 1 2.96.76 0 .68.01 1.32.01 1.53 0 .21-.15.46-.55.38A8.013 8.013 0 0 1 0 8c0-4.42 3.58-8 8-8z"></path>
         </svg>
@@ -70,7 +70,7 @@
 
       <!-- Hero Header -->
       <section id="overview" class="hero">
-        <h1 class="hero-title" data-i18n="secOverviewTitle">AppUtilX Documentation</h1>
+        <h1 class="hero-title" data-i18n="secOverviewTitle">AndroidHelper Documentation</h1>
         <div class="feature-pills">
           <span class="pill" data-i18n="pillAndroid">✓ Android 17 (API 37) Ready</span>
           <span class="pill" data-i18n="pillCoroutines">✓ Kotlin Coroutines & DataStore</span>
@@ -94,17 +94,17 @@
 
         <div class="card">
           <div class="card-header">
-            <span class="card-title">apputilx setup & Utils.initialize(this)</span>
+            <span class="card-title">androidhelper setup & AppHelper.initialize(this)</span>
           </div>
           <div class="card-desc" data-i18n="secInstallDesc">Add the library dependency to your build file then initialize inside Application class.</div>
 
           <div class="code-snippet" data-lang="kotlin">
             <pre class="code-block" id="code-install-kotlin"><span class="comment">// 1. Add in gradle/libs.versions.toml</span>
 <span class="keyword">[versions]</span>
-apputilx = <span class="string">"1.5.0-alpha01"</span>
+androidhelper = <span class="string">"1.0.0-alpha01"</span>
 
 <span class="keyword">[libraries]</span>
-apputilx = { group = <span class="string">"com.github.mohamed-zaitoon"</span>, name = <span class="string">"apputilx"</span>, version.ref = <span class="string">"apputilx"</span> }
+androidhelper = { group = <span class="string">"com.github.zaitxcode"</span>, name = <span class="string">"androidhelper"</span>, version.ref = <span class="string">"androidhelper"</span> }
 
 <span class="comment">// 2. Add in settings.gradle.kts</span>
 repositories {
@@ -115,7 +115,7 @@ repositories {
 
 <span class="comment">// 3. Add in app/build.gradle.kts</span>
 dependencies {
-    implementation(libs.apputilx)
+    implementation(libs.androidhelper)
 }
 
 <span class="comment">// 4. Initialize in Application class</span>
@@ -134,10 +134,10 @@ dependencies {
           <div class="code-snippet" data-lang="flutter" style="display: none;">
             <pre class="code-block" id="code-install-flutter"><span class="comment">// 1. Add in gradle/libs.versions.toml</span>
 <span class="keyword">[versions]</span>
-apputilx = <span class="string">"1.5.0-alpha01"</span>
+androidhelper = <span class="string">"1.0.0-alpha01"</span>
 
 <span class="keyword">[libraries]</span>
-apputilx = { group = <span class="string">"com.github.mohamed-zaitoon"</span>, name = <span class="string">"apputilx"</span>, version.ref = <span class="string">"apputilx"</span> }
+androidhelper = { group = <span class="string">"com.github.zaitxcode"</span>, name = <span class="string">"androidhelper"</span>, version.ref = <span class="string">"androidhelper"</span> }
 
 <span class="comment">// 2. Add in android/settings.gradle.kts</span>
 repositories {
@@ -148,7 +148,7 @@ repositories {
 
 <span class="comment">// 3. Add in android/app/build.gradle.kts</span>
 dependencies {
-    implementation(libs.apputilx)
+    implementation(libs.androidhelper)
 }
 
 <span class="comment">// 4. Initialize in Flutter Android Application (MyApp.kt)</span>
@@ -211,7 +211,7 @@ dependencies {
 
           <div class="code-snippet" data-lang="kotlin">
             <pre class="code-block" id="code-intent-kotlin"><span class="comment">// Kotlin</span>
-<span class="type">Utils</span>.<span class="function">openUrl</span>(context, <span class="string">"https://apputilx.mohamedzaitoon.com"</span>)
+<span class="type">Utils</span>.<span class="function">openUrl</span>(context, <span class="string">"https://androidhelper.mohamedzaitoon.com"</span>)
 <span class="type">Utils</span>.<span class="function">openWhatsApp</span>(<span class="string">"201234567890"</span>, <span class="string">"Hello"</span>)
 <span class="type">Utils</span>.<span class="function">dial</span>(<span class="string">"201234567890"</span>)
 <span class="type">Utils</span>.<span class="function">sendSms</span>(<span class="string">"201234567890"</span>, <span class="string">"Test message"</span>)
@@ -224,7 +224,7 @@ dependencies {
 
           <div class="code-snippet" data-lang="flutter" style="display: none;">
             <pre class="code-block" id="code-intent-flutter"><span class="comment">// Flutter (Dart)</span>
-<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'openUrl'</span>, {<span class="string">'url'</span>: <span class="string">'https://apputilx.mohamedzaitoon.com'</span>});
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'openUrl'</span>, {<span class="string">'url'</span>: <span class="string">'https://androidhelper.mohamedzaitoon.com'</span>});
 <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'openWhatsApp'</span>, {<span class="string">'text'</span>: <span class="string">'Hello'</span>});
 <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'dial'</span>);
 <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'openPlayStore'</span>);</pre>
@@ -286,7 +286,7 @@ dependencies {
 <span class="type">Utils</span>.<span class="function">createNotificationChannel</span>(<span class="string">"demo"</span>, <span class="string">"Demo Channel"</span>)
 <span class="type">Utils</span>.<span class="function">showNotification</span>(
     channelId = <span class="string">"demo"</span>,
-    title = <span class="string">"AppUtilX"</span>,
+    title = <span class="string">"AndroidHelper"</span>,
     text = <span class="string">"Hello Notification"</span>,
     iconResId = <span class="type">R</span>.drawable.ic_launcher
 )
@@ -423,7 +423,7 @@ dependencies {
 
   <!-- Footer -->
   <footer>
-    <p data-i18n="footerText">AppUtilX Documentation © 2025-2027.</p>
+    <p data-i18n="footerText">AndroidHelper Documentation © 2025-2027.</p>
   </footer>
 
   <script src="app.js"></script>

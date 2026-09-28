@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/mohamed-zaitoon/androidhelper.svg)](https://jitpack.io/#mohamed-zaitoon/androidhelper)
+[![](https://jitpack.io/v/zaitxcode/androidhelper.svg)](https://jitpack.io/#zaitxcode/androidhelper)
 ![AndroidX](https://img.shields.io/badge/AndroidX-Required-blue)
 ![Kotlin](https://img.shields.io/badge/Kotlin-First-purple)
 ![Platform](https://img.shields.io/badge/Platform-Android-green)
@@ -6,7 +6,7 @@
 
 # Android Helper
 
-> Enterprise-grade, clean Android & Flutter utility library under `com.mohamedzaitoon.androidhelper.*`.
+> Enterprise-grade, clean Android & Flutter utility library under `com.zaitxcode.android.*`.
 
 Android Helper provides clean Android category helpers — Network, Audio, Vibration, Display, Biometrics, Secure Intents, Clipboard, Notifications, File Management, Device/Battery info, and Cryptography.
 
@@ -21,10 +21,10 @@ Android Helper provides clean Android category helpers — Network, Audio, Vibra
 
 ```toml
 [versions]
-androidHelper = "1.5.0-beta04"
+androidHelper = "1.0.0-alpha01"
 
 [libraries]
-android-helper = { group = "com.github.zaitxcode", name = "android-helper", version.ref = "androidHelper" }
+androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
 ```
 
 ### 2. Add Repository (settings.gradle.kts)
@@ -37,31 +37,39 @@ repositories {
 }
 ```
 
-### 3. Initialize in Application Class
+### 3. Add Dependency (app/build.gradle.kts)
+
+```kotlin
+dependencies {
+    implementation(libs.androidhelper)
+}
+```
+
+### 4. Initialize in Application Class
 
 ```kotlin
 import android.app.Application
-import com.mohamedzaitoon.androidhelper.Android Helper
+import com.zaitxcode.android.core.AppHelper
 
 class ExampleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Android Helper.initialize(this)
+        AppHelper.initialize(this)
     }
 }
 ```
 
 ---
 
-## 🚀 Category Usage Examples (Clean Package)
+## 🚀 Category Usage Examples
 
 ```kotlin
-import com.mohamedzaitoon.androidhelper.net.Network
-import com.mohamedzaitoon.androidhelper.hardware.Audio
-import com.mohamedzaitoon.androidhelper.hardware.Vibration
-import com.mohamedzaitoon.androidhelper.content.Clipboard
-import com.mohamedzaitoon.androidhelper.hardware.Device
-import com.mohamedzaitoon.androidhelper.hardware.Battery
+import com.zaitxcode.android.net.Network
+import com.zaitxcode.android.hardware.Audio
+import com.zaitxcode.android.hardware.Vibration
+import com.zaitxcode.android.content.Clipboard
+import com.zaitxcode.android.hardware.Device
+import com.zaitxcode.android.hardware.Battery
 
 // Network checks
 val isOnline = Network.isConnected
@@ -83,5 +91,4 @@ val battery = Battery.getBatteryLevel()
 
 ## 📄 License
 
-Copyright (c) 2025–2027 Mohamed Zaitoon.
-All rights reserved.
+Copyright (c) 2025–2027 Mohamed Zaitoon. All rights reserved.
