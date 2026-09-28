@@ -4,10 +4,10 @@ versionCode = "100"
 versionName = "1.0.0-alpha01"
 
 # SDK Versions
-compileSdk = "35"
-buildTools = "35.0.0"
+compileSdk = "37"
+buildTools = "37.0.0"
 minSdk = "28"
-targetSdk = "35"
+targetSdk = "37"
 
 # Dependencies
 coreKtx = "1.15.0"
