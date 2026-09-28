@@ -383,15 +383,23 @@ export default function Home() {
 
             <div className="feature-pills">
               <span className="pill"><AndroidIcon /> {t.pillAndroid}</span>
-              <span className="pill"><KotlinIcon /> {t.pillCoroutines}</span>
-              <span className="pill"><FlutterIcon /> {t.pillBridge}</span>
               <a
-                href="/androidhelper/app-release.apk"
-                download="AndroidHelper-Demo-v1.0.0-beta01.apk"
+                href="https://storage.zaitxcode.com/android/androidhelper-example-kotlin.apk"
+                target="_blank"
+                rel="noreferrer"
+                className="pill"
+                style={{ backgroundColor: "var(--accent-color)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
+              >
+                <KotlinIcon /> <i className="bi bi-download"></i> Kotlin Demo APK
+              </a>
+              <a
+                href="https://storage.zaitxcode.com/android/androidhelper-example-flutter.apk"
+                target="_blank"
+                rel="noreferrer"
                 className="pill"
                 style={{ backgroundColor: "var(--accent-green)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
               >
-                <i className="bi bi-download"></i> Download Demo APK (v1.0.0-beta01)
+                <FlutterIcon /> <i className="bi bi-download"></i> Flutter Demo APK
               </a>
             </div>
 
