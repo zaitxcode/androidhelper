@@ -454,9 +454,33 @@ html[dir="rtl"] .sidebar-title {
 [data-theme="light"] .ai-btn .icon-dark { display: none; }
 [data-theme="light"] .ai-btn .icon-light { display: block; }
 
+/* Ensure AI buttons, icons, and text are crisp black in Light Mode */
+[data-theme="light"] .ai-btn {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #000000;
+}
+
+[data-theme="light"] .ai-btn img,
+[data-theme="light"] .ai-btn svg,
+[data-theme="light"] .ai-btn i {
+  filter: brightness(0);
+}
+
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) .ai-btn .icon-dark { display: none; }
   :root:not([data-theme="dark"]) .ai-btn .icon-light { display: block; }
+
+  :root:not([data-theme="dark"]) .ai-btn {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #000000;
+  }
+  :root:not([data-theme="dark"]) .ai-btn img,
+  :root:not([data-theme="dark"]) .ai-btn svg,
+  :root:not([data-theme="dark"]) .ai-btn i {
+    filter: brightness(0);
+  }
 }
 
 .ai-btn:hover {
