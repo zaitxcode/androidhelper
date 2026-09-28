@@ -10,24 +10,41 @@ import com.zaitxcode.android.net.Network
 
 object AppHelper {
 
-    private var application: Application? = null
+    private var applicationContext: Context? = null
+    private var currentActivity: Activity? = null
+    private var isLifecycleRegistered = false
 
-    fun initialize(app: Application) {
-        application = app
-        Network.initialize(app)
-        registerLifecycle(app)
+    fun initialize(context: Context) {
+        val appContext = context.applicationContext
+        applicationContext = appContext
+
+        if (context is Activity) {
+            currentActivity = context
+        }
+
+        val app = appContext as? Application
+        if (app != null && !isLifecycleRegistered) {
+            registerLifecycle(app)
+            isLifecycleRegistered = true
+        }
+
+        Network.initialize(appContext)
+    }
+
+    fun initialize(activity: Activity) {
+        currentActivity = activity
+        initialize(activity as Context)
     }
 
     internal fun ctx(): Context {
-        return application
-            ?: throw IllegalStateException("AppHelper must be initialized: AppHelper.initialize(application)")
+        return applicationContext
+            ?: currentActivity?.applicationContext
+            ?: throw IllegalStateException("AppHelper must be initialized: AppHelper.initialize(context)")
     }
 
     internal fun act(): Activity? {
         return currentActivity
     }
-
-    private var currentActivity: Activity? = null
 
     private fun registerLifecycle(app: Application) {
         app.registerActivityLifecycleCallbacks(object :
