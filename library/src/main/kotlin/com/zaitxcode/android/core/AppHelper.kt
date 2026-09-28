@@ -14,6 +14,7 @@ object AppHelper {
     private var currentActivity: Activity? = null
     private var isLifecycleRegistered = false
 
+    @JvmStatic
     fun initialize(context: Context) {
         val appContext = context.applicationContext
         applicationContext = appContext
@@ -31,6 +32,7 @@ object AppHelper {
         Network.initialize(appContext)
     }
 
+    @JvmStatic
     fun initialize(activity: Activity) {
         currentActivity = activity
         initialize(activity as Context)
@@ -73,8 +75,14 @@ object AppHelper {
         })
     }
 
+    @JvmStatic
     fun log(tag: String, message: String) = Log.d(tag, message)
+
+    @JvmStatic
     fun logWarning(tag: String, message: String) = Log.w(tag, message)
+
+    @JvmStatic
+    @JvmOverloads
     fun logError(tag: String, message: String, throwable: Throwable? = null) {
         if (throwable != null) {
             Log.e(tag, message, throwable)
