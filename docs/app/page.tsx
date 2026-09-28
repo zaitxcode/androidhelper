@@ -1,8 +1,48 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
+type ThemeMode = "system" | "dark" | "light";
+
 export default function PortalPage() {
+  const [themeMode, setThemeMode] = useState<ThemeMode>("system");
+
+  useEffect(() => {
+    const updateTheme = () => {
+      let isDark = false;
+      if (themeMode === "system") {
+        isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      } else {
+        isDark = themeMode === "dark";
+      }
+      document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+    };
+
+    updateTheme();
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const listener = () => {
+      if (themeMode === "system") updateTheme();
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", listener);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener("change", listener);
+      }
+    };
+  }, [themeMode]);
+
+  const cycleTheme = () => {
+    if (themeMode === "system") setThemeMode("dark");
+    else if (themeMode === "dark") setThemeMode("light");
+    else setThemeMode("system");
+  };
+
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-primary)", color: "var(--text-primary)", fontFamily: "sans-serif" }}>
       {/* Top Bar */}
@@ -11,7 +51,10 @@ export default function PortalPage() {
           <img src="/logo.jpeg" alt="ZaitXCode Logo" height="32" style={{ borderRadius: "8px" }} />
           <span style={{ fontWeight: "700", fontSize: "1.2rem", letterSpacing: "-0.5px" }}>ZaitXCode Developer Hub</span>
         </div>
-        <div>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <button className="btn-icon" onClick={cycleTheme} title="Toggle Light/Dark Theme">
+            <i className={themeMode === "dark" ? "bi bi-moon-stars-fill" : themeMode === "light" ? "bi bi-sun-fill" : "bi bi-gear-fill"}></i>
+          </button>
           <a
             href="https://github.com/zaitxcode"
             target="_blank"

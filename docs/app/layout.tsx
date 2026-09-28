@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr" data-theme="dark">
+    <html lang="en" dir="ltr">
       <head>
         <link
           rel="stylesheet"
