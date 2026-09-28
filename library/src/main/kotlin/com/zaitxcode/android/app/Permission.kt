@@ -9,6 +9,8 @@ import com.zaitxcode.android.core.AppHelper
 
 object Permission {
 
+    @JvmStatic
+    @JvmOverloads
     fun isGranted(permission: String, context: Context = AppHelper.ctx()): Boolean {
         return ContextCompat.checkSelfPermission(
             context,
@@ -16,22 +18,29 @@ object Permission {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun areGranted(permissions: Array<String>, context: Context = AppHelper.ctx()): Boolean {
         return permissions.all { isGranted(it, context) }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun deniedPermissions(permissions: Array<String>, context: Context = AppHelper.ctx()): List<String> {
         return permissions.filter { !isGranted(it, context) }
     }
 
+    @JvmStatic
     fun shouldShowRationale(activity: Activity, permission: String): Boolean {
         return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)
     }
 
+    @JvmStatic
     fun request(activity: Activity, permission: String, requestCode: Int) {
         ActivityCompat.requestPermissions(activity, arrayOf(permission), requestCode)
     }
 
+    @JvmStatic
     fun requestMultiple(activity: Activity, permissions: Array<String>, requestCode: Int) {
         ActivityCompat.requestPermissions(activity, permissions, requestCode)
     }

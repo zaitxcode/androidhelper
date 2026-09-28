@@ -33,16 +33,22 @@ object Screen {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun blockCapture(context: Context = AppHelper.ctx()) {
         val activity = AppHelper.act() ?: context.getActivity()
         activity?.let { applySecureFlag(it, true) }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun unblockCapture(context: Context = AppHelper.ctx()) {
         val activity = AppHelper.act() ?: context.getActivity()
         activity?.let { applySecureFlag(it, false) }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun isCaptureBlocked(activity: Activity? = AppHelper.act()): Boolean {
         return activity?.hasSecureFlag() == true
     }

@@ -10,13 +10,14 @@ import java.util.Locale
 
 object Device {
 
-    fun manufacturer(): String = Build.MANUFACTURER
-    fun model(): String = Build.MODEL
-    fun brand(): String = Build.BRAND
-    fun sdk(): Int = Build.VERSION.SDK_INT
-    fun androidVersion(): String = Build.VERSION.RELEASE
-    fun supportedAbis(): List<String> = Build.SUPPORTED_ABIS.toList()
+    @JvmStatic fun manufacturer(): String = Build.MANUFACTURER
+    @JvmStatic fun model(): String = Build.MODEL
+    @JvmStatic fun brand(): String = Build.BRAND
+    @JvmStatic fun sdk(): Int = Build.VERSION.SDK_INT
+    @JvmStatic fun androidVersion(): String = Build.VERSION.RELEASE
+    @JvmStatic fun supportedAbis(): List<String> = Build.SUPPORTED_ABIS.toList()
 
+    @JvmStatic
     fun deviceName(): String {
         return listOf(Build.MANUFACTURER, Build.MODEL)
             .filter { it.isNotBlank() }
@@ -24,6 +25,8 @@ object Device {
             .trim()
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun getTotalRam(context: Context = AppHelper.ctx()): Long {
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager ?: return 0L
         val memoryInfo = ActivityManager.MemoryInfo()
@@ -31,6 +34,8 @@ object Device {
         return memoryInfo.totalMem
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun getFreeRam(context: Context = AppHelper.ctx()): Long {
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager ?: return 0L
         val memoryInfo = ActivityManager.MemoryInfo()
@@ -38,23 +43,30 @@ object Device {
         return memoryInfo.availMem
     }
 
-    fun getUptimeMillis(): Long = SystemClock.elapsedRealtime()
+    @JvmStatic fun getUptimeMillis(): Long = SystemClock.elapsedRealtime()
 
+    @JvmStatic
+    @JvmOverloads
     fun getDeviceLanguage(context: Context = AppHelper.ctx()): String {
         return context.resources.configuration.locales.get(0).language
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun isDarkMode(context: Context = AppHelper.ctx()): Boolean {
         val mode = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return mode == Configuration.UI_MODE_NIGHT_YES
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun isTablet(context: Context = AppHelper.ctx()): Boolean {
         val screenLayout = context.resources.configuration.screenLayout and
             Configuration.SCREENLAYOUT_SIZE_MASK
         return screenLayout >= Configuration.SCREENLAYOUT_SIZE_LARGE
     }
 
+    @JvmStatic
     fun isEmulator(): Boolean {
         val fingerprint = Build.FINGERPRINT.lowercase(Locale.US)
         val model = Build.MODEL.lowercase(Locale.US)

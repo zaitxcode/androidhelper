@@ -8,6 +8,8 @@ import com.zaitxcode.android.core.AppHelper
 
 object Audio {
 
+    @JvmStatic
+    @JvmOverloads
     fun playClickSound(context: Context = AppHelper.ctx()) {
         try {
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
@@ -17,6 +19,8 @@ object Audio {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun isMuted(context: Context = AppHelper.ctx()): Boolean {
         return try {
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
@@ -27,6 +31,8 @@ object Audio {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun getMusicVolume(context: Context = AppHelper.ctx()): Int {
         return try {
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
@@ -39,6 +45,8 @@ object Audio {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun isHeadphonesConnected(context: Context = AppHelper.ctx()): Boolean {
         val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

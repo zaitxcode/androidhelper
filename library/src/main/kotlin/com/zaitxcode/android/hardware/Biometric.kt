@@ -9,6 +9,8 @@ import com.zaitxcode.android.core.AppHelper
 
 object Biometric {
 
+    @JvmStatic
+    @JvmOverloads
     fun canAuthenticate(context: Context = AppHelper.ctx()): Boolean {
         val manager = BiometricManager.from(context)
         val authenticators =
@@ -18,6 +20,8 @@ object Biometric {
         return manager.canAuthenticate(authenticators) == BiometricManager.BIOMETRIC_SUCCESS
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun authenticate(
         activity: FragmentActivity? = null,
         title: String,

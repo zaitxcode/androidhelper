@@ -11,6 +11,8 @@ import com.zaitxcode.android.core.AppHelper
 @SuppressLint("MissingPermission", "NewApi", "InlinedApi")
 object Vibration {
 
+    @JvmStatic
+    @JvmOverloads
     fun vibrate(ms: Long = 500, context: Context = AppHelper.ctx()) {
         val vibrator = getVibrator(context) ?: return
         if (!vibrator.hasVibrator()) return
@@ -27,6 +29,8 @@ object Vibration {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun vibratePattern(
         pattern: LongArray,
         repeat: Int = -1,
@@ -44,6 +48,8 @@ object Vibration {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun cancel(context: Context = AppHelper.ctx()) {
         getVibrator(context)?.cancel()
     }

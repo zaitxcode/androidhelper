@@ -21,6 +21,8 @@ object Notification {
     private const val DEFAULT_CHANNEL_NAME = "App Notifications"
     private const val DEFAULT_CHANNEL_IMPORTANCE = 3
 
+    @JvmStatic
+    @JvmOverloads
     @SuppressLint("WrongConstant")
     fun createChannel(
         channelId: String,
@@ -38,6 +40,8 @@ object Notification {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun deleteChannel(channelId: String, context: Context = AppHelper.ctx()) {
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE)
             as? NotificationManager
@@ -45,6 +49,8 @@ object Notification {
         manager.deleteNotificationChannel(channelId)
     }
 
+    @JvmStatic
+    @JvmOverloads
     @SuppressLint("MissingPermission")
     fun showNotification(
         channelId: String,
@@ -84,14 +90,20 @@ object Notification {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun cancel(notificationId: Int, context: Context = AppHelper.ctx()) {
         NotificationManagerCompat.from(context).cancel(notificationId)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun cancelAll(context: Context = AppHelper.ctx()) {
         NotificationManagerCompat.from(context).cancelAll()
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun canPostNotifications(context: Context = AppHelper.ctx()): Boolean = hasPermission(context)
 
     private fun hasPermission(context: Context): Boolean {

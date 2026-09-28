@@ -9,21 +9,21 @@ import java.util.Locale
 
 object Storage {
 
-    fun getFreeInternalStorage(): Long {
+    @JvmStatic fun getFreeInternalStorage(): Long {
         val stat = StatFs(Environment.getDataDirectory().path)
         return stat.availableBlocksLong * stat.blockSizeLong
     }
 
-    fun getTotalInternalStorage(): Long {
+    @JvmStatic fun getTotalInternalStorage(): Long {
         val stat = StatFs(Environment.getDataDirectory().path)
         return stat.blockCountLong * stat.blockSizeLong
     }
 
-    fun getUsedInternalStorage(): Long {
+    @JvmStatic fun getUsedInternalStorage(): Long {
         return getTotalInternalStorage() - getFreeInternalStorage()
     }
 
-    fun getCacheSize(context: Context = AppHelper.ctx()): Long {
+    @JvmStatic @JvmOverloads fun getCacheSize(context: Context = AppHelper.ctx()): Long {
         var size = getDirSize(context.cacheDir)
         context.externalCacheDir?.let {
             size += getDirSize(it)
@@ -31,7 +31,7 @@ object Storage {
         return size
     }
 
-    fun clearCache(context: Context = AppHelper.ctx()): Boolean {
+    @JvmStatic @JvmOverloads fun clearCache(context: Context = AppHelper.ctx()): Boolean {
         var result = deleteDir(context.cacheDir)
         context.externalCacheDir?.let {
             result = result && deleteDir(it)
@@ -39,7 +39,7 @@ object Storage {
         return result
     }
 
-    fun formatBytes(bytes: Long): String {
+    @JvmStatic fun formatBytes(bytes: Long): String {
         if (bytes <= 0) return "0 B"
 
         val units = arrayOf("B", "KB", "MB", "GB", "TB")

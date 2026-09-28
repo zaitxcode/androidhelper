@@ -9,6 +9,8 @@ import com.zaitxcode.android.browser.Browser
 
 object Intent {
 
+    @JvmStatic
+    @JvmOverloads
     fun openWhatsApp(phone: String, message: String? = null, context: Context = AppHelper.ctx()) {
         val formatted = phone.filter { it.isDigit() }
         val uri = if (!message.isNullOrEmpty()) {
@@ -22,6 +24,8 @@ object Intent {
         safelyStart(context, intent)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun dial(phone: String, context: Context = AppHelper.ctx()) {
         val uri = Uri.parse("tel:$phone")
         val intent = Intent(Intent.ACTION_DIAL, uri).apply {
@@ -30,6 +34,8 @@ object Intent {
         safelyStart(context, intent)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun sendSms(phone: String, message: String = "", context: Context = AppHelper.ctx()) {
         val uri = Uri.parse("smsto:$phone")
         val intent = Intent(Intent.ACTION_SENDTO, uri).apply {
@@ -39,6 +45,8 @@ object Intent {
         safelyStart(context, intent)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun sendEmail(
         email: String,
         subject: String = "",
@@ -54,6 +62,8 @@ object Intent {
         safelyStart(context, intent)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun shareText(text: String, context: Context = AppHelper.ctx()) {
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND
@@ -66,6 +76,8 @@ object Intent {
         safelyStart(context, shareIntent)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun shareFile(
         uri: Uri,
         mimeType: String,
@@ -84,6 +96,8 @@ object Intent {
         safelyStart(context, shareIntent)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun openMap(
         latitude: Double,
         longitude: Double,
@@ -102,6 +116,8 @@ object Intent {
         safelyStart(context, intent)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun openAppSettings(context: Context = AppHelper.ctx()) {
         val intent = Intent(
             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
@@ -112,6 +128,8 @@ object Intent {
         safelyStart(context, intent)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun openPlayStore(packageName: String = AppHelper.ctx().packageName, context: Context = AppHelper.ctx()) {
         val marketIntent = Intent(
             Intent.ACTION_VIEW,

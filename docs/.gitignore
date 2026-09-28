@@ -64,6 +64,8 @@ node_modules/
 # Next.js
 .next/
 out/
+*.apk
+releases/
 
 # Output of 'npm pack'
 *.tgz

@@ -10,6 +10,8 @@ import java.util.Locale
 
 object Signature {
 
+    @JvmStatic
+    @JvmOverloads
     @SuppressLint("PackageManagerGetSignatures")
     fun getAppSignatures(context: Context = AppHelper.ctx()): List<String> {
         val signaturesList = mutableListOf<String>()
@@ -51,10 +53,14 @@ object Signature {
         return signaturesList
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun getAppPrimarySignatureSHA1(context: Context = AppHelper.ctx()): String {
         return getAppSignatures(context).firstOrNull() ?: ""
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun validateAppSignature(expectedSHA1: String, context: Context = AppHelper.ctx()): Boolean {
         val currentSHA1 = getAppPrimarySignatureSHA1(context)
         return currentSHA1.equals(expectedSHA1.trim().replace(":", ""), ignoreCase = true)

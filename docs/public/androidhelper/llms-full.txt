@@ -2,7 +2,7 @@
 
 Android Helper is an enterprise-grade Android and Flutter utility library designed to simplify common Android tasks: network checks, vibration, audio feedback, display metrics, biometric authentication, secure intents, clipboard, notifications, file management, and device/battery info.
 
-Current Version: 1.0.0-alpha03
+Current Version: 1.0.0-alpha04
 Repository: https://github.com/zaitxcode/androidhelper
 Website: https://docs.zaitxcode.com/androidhelper/
 
@@ -13,7 +13,7 @@ Website: https://docs.zaitxcode.com/androidhelper/
 ### Gradle Setup (libs.versions.toml)
 ```toml
 [versions]
-androidHelper = "1.0.0-alpha03"
+androidHelper = "1.0.0-alpha04"
 
 [libraries]
 androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }

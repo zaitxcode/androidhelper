@@ -8,8 +8,10 @@ import java.util.concurrent.TimeUnit
 
 object Time {
 
-    fun now(): Long = System.currentTimeMillis()
+    @JvmStatic fun now(): Long = System.currentTimeMillis()
 
+    @JvmStatic
+    @JvmOverloads
     fun format(
         millis: Long,
         pattern: String,
@@ -18,6 +20,8 @@ object Time {
         return SimpleDateFormat(pattern, locale).format(Date(millis))
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun parse(
         date: String,
         pattern: String,
@@ -30,7 +34,7 @@ object Time {
         }
     }
 
-    fun timeAgo(millis: Long): String {
+    @JvmStatic fun timeAgo(millis: Long): String {
         val diff = now() - millis
 
         return when {
@@ -41,27 +45,29 @@ object Time {
         }
     }
 
-    fun isToday(millis: Long): Boolean {
+    @JvmStatic fun isToday(millis: Long): Boolean {
         val c1 = Calendar.getInstance().apply { timeInMillis = millis }
         val c2 = Calendar.getInstance().apply { timeInMillis = now() }
         return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
             c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR)
     }
 
-    fun isYesterday(millis: Long): Boolean {
+    @JvmStatic fun isYesterday(millis: Long): Boolean {
         val c1 = Calendar.getInstance().apply { timeInMillis = millis }
         val c2 = Calendar.getInstance().apply { timeInMillis = now() - TimeUnit.DAYS.toMillis(1) }
         return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
             c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR)
     }
 
-    fun isTomorrow(millis: Long): Boolean {
+    @JvmStatic fun isTomorrow(millis: Long): Boolean {
         val c1 = Calendar.getInstance().apply { timeInMillis = millis }
         val c2 = Calendar.getInstance().apply { timeInMillis = now() + TimeUnit.DAYS.toMillis(1) }
         return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
             c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR)
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun startOfDay(millis: Long = now()): Long {
         return Calendar.getInstance().apply {
             timeInMillis = millis
@@ -72,6 +78,8 @@ object Time {
         }.timeInMillis
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun endOfDay(millis: Long = now()): Long {
         return Calendar.getInstance().apply {
             timeInMillis = millis
@@ -82,18 +90,18 @@ object Time {
         }.timeInMillis
     }
 
-    fun isLeapYear(year: Int): Boolean {
+    @JvmStatic fun isLeapYear(year: Int): Boolean {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
     }
 
-    fun getDaysInMonth(year: Int, month: Int): Int {
+    @JvmStatic fun getDaysInMonth(year: Int, month: Int): Int {
         val cal = Calendar.getInstance()
         cal.set(Calendar.YEAR, year)
         cal.set(Calendar.MONTH, month - 1)
         return cal.getActualMaximum(Calendar.DAY_OF_MONTH)
     }
 
-    fun formatDuration(seconds: Long): String {
+    @JvmStatic fun formatDuration(seconds: Long): String {
         val hrs = seconds / 3600
         val mins = (seconds % 3600) / 60
         val secs = seconds % 60

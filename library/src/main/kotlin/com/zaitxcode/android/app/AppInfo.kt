@@ -8,8 +8,10 @@ import com.zaitxcode.android.core.AppHelper
 
 object AppInfo {
 
-    fun packageName(context: Context = AppHelper.ctx()): String = context.packageName
+    @JvmStatic @JvmOverloads fun packageName(context: Context = AppHelper.ctx()): String = context.packageName
 
+    @JvmStatic
+    @JvmOverloads
     fun appName(context: Context = AppHelper.ctx()): String {
         return try {
             val appInfo = context.packageManager.getApplicationInfo(context.packageName, 0)
@@ -19,6 +21,8 @@ object AppInfo {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun versionName(context: Context = AppHelper.ctx()): String {
         return try {
             context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: ""
@@ -27,6 +31,8 @@ object AppInfo {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun versionCode(context: Context = AppHelper.ctx()): Long {
         return try {
             val info = context.packageManager.getPackageInfo(context.packageName, 0)
@@ -41,6 +47,8 @@ object AppInfo {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun installerPackageName(context: Context = AppHelper.ctx()): String? {
         return try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -54,6 +62,8 @@ object AppInfo {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun isDebuggable(context: Context = AppHelper.ctx()): Boolean {
         return try {
             (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
@@ -62,6 +72,8 @@ object AppInfo {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun isPackageInstalled(packageName: String, context: Context = AppHelper.ctx()): Boolean {
         return try {
             context.packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)

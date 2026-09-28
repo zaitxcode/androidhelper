@@ -6,7 +6,7 @@ import java.io.File
 
 object File {
 
-    fun writeText(fileName: String, text: String, context: Context = AppHelper.ctx()): Boolean {
+    @JvmStatic @JvmOverloads fun writeText(fileName: String, text: String, context: Context = AppHelper.ctx()): Boolean {
         return try {
             getFile(context, fileName).writeText(text)
             true
@@ -15,7 +15,7 @@ object File {
         }
     }
 
-    fun appendText(fileName: String, text: String, context: Context = AppHelper.ctx()): Boolean {
+    @JvmStatic @JvmOverloads fun appendText(fileName: String, text: String, context: Context = AppHelper.ctx()): Boolean {
         return try {
             getFile(context, fileName).appendText(text)
             true
@@ -24,7 +24,7 @@ object File {
         }
     }
 
-    fun readText(fileName: String, context: Context = AppHelper.ctx()): String? {
+    @JvmStatic @JvmOverloads fun readText(fileName: String, context: Context = AppHelper.ctx()): String? {
         return try {
             val file = getFile(context, fileName)
             if (!file.exists()) return null
@@ -34,7 +34,7 @@ object File {
         }
     }
 
-    fun readLines(fileName: String, context: Context = AppHelper.ctx()): List<String>? {
+    @JvmStatic @JvmOverloads fun readLines(fileName: String, context: Context = AppHelper.ctx()): List<String>? {
         return try {
             val file = getFile(context, fileName)
             if (!file.exists()) return null
@@ -44,7 +44,7 @@ object File {
         }
     }
 
-    fun writeBytes(fileName: String, bytes: ByteArray, context: Context = AppHelper.ctx()): Boolean {
+    @JvmStatic @JvmOverloads fun writeBytes(fileName: String, bytes: ByteArray, context: Context = AppHelper.ctx()): Boolean {
         return try {
             getFile(context, fileName).writeBytes(bytes)
             true
@@ -53,7 +53,7 @@ object File {
         }
     }
 
-    fun readBytes(fileName: String, context: Context = AppHelper.ctx()): ByteArray? {
+    @JvmStatic @JvmOverloads fun readBytes(fileName: String, context: Context = AppHelper.ctx()): ByteArray? {
         return try {
             val file = getFile(context, fileName)
             if (!file.exists()) return null
@@ -63,7 +63,7 @@ object File {
         }
     }
 
-    fun delete(fileName: String, context: Context = AppHelper.ctx()): Boolean {
+    @JvmStatic @JvmOverloads fun delete(fileName: String, context: Context = AppHelper.ctx()): Boolean {
         return try {
             val file = getFile(context, fileName)
             if (file.exists()) file.delete() else true
@@ -72,23 +72,23 @@ object File {
         }
     }
 
-    fun exists(fileName: String, context: Context = AppHelper.ctx()): Boolean {
+    @JvmStatic @JvmOverloads fun exists(fileName: String, context: Context = AppHelper.ctx()): Boolean {
         return getFile(context, fileName).exists()
     }
 
-    fun size(fileName: String, context: Context = AppHelper.ctx()): Long {
+    @JvmStatic @JvmOverloads fun size(fileName: String, context: Context = AppHelper.ctx()): Long {
         val file = getFile(context, fileName)
         return if (file.exists()) file.length() else 0L
     }
 
-    fun getExtension(fileName: String): String {
+    @JvmStatic fun getExtension(fileName: String): String {
         val lastDot = fileName.lastIndexOf('.')
         return if (lastDot != -1 && lastDot < fileName.length - 1) {
             fileName.substring(lastDot + 1).lowercase()
         } else ""
     }
 
-    fun getMimeType(fileName: String): String {
+    @JvmStatic fun getMimeType(fileName: String): String {
         return when (getExtension(fileName)) {
             "jpg", "jpeg" -> "image/jpeg"
             "png" -> "image/png"
@@ -99,11 +99,11 @@ object File {
         }
     }
 
-    fun list(context: Context = AppHelper.ctx()): List<String> {
+    @JvmStatic @JvmOverloads fun list(context: Context = AppHelper.ctx()): List<String> {
         return context.filesDir.list()?.toList() ?: emptyList()
     }
 
-    fun clear(context: Context = AppHelper.ctx()): Boolean {
+    @JvmStatic @JvmOverloads fun clear(context: Context = AppHelper.ctx()): Boolean {
         return try {
             context.filesDir.listFiles()?.forEach { it.delete() }
             true

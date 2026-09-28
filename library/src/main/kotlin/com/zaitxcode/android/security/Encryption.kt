@@ -8,15 +8,15 @@ import javax.crypto.spec.SecretKeySpec
 
 object Encryption {
 
-    fun md5(text: String): String = hash(text, "MD5")
+    @JvmStatic fun md5(text: String): String = hash(text, "MD5")
 
-    fun sha1(text: String): String = hash(text, "SHA-1")
+    @JvmStatic fun sha1(text: String): String = hash(text, "SHA-1")
 
-    fun sha256(text: String): String = hash(text, "SHA-256")
+    @JvmStatic fun sha256(text: String): String = hash(text, "SHA-256")
 
-    fun sha512(text: String): String = hash(text, "SHA-512")
+    @JvmStatic fun sha512(text: String): String = hash(text, "SHA-512")
 
-    fun hmacSha256(text: String, secret: String): String {
+    @JvmStatic fun hmacSha256(text: String, secret: String): String {
         return try {
             val hmac = Mac.getInstance("HmacSHA256")
             val key = SecretKeySpec(secret.toByteArray(Charsets.UTF_8), "HmacSHA256")
@@ -28,7 +28,7 @@ object Encryption {
         }
     }
 
-    fun aesEncrypt(text: String, secretKey: String): String {
+    @JvmStatic fun aesEncrypt(text: String, secretKey: String): String {
         return try {
             val keyBytes = MessageDigest.getInstance("SHA-256").digest(secretKey.toByteArray(Charsets.UTF_8))
             val keySpec = SecretKeySpec(keyBytes, "AES")
@@ -41,7 +41,7 @@ object Encryption {
         }
     }
 
-    fun aesDecrypt(encryptedText: String, secretKey: String): String {
+    @JvmStatic fun aesDecrypt(encryptedText: String, secretKey: String): String {
         return try {
             val keyBytes = MessageDigest.getInstance("SHA-256").digest(secretKey.toByteArray(Charsets.UTF_8))
             val keySpec = SecretKeySpec(keyBytes, "AES")
@@ -54,7 +54,7 @@ object Encryption {
         }
     }
 
-    fun base64Encode(text: String): String {
+    @JvmStatic fun base64Encode(text: String): String {
         return try {
             Base64.encodeToString(text.toByteArray(Charsets.UTF_8), Base64.NO_WRAP)
         } catch (_: Throwable) {
@@ -62,7 +62,7 @@ object Encryption {
         }
     }
 
-    fun base64Decode(encodedText: String): String {
+    @JvmStatic fun base64Decode(encodedText: String): String {
         return try {
             String(Base64.decode(encodedText, Base64.NO_WRAP), Charsets.UTF_8)
         } catch (_: Throwable) {
@@ -70,7 +70,7 @@ object Encryption {
         }
     }
 
-    fun base64UrlEncode(text: String): String {
+    @JvmStatic fun base64UrlEncode(text: String): String {
         return try {
             Base64.encodeToString(
                 text.toByteArray(Charsets.UTF_8),
@@ -81,7 +81,7 @@ object Encryption {
         }
     }
 
-    fun base64UrlDecode(encodedText: String): String {
+    @JvmStatic fun base64UrlDecode(encodedText: String): String {
         return try {
             String(
                 Base64.decode(encodedText, Base64.URL_SAFE or Base64.NO_WRAP),
