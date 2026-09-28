@@ -16,7 +16,7 @@ Website: https://docs.zaitxcode.com/androidhelper/
 androidHelper = "1.0.0-alpha02"
 
 [libraries]
-android-helper = { group = "com.github.zaitxcode", name = "android-helper", version.ref = "androidHelper" }
+androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
 ```
 
 ### Repositories (settings.gradle.kts)
