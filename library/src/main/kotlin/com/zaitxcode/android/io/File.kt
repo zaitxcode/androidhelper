@@ -1,0 +1,118 @@
+package com.zaitxcode.android.io
+
+import android.content.Context
+import com.zaitxcode.android.core.apphelper.AppHelper
+import java.io.File
+
+object File {
+
+    fun writeText(fileName: String, text: String, context: Context = AppHelper.ctx()): Boolean {
+        return try {
+            getFile(context, fileName).writeText(text)
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    fun appendText(fileName: String, text: String, context: Context = AppHelper.ctx()): Boolean {
+        return try {
+            getFile(context, fileName).appendText(text)
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    fun readText(fileName: String, context: Context = AppHelper.ctx()): String? {
+        return try {
+            val file = getFile(context, fileName)
+            if (!file.exists()) return null
+            file.readText()
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    fun readLines(fileName: String, context: Context = AppHelper.ctx()): List<String>? {
+        return try {
+            val file = getFile(context, fileName)
+            if (!file.exists()) return null
+            file.readLines()
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    fun writeBytes(fileName: String, bytes: ByteArray, context: Context = AppHelper.ctx()): Boolean {
+        return try {
+            getFile(context, fileName).writeBytes(bytes)
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    fun readBytes(fileName: String, context: Context = AppHelper.ctx()): ByteArray? {
+        return try {
+            val file = getFile(context, fileName)
+            if (!file.exists()) return null
+            file.readBytes()
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    fun delete(fileName: String, context: Context = AppHelper.ctx()): Boolean {
+        return try {
+            val file = getFile(context, fileName)
+            if (file.exists()) file.delete() else true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    fun exists(fileName: String, context: Context = AppHelper.ctx()): Boolean {
+        return getFile(context, fileName).exists()
+    }
+
+    fun size(fileName: String, context: Context = AppHelper.ctx()): Long {
+        val file = getFile(context, fileName)
+        return if (file.exists()) file.length() else 0L
+    }
+
+    fun getExtension(fileName: String): String {
+        val lastDot = fileName.lastIndexOf('.')
+        return if (lastDot != -1 && lastDot < fileName.length - 1) {
+            fileName.substring(lastDot + 1).lowercase()
+        } else ""
+    }
+
+    fun getMimeType(fileName: String): String {
+        return when (getExtension(fileName)) {
+            "jpg", "jpeg" -> "image/jpeg"
+            "png" -> "image/png"
+            "pdf" -> "application/pdf"
+            "txt" -> "text/plain"
+            "json" -> "application/json"
+            else -> "*/*"
+        }
+    }
+
+    fun list(context: Context = AppHelper.ctx()): List<String> {
+        return context.filesDir.list()?.toList() ?: emptyList()
+    }
+
+    fun clear(context: Context = AppHelper.ctx()): Boolean {
+        return try {
+            context.filesDir.listFiles()?.forEach { it.delete() }
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    private fun getFile(context: Context, fileName: String): File {
+        return File(context.filesDir, fileName)
+    }
+}

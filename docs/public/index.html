@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="docTitle">AppUtilX Documentation</title>
+  <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+  <link rel="shortcut icon" type="image/jpeg" href="favicon.jpeg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()">☰</button>
+
+    <a href="#" class="nav-brand">
+      <img src="logo.jpeg" alt="AppUtilX Logo" height="32" style="border-radius: 6px; object-fit: cover;">
+      <span data-i18n="brandName">AppUtilX</span>
+      <span class="brand-badge">v1.5.0-alpha01</span>
+    </a>
+
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" data-i18n="searchPlaceholder" placeholder="Search documentation..." oninput="filterDocs(this.value)">
+    </div>
+
+    <div class="nav-controls">
+      <!-- Language Toggle -->
+      <button class="btn-icon" onclick="toggleLanguage()">
+        🌐 <span id="lang-btn-text">عربي</span>
+      </button>
+
+      <!-- Theme Mode Toggle -->
+      <button class="btn-icon" onclick="cycleThemeMode()" title="Toggle Light/Dark/System Theme">
+        <span id="theme-icon">🌙</span>
+      </button>
+
+      <!-- GitHub Link -->
+      <a href="https://github.com/mohamed-zaitoon/apputilx" target="_blank" class="btn-icon">
+        <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+          <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.78-4 .05-.62-.12-1.2-.55-1.68.08-.18.23-.74-.08-1.58 0 0-.58-.19-1.92.71A6.7 6.7 0 0 0 8 4.22c-.65.01-1.32.09-1.93.28-1.35-.9-1.92-.71-1.92-.71-.3.84-.15 1.4-.07 1.58-.43.48-.6 1.06-.56 1.68.13 3.1 2 3.79 3.78 4-.24.21-.47.6-.54 1.16-.48.22-1.72.6-2.47-.7-.46-.78-1.29-.85-1.29-.85-.82-.01-.06.52-.04.53.55.25.94 1.25.94 1.25.5 1.48 2.37 1 2.96.76 0 .68.01 1.32.01 1.53 0 .21-.15.46-.55.38A8.013 8.013 0 0 1 0 8c0-4.42 3.58-8 8-8z"></path>
+        </svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="layout">
+
+    <!-- Sidebar TOC -->
+    <aside class="sidebar">
+      <div class="sidebar-title">NAVIGATION</div>
+      <ul class="sidebar-menu">
+        <li><a href="#overview" class="sidebar-link active" onclick="scrollToSection('overview')" data-i18n="navOverview">📌 Overview</a></li>
+        <li><a href="#installation" class="sidebar-link" onclick="scrollToSection('installation')" data-i18n="navInstallation">📦 Installation</a></li>
+        <li><a href="#network" class="sidebar-link" onclick="scrollToSection('network')" data-i18n="navNetwork">🌐 Network Helpers</a></li>
+        <li><a href="#intents" class="sidebar-link" onclick="scrollToSection('intents')" data-i18n="navIntents">🔗 Intents & Actions</a></li>
+        <li><a href="#clipboard" class="sidebar-link" onclick="scrollToSection('clipboard')" data-i18n="navClipboard">📋 Clipboard, Vibration & Screen</a></li>
+        <li><a href="#notifications" class="sidebar-link" onclick="scrollToSection('notifications')" data-i18n="navNotifications">🔔 Notifications & Keyboard</a></li>
+        <li><a href="#device" class="sidebar-link" onclick="scrollToSection('device')" data-i18n="navDevice">📱 Device, Battery & App Info</a></li>
+        <li><a href="#data" class="sidebar-link" onclick="scrollToSection('data')" data-i18n="navData">💾 Data, Storage & Crypto</a></li>
+        <li><a href="#security" class="sidebar-link" onclick="scrollToSection('security')" data-i18n="navSecurity">🔐 Security, Biometric & Logger</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content">
+
+      <!-- Hero Header -->
+      <section id="overview" class="hero">
+        <h1 class="hero-title" data-i18n="secOverviewTitle">AppUtilX Documentation</h1>
+        <div class="feature-pills">
+          <span class="pill" data-i18n="pillAndroid">✓ Android 17 (API 37) Ready</span>
+          <span class="pill" data-i18n="pillCoroutines">✓ Kotlin Coroutines & DataStore</span>
+          <span class="pill" data-i18n="pillBridge">✓ Flutter MethodChannel Bridge</span>
+        </div>
+      </section>
+
+      <!-- Tabs Switcher (Kotlin vs Flutter) -->
+      <div class="tab-container">
+        <button class="tab-btn active" data-tab="kotlin" onclick="switchTab('kotlin')">
+          <span data-i18n="tabKotlin">🟣 Kotlin / Android Native</span>
+        </button>
+        <button class="tab-btn" data-tab="flutter" onclick="switchTab('flutter')">
+          <span data-i18n="tabFlutter">🔵 Flutter / Dart Bridge</span>
+        </button>
+      </div>
+
+      <!-- Installation Section -->
+      <section id="installation" class="section">
+        <div class="section-header" data-i18n="secInstall">📦 Installation & Setup</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">apputilx setup & Utils.initialize(this)</span>
+          </div>
+          <div class="card-desc" data-i18n="secInstallDesc">Add the library dependency to your build file then initialize inside Application class.</div>
+
+          <div class="code-snippet" data-lang="kotlin">
+            <pre class="code-block" id="code-install-kotlin"><span class="comment">// 1. Add in gradle/libs.versions.toml</span>
+<span class="keyword">[versions]</span>
+apputilx = <span class="string">"1.5.0-alpha01"</span>
+
+<span class="keyword">[libraries]</span>
+apputilx = { group = <span class="string">"com.github.mohamed-zaitoon"</span>, name = <span class="string">"apputilx"</span>, version.ref = <span class="string">"apputilx"</span> }
+
+<span class="comment">// 2. Add in settings.gradle.kts</span>
+repositories {
+    google()
+    mavenCentral()
+    maven { url = uri(<span class="string">"https://jitpack.io"</span>) }
+}
+
+<span class="comment">// 3. Add in app/build.gradle.kts</span>
+dependencies {
+    implementation(libs.apputilx)
+}
+
+<span class="comment">// 4. Initialize in Application class</span>
+<span class="keyword">class</span> <span class="type">ExampleApplication</span> : <span class="type">Application</span>() {
+    <span class="keyword">override fun</span> <span class="function">onCreate</span>() {
+        <span class="keyword">super</span>.onCreate()
+        <span class="type">Utils</span>.<span class="function">initialize</span>(<span class="keyword">this</span>)
+    }
+}</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-install-kotlin')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="code-snippet" data-lang="flutter" style="display: none;">
+            <pre class="code-block" id="code-install-flutter"><span class="comment">// 1. Add in gradle/libs.versions.toml</span>
+<span class="keyword">[versions]</span>
+apputilx = <span class="string">"1.5.0-alpha01"</span>
+
+<span class="keyword">[libraries]</span>
+apputilx = { group = <span class="string">"com.github.mohamed-zaitoon"</span>, name = <span class="string">"apputilx"</span>, version.ref = <span class="string">"apputilx"</span> }
+
+<span class="comment">// 2. Add in android/settings.gradle.kts</span>
+repositories {
+    google()
+    mavenCentral()
+    maven { url = uri(<span class="string">"https://jitpack.io"</span>) }
+}
+
+<span class="comment">// 3. Add in android/app/build.gradle.kts</span>
+dependencies {
+    implementation(libs.apputilx)
+}
+
+<span class="comment">// 4. Initialize in Flutter Android Application (MyApp.kt)</span>
+<span class="keyword">class</span> <span class="type">MyApp</span> : <span class="type">Application</span>() {
+    <span class="keyword">override fun</span> <span class="function">onCreate</span>() {
+        <span class="keyword">super</span>.onCreate()
+        <span class="type">Utils</span>.<span class="function">initialize</span>(<span class="keyword">this</span>)
+    }
+}</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-install-flutter')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Network Section -->
+      <section id="network" class="section">
+        <div class="section-header" data-i18n="secNetwork">🌐 Network Helpers</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Utils.isConnected & networkState</span>
+          </div>
+          <div class="card-desc" data-i18n="secNetworkDesc">Check internet connectivity, validated connection, and transport type.</div>
+
+          <div class="code-snippet" data-lang="kotlin">
+            <pre class="code-block" id="code-net-kotlin"><span class="comment">// Kotlin</span>
+<span class="keyword">val</span> isOnline: <span class="type">Boolean</span> = <span class="type">Utils</span>.isConnected
+<span class="keyword">val</span> isValidated: <span class="type">Boolean</span> = <span class="type">Utils</span>.hasValidatedInternet()
+<span class="keyword">val</span> isMetered: <span class="type">Boolean</span> = <span class="type">Utils</span>.isConnectionMetered()</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-net-kotlin')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="code-snippet" data-lang="flutter" style="display: none;">
+            <pre class="code-block" id="code-net-flutter"><span class="comment">// Flutter (Dart)</span>
+<span class="keyword">final</span> isOnline = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">bool</span>&gt;(<span class="string">'isConnected'</span>);
+<span class="keyword">final</span> stateDetails = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">String</span>&gt;(<span class="string">'networkState'</span>);</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-net-flutter')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Intents Section -->
+      <section id="intents" class="section">
+        <div class="section-header" data-i18n="secIntents">🔗 Intents & Actions</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Utils.openUrl, openWhatsApp, dial, sendSms, sendEmail</span>
+          </div>
+          <div class="card-desc" data-i18n="secIntentsDesc">Open URLs, WhatsApp chats, dialer, SMS, and send emails directly.</div>
+
+          <div class="code-snippet" data-lang="kotlin">
+            <pre class="code-block" id="code-intent-kotlin"><span class="comment">// Kotlin</span>
+<span class="type">Utils</span>.<span class="function">openUrl</span>(context, <span class="string">"https://apputilx.mohamedzaitoon.com"</span>)
+<span class="type">Utils</span>.<span class="function">openWhatsApp</span>(<span class="string">"201234567890"</span>, <span class="string">"Hello"</span>)
+<span class="type">Utils</span>.<span class="function">dial</span>(<span class="string">"201234567890"</span>)
+<span class="type">Utils</span>.<span class="function">sendSms</span>(<span class="string">"201234567890"</span>, <span class="string">"Test message"</span>)
+<span class="type">Utils</span>.<span class="function">openPlayStore</span>()</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-intent-kotlin')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="code-snippet" data-lang="flutter" style="display: none;">
+            <pre class="code-block" id="code-intent-flutter"><span class="comment">// Flutter (Dart)</span>
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'openUrl'</span>, {<span class="string">'url'</span>: <span class="string">'https://apputilx.mohamedzaitoon.com'</span>});
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'openWhatsApp'</span>, {<span class="string">'text'</span>: <span class="string">'Hello'</span>});
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'dial'</span>);
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'openPlayStore'</span>);</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-intent-flutter')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clipboard & Vibration Section -->
+      <section id="clipboard" class="section">
+        <div class="section-header" data-i18n="secClipboard">📋 Clipboard, Vibration & Screen</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Utils.vibrate & copyText & blockCapture</span>
+          </div>
+          <div class="card-desc" data-i18n="secClipboardDesc">Trigger physical vibration motor (Android 13-16 ready), clipboard, and screen capture block.</div>
+
+          <div class="code-snippet" data-lang="kotlin">
+            <pre class="code-block" id="code-vib-kotlin"><span class="comment">// Kotlin</span>
+<span class="type">Utils</span>.<span class="function">copyText</span>(<span class="string">"Copied text"</span>)
+<span class="type">Utils</span>.<span class="function">vibrate</span>(<span class="string">200</span>)
+<span class="type">Utils</span>.<span class="function">vibratePattern</span>(<span class="keyword">longArrayOf</span>(<span class="string">0, 100, 50, 200</span>), -<span class="string">1</span>)
+<span class="type">Utils</span>.<span class="function">blockCapture</span>()</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-vib-kotlin')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="code-snippet" data-lang="flutter" style="display: none;">
+            <pre class="code-block" id="code-vib-flutter"><span class="comment">// Flutter (Dart)</span>
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'copyText'</span>, {<span class="string">'text'</span>: <span class="string">'Copied'</span>});
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'vibrate'</span>, {<span class="string">'ms'</span>: <span class="string">200</span>});
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'blockCapture'</span>);</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-vib-flutter')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Notifications & Keyboard Section -->
+      <section id="notifications" class="section">
+        <div class="section-header" data-i18n="secNotif">🔔 Notifications & Keyboard</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Utils.showNotification & hideKeyboard</span>
+          </div>
+          <div class="card-desc" data-i18n="secNotifDesc">Create notification channels, show custom notifications, and hide input keyboard.</div>
+
+          <div class="code-snippet" data-lang="kotlin">
+            <pre class="code-block" id="code-notif-kotlin"><span class="comment">// Kotlin</span>
+<span class="type">Utils</span>.<span class="function">createNotificationChannel</span>(<span class="string">"demo"</span>, <span class="string">"Demo Channel"</span>)
+<span class="type">Utils</span>.<span class="function">showNotification</span>(
+    channelId = <span class="string">"demo"</span>,
+    title = <span class="string">"AppUtilX"</span>,
+    text = <span class="string">"Hello Notification"</span>,
+    iconResId = <span class="type">R</span>.drawable.ic_launcher
+)
+<span class="type">Utils</span>.<span class="function">hideKeyboard</span>()</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-notif-kotlin')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="code-snippet" data-lang="flutter" style="display: none;">
+            <pre class="code-block" id="code-notif-flutter"><span class="comment">// Flutter (Dart)</span>
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'showNotification'</span>, {<span class="string">'text'</span>: <span class="string">'Flutter Notification'</span>});
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'hideKeyboard'</span>);</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-notif-flutter')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Device & Battery Section -->
+      <section id="device" class="section">
+        <div class="section-header" data-i18n="secDevice">📱 Device, Battery & App Info</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Utils.deviceName, getBatteryLevel, appInfo</span>
+          </div>
+          <div class="card-desc" data-i18n="secDeviceDesc">Query device model, battery status/charging type, and foreground application state.</div>
+
+          <div class="code-snippet" data-lang="kotlin">
+            <pre class="code-block" id="code-dev-kotlin"><span class="comment">// Kotlin</span>
+<span class="keyword">val</span> name = <span class="type">Utils</span>.<span class="function">deviceName</span>()
+<span class="keyword">val</span> battery = <span class="type">Utils</span>.<span class="function">getBatteryLevel</span>()
+<span class="keyword">val</span> isCharging = <span class="type">Utils</span>.<span class="function">isCharging</span>()
+<span class="keyword">val</span> isForeground = <span class="type">Utils</span>.<span class="function">isAppInForeground</span>()</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-dev-kotlin')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="code-snippet" data-lang="flutter" style="display: none;">
+            <pre class="code-block" id="code-dev-flutter"><span class="comment">// Flutter (Dart)</span>
+<span class="keyword">final</span> devInfo = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">String</span>&gt;(<span class="string">'deviceInfo'</span>);
+<span class="keyword">final</span> batInfo = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">String</span>&gt;(<span class="string">'batteryInfo'</span>);
+<span class="keyword">final</span> appState = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">String</span>&gt;(<span class="string">'appState'</span>);</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-dev-flutter')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Section -->
+      <section id="data" class="section">
+        <div class="section-header" data-i18n="secData">💾 Data, Storage & Crypto</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Utils.writeFile, readFile, sha256, base64Encode</span>
+          </div>
+          <div class="card-desc" data-i18n="secDataDesc">File write/read/delete operations, SHA-256, SHA-512, HMAC, and Base64 encoding.</div>
+
+          <div class="code-snippet" data-lang="kotlin">
+            <pre class="code-block" id="code-data-kotlin"><span class="comment">// Kotlin</span>
+<span class="type">Utils</span>.<span class="function">writeFile</span>(<span class="string">"demo.txt"</span>, <span class="string">"content"</span>)
+<span class="keyword">val</span> content = <span class="type">Utils</span>.<span class="function">readFile</span>(<span class="string">"demo.txt"</span>)
+<span class="keyword">val</span> hash = <span class="type">Utils</span>.<span class="function">sha256</span>(<span class="string">"password"</span>)
+<span class="keyword">val</span> base64 = <span class="type">Utils</span>.<span class="function">base64Encode</span>(<span class="string">"Hello"</span>)</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-data-kotlin')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="code-snippet" data-lang="flutter" style="display: none;">
+            <pre class="code-block" id="code-data-flutter"><span class="comment">// Flutter (Dart)</span>
+<span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>(<span class="string">'writeFile'</span>, {<span class="string">'text'</span>: <span class="string">'content'</span>});
+<span class="keyword">final</span> content = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">String</span>&gt;(<span class="string">'readFile'</span>);
+<span class="keyword">final</span> hash = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">String</span>&gt;(<span class="string">'sha256'</span>, {<span class="string">'text'</span>: <span class="string">'password'</span>});</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-data-flutter')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Security Section -->
+      <section id="security" class="section">
+        <div class="section-header" data-i18n="secSecurity">🔐 Security, Biometric & Logger</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Utils.authenticateBiometric & getPrimarySignatureSHA1</span>
+          </div>
+          <div class="card-desc" data-i18n="secSecurityDesc">Prompt biometric authentication, extract app SHA-1 signature, and log diagnostics.</div>
+
+          <div class="code-snippet" data-lang="kotlin">
+            <pre class="code-block" id="code-sec-kotlin"><span class="comment">// Kotlin</span>
+<span class="keyword">if</span> (<span class="type">Utils</span>.<span class="function">canUseBiometric</span>()) {
+    <span class="type">Utils</span>.<span class="function">authenticateBiometric</span>(
+        activity = fragmentActivity,
+        title = <span class="string">"Authenticate"</span>,
+        subtitle = <span class="string">"Confirm identity"</span>,
+        onSuccess = { <span class="comment">/* Success */</span> }
+    )
+}
+<span class="keyword">val</span> sha1 = <span class="type">Utils</span>.<span class="function">getPrimarySignatureSHA1</span>()</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-sec-kotlin')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="code-snippet" data-lang="flutter" style="display: none;">
+            <pre class="code-block" id="code-sec-flutter"><span class="comment">// Flutter (Dart)</span>
+<span class="keyword">final</span> result = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">String</span>&gt;(<span class="string">'biometric'</span>);
+<span class="keyword">final</span> sig = <span class="keyword">await</span> _channel.<span class="function">invokeMethod</span>&lt;<span class="type">String</span>&gt;(<span class="string">'signatures'</span>);</pre>
+            <button class="copy-btn" onclick="copyCode(this, 'code-sec-flutter')">
+              <svg height="14" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p data-i18n="footerText">AppUtilX Documentation © 2025-2027.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

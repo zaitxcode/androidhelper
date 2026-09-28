@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/glass_background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGlassChrome"
+        android:fitsSystemWindows="false"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:title="@string/app_name"
+            app:titleCentered="false"
+            app:titleTextColor="?attr/colorOnSurface" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="24dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputLayout"
+                    style="@style/AppTheme.GlassTextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Text for helpers">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="3"
+                        android:text="Hello AppUtilx" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/outputCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="@color/colorGlassPanel"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/colorGlassStroke"
+                    app:strokeWidth="1dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvOutput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="96dp"
+                        android:padding="16dp"
+                        android:text="Results will appear here"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textColor="?attr/colorOnSurface" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/AppTheme.SectionLabel"
+                    android:text="Network" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNetworkState"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Connection details" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNetworkTransport"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Transport and metered state" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/AppTheme.SectionLabel"
+                    android:text="Intents" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOpenUrl"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Open URL" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOpenSettings"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Open app settings" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnWhatsApp"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Open WhatsApp chat" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDial"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Dial number" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSendSms"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Send SMS" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSendEmail"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Send email" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShareText"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Share text" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShareFile"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Share generated file" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOpenMap"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Open map" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOpenPlayStore"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Open Play Store page" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/AppTheme.SectionLabel"
+                    android:text="Clipboard, vibration, screen" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCopy"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Copy input" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPaste"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Read clipboard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVibrateShort"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Vibrate 200 ms" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVibratePattern"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Vibrate pattern" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBlockCapture"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Block screen capture" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUnblockCapture"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Unblock screen capture" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/AppTheme.SectionLabel"
+                    android:text="Notifications and keyboard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShowNotification"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Show notification" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancelNotifications"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Cancel notifications" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShowKeyboard"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Show keyboard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHideKeyboard"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Hide keyboard" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/AppTheme.SectionLabel"
+                    android:text="Device and app" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDeviceInfo"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Device info" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAppInfo"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="App info" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBatteryInfo"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Battery info" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAppState"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="App state" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/AppTheme.SectionLabel"
+                    android:text="Data helpers" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTimeNow"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Time helpers" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnValidate"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Validation helpers" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStorage"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Storage helpers" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnWriteFile"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Write and append file" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReadFile"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Read file and bytes" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDeleteFile"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Delete file" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSha256"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Hashes and HMAC" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBase64"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Base64 helpers" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSignatures"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="App signatures" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBiometric"
+                    style="@style/AppTheme.DemoButton"
+                    android:text="Biometric authenticate" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
