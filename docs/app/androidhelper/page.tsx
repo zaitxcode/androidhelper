@@ -25,6 +25,7 @@ const translations = {
     pillCoroutines: "Kotlin Coroutines & DataStore",
     pillBridge: "Flutter MethodChannel Bridge",
     tabKotlin: "Kotlin Native",
+    tabJava: "Java Native",
     tabFlutter: "Flutter Bridge",
     secInstall: "📦 Installation & Setup",
     secInstallDesc: "Add the library dependency to your build file then initialize inside Application class.",
@@ -72,7 +73,8 @@ const translations = {
     pillAndroid: "Android 17 (API 37) Ready",
     pillCoroutines: "Kotlin Coroutines & DataStore",
     pillBridge: "Flutter MethodChannel Bridge",
-    tabKotlin: "كوتلن الأصلي (Kotlin)",
+    tabKotlin: "كوتلن (Kotlin)",
+    tabJava: "جافا (Java)",
     tabFlutter: "فلاتر (Flutter)",
     secInstall: "📦 التثبيت والإعداد (Installation)",
     secInstallDesc: "أضف التبعية الخاصة بالمكتبة ثم قم بتهيئتها داخل Application class.",
@@ -128,6 +130,18 @@ function FlutterIcon() {
     <img
       src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
       alt="Flutter"
+      width="18"
+      height="18"
+      style={{ flexShrink: 0, display: "inline-block", verticalAlign: "middle" }}
+    />
+  );
+}
+
+function JavaIcon() {
+  return (
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+      alt="Java"
       width="18"
       height="18"
       style={{ flexShrink: 0, display: "inline-block", verticalAlign: "middle" }}
@@ -218,7 +232,7 @@ function CodeLineRow({ rawCode, children }: { rawCode: string; children: React.R
 export default function Home() {
   const [lang, setLang] = useState<Lang>("en");
   const [themeMode, setThemeMode] = useState<ThemeMode>("system");
-  const [activeTab, setActiveTab] = useState<"kotlin" | "flutter">("kotlin");
+  const [activeTab, setActiveTab] = useState<"kotlin" | "java" | "flutter">("kotlin");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -462,6 +476,10 @@ export default function Home() {
             <button className={`tab-btn ${activeTab === "kotlin" ? "active" : ""}`} onClick={() => setActiveTab("kotlin")}>
               <KotlinIcon />
               <span>{t.tabKotlin}</span>
+            </button>
+            <button className={`tab-btn ${activeTab === "java" ? "active" : ""}`} onClick={() => setActiveTab("java")}>
+              <JavaIcon />
+              <span>{t.tabJava}</span>
             </button>
             <button className={`tab-btn ${activeTab === "flutter" ? "active" : ""}`} onClick={() => setActiveTab("flutter")}>
               <FlutterIcon />

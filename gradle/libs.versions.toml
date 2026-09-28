@@ -1,7 +1,7 @@
 [versions]
 # App & Library Versions
-versionCode = "102"
-versionName = "1.0.0-alpha03"
+versionCode = "103"
+versionName = "1.0.0-alpha04"
 
 # SDK Versions
 compileSdk = "37"

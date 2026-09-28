@@ -38,9 +38,11 @@ object Network : DefaultLifecycleObserver {
             .build()
     }
 
+    @get:JvmStatic
     val isConnected: Boolean
         get() = hasValidatedInternet()
 
+    @JvmStatic
     fun initialize(context: Context) {
         if (initialized) return
         initialized = true
@@ -65,22 +67,26 @@ object Network : DefaultLifecycleObserver {
         unregisterMonitor()
     }
 
+    @JvmStatic
     fun addConnectionListener(listener: (Boolean) -> Unit) {
         updateCurrentConnectionState()
         listeners.add(listener)
         listener(isConnected)
     }
 
+    @JvmStatic
     fun removeConnectionListener(listener: (Boolean) -> Unit) {
         listeners.remove(listener)
     }
 
+    @JvmStatic
     fun hasValidatedInternet(): Boolean {
         val capabilities = currentCapabilities() ?: return false
         return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
             capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
     }
 
+    @JvmStatic
     fun activeTransport(): String {
         val capabilities = currentCapabilities() ?: return "NONE"
         return when {
@@ -93,23 +99,29 @@ object Network : DefaultLifecycleObserver {
         }
     }
 
+    @JvmStatic
     fun isWifiConnected(): Boolean =
         hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
 
+    @JvmStatic
     fun isCellularConnected(): Boolean =
         hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
 
+    @JvmStatic
     fun isEthernetConnected(): Boolean =
         hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
 
+    @JvmStatic
     fun isVpnConnected(): Boolean =
         hasTransport(NetworkCapabilities.TRANSPORT_VPN)
 
+    @JvmStatic
     fun isConnectionMetered(): Boolean {
         if (!initialized) return false
         return connectivityManager.isActiveNetworkMetered
     }
 
+    @JvmStatic
     fun getIpAddress(): String? {
         try {
             val interfaces = NetworkInterface.getNetworkInterfaces()
@@ -158,33 +170,33 @@ object Network : DefaultLifecycleObserver {
     }
 
     private fun unregisterMonitor() {
-        unregisterCallback()
-    }
-
-    private fun unregisterCallback() {
         if (!registeredCallback) return
         try {
             connectivityManager.unregisterNetworkCallback(callback)
+            registeredCallback = false
         } catch (_: Exception) {
-            // ignore
+            // Guard
         }
-        registeredCallback = false
-    }
-
-    private fun notifyListeners(status: Boolean) {
-        listeners.toList().forEach { it(status) }
     }
 
     private fun currentCapabilities(): NetworkCapabilities? {
-        if (!initialized) {
-            val ctx = try { AppHelper.ctx() } catch (_: Exception) { null }
-            if (ctx != null) initialize(ctx) else return null
-        }
+        if (!initialized) return null
         val network = connectivityManager.activeNetwork ?: return null
         return connectivityManager.getNetworkCapabilities(network)
     }
 
     private fun hasTransport(transport: Int): Boolean {
-        return currentCapabilities()?.hasTransport(transport) == true
+        val capabilities = currentCapabilities() ?: return false
+        return capabilities.hasTransport(transport)
+    }
+
+    private fun notifyListeners(state: Boolean) {
+        listeners.toList().forEach { listener ->
+            try {
+                listener(state)
+            } catch (_: Exception) {
+                // Guard
+            }
+        }
     }
 }
