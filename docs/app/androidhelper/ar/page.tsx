@@ -51,7 +51,7 @@ const t = {
   btnOpenGrok: "Grok",
   btnOpenDeepSeek: "DeepSeek",
   btnCopyAiPrompt: "نسخ الأمر لأي ذكاء اصطناعي آخر",
-  footerText: "Android Helper Documentation © 2025-2027."
+  footerText: "توثيق Android Helper © 2026 ZaitXCode. جميع الحقوق محفوظة."
 };
 
 const getAiPromptText = () => {

@@ -18,10 +18,10 @@ const translations = {
     navIntents: "🔗 External Intents",
     navClipboard: "📋 Clipboard & Screen",
     navNotifications: "🔔 Notifications & Keyboard",
-    navDevice: "📱 Device & Battery Info",
+    navDevice: "📱 Device, Battery & App Info",
     navAudio: "🔊 Audio & Display",
-    navData: "💾 Data & Cryptography",
-    navSecurity: "🔐 Security & Biometrics",
+    navData: "💾 Data, Files & Cryptography",
+    navSecurity: "🔐 Security, Biometrics & Permissions",
     secOverviewTitle: "Android Helper Documentation",
     pillAndroid: "Android 17 (API 37) Ready",
     pillCoroutines: "Kotlin Coroutines & DataStore",
@@ -33,21 +33,21 @@ const translations = {
     secInstallDesc: "Step 1: Add the library dependency to your build file. Step 2: Initialize inside Application or Activity class.",
     flutterBridgeExplain: "🌉 How Flutter MethodChannel Bridge Works: Flutter communicates asynchronously with native Android Kotlin/Java code via MethodChannel ('androidhelper/core'). Calling await _channel.invokeMethod<T>('methodName') in Dart invokes Android Helper helpers natively on the Android host without UI blocking.",
     secNetwork: "🌐 Network Helpers",
-    secNetworkDesc: "Check internet connectivity, validated connection, transport type, and IP address via Network module.",
+    secNetworkDesc: "Check internet connectivity, validated connection, transport type, metered state, and IP address via Network module.",
     secIntents: "🔗 External Intents & Actions",
-    secIntentsDesc: "Open URLs, WhatsApp chats, dialer, SMS, email, maps, app settings, and Play Store directly via Intent & Browser modules.",
-    secClipboard: "📋 Clipboard, Vibration & Screen",
-    secClipboardDesc: "Trigger physical vibration motor, clipboard read/write/clear, and screen capture block via Clipboard, Vibration & Screen modules.",
-    secNotif: "🔔 Notifications & Keyboard",
-    secNotifDesc: "Create notification channels, show custom notifications, cancel notifications, and hide/show soft keyboard via Notification & Keyboard modules.",
-    secDevice: "📱 Device, Battery & App Info",
-    secDeviceDesc: "Query device model, brand, SDK level, tablet/emulator state, battery status/health, and foreground application state via Device, Battery, AppInfo & AppState modules.",
-    secAudio: "🔊 Audio & Display Helpers",
-    secAudioDesc: "Play tactile system click sound, query audio ringer mode/volume, screen orientation & dimensions in DP via Audio & Display modules.",
-    secData: "💾 Data, Storage & Crypto",
-    secDataDesc: "File write/read/append/delete, storage space format, time formatting, email/phone/URL validation, SHA-256, SHA-512, HMAC, and Base64 encoding via File, Storage, Time, Validation & Encryption modules.",
-    secSecurity: "🔐 Security, Biometric & Logger",
-    secSecurityDesc: "Prompt biometric authentication, grant/check runtime permissions, extract app SHA-1 signature, and log diagnostics via Biometric, Permission, Signature & Logger modules.",
+    secIntentsDesc: "Open URLs, WhatsApp chats, dialer, SMS, email, share text/files, maps, app settings, and Play Store directly via Intent & Browser modules.",
+    secClipboard: "📋 Clipboard, Vibration & Screen Capture",
+    secClipboardDesc: "Trigger physical vibration motor, vibration patterns, clipboard read/write/clear, and screen capture block via Clipboard, Vibration & Screen modules.",
+    secNotif: "🔔 Notifications & Soft Keyboard",
+    secNotifDesc: "Create notification channels, delete channels, show custom notifications, cancel notifications, and hide/show soft keyboard via Notification & Keyboard modules.",
+    secDevice: "📱 Device, Battery, AppInfo & AppState",
+    secDeviceDesc: "Query device model, brand, manufacturer, SDK level, tablet/emulator state, RAM size, battery status/health, app version, and foreground state via Device, Battery, AppInfo & AppState modules.",
+    secAudio: "🔊 Audio & Display Metrics",
+    secAudioDesc: "Play tactile system click sound, query ringer mode/volume, headphones state, screen orientation & DP dimensions via Audio & Display modules.",
+    secData: "💾 Data, Storage, Time, Validation & Encryption",
+    secDataDesc: "File write/read/append/delete, storage space format, time formatting/timeAgo, email/phone/URL/national ID validation, SHA-1/256/512, MD5, HMAC, AES encryption, and Base64 encoding via File, Storage, Time, Validation & Encryption modules.",
+    secSecurity: "🔐 Security, Biometrics, Permissions & Signatures",
+    secSecurityDesc: "Prompt biometric authentication, check/request runtime permissions, extract app SHA-1 signature, and log diagnostics via Biometric, Permission, Signature & AppHelper modules.",
     aiPromptBoxTitle: "Ask AI Assistant about Android Helper Documentation:",
     btnOpenGpt: "ChatGPT",
     btnOpenClaude: "Claude",
@@ -55,7 +55,7 @@ const translations = {
     btnOpenGrok: "Grok",
     btnOpenDeepSeek: "DeepSeek",
     btnCopyAiPrompt: "Copy Prompt (Any AI)",
-    footerText: "Android Helper Documentation © 2025–2027."
+    footerText: "Android Helper Documentation © 2026 ZaitXCode. All rights reserved."
   },
   ar: {
     docTitle: "Android Helper Documentation - توثيق مكتبة Android Helper",
@@ -104,7 +104,7 @@ const translations = {
     btnOpenGrok: "Grok",
     btnOpenDeepSeek: "DeepSeek",
     btnCopyAiPrompt: "نسخ الأمر لأي ذكاء اصطناعي آخر",
-    footerText: "Android Helper Documentation © 2025–2027."
+    footerText: "توثيق Android Helper © 2026 ZaitXCode. جميع الحقوق محفوظة."
   }
 };
 
@@ -240,6 +240,10 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
+
+  // Demo APK download URLs
+  const kotlinApkUrl = "https://storage.zaitxcode.com/android/androidhelper-example-kotlin.apk";
+  const flutterApkUrl = "https://storage.zaitxcode.com/android/androidhelper-example-flutter.apk";
 
   const { theme, toggleTheme } = useTheme();
   useReveal();
@@ -403,24 +407,30 @@ export default function Home() {
 
             <div className="feature-pills">
               <span className="pill"><AndroidIcon /> {t.pillAndroid}</span>
-              <a
-                href="https://storage.zaitxcode.com/android/androidhelper-example-kotlin.apk"
-                target="_blank"
-                rel="noreferrer"
-                className="pill"
-                style={{ backgroundColor: "var(--accent-color)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
-              >
-                <KotlinIcon /> <i className="bi bi-download"></i> Kotlin Demo APK
-              </a>
-              <a
-                href="https://storage.zaitxcode.com/android/androidhelper-example-flutter.apk"
-                target="_blank"
-                rel="noreferrer"
-                className="pill"
-                style={{ backgroundColor: "var(--accent-green)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
-              >
-                <FlutterIcon /> <i className="bi bi-download"></i> Flutter Demo APK
-              </a>
+              <span className="pill"><KotlinIcon /> {t.pillCoroutines}</span>
+              <span className="pill"><FlutterIcon /> {t.pillBridge}</span>
+              {kotlinApkUrl && (
+                <a
+                  href={kotlinApkUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="pill"
+                  style={{ backgroundColor: "var(--accent-color)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
+                >
+                  <KotlinIcon /> <i className="bi bi-download"></i> Kotlin Demo APK
+                </a>
+              )}
+              {flutterApkUrl && (
+                <a
+                  href={flutterApkUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="pill"
+                  style={{ backgroundColor: "var(--accent-green)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
+                >
+                  <FlutterIcon /> <i className="bi bi-download"></i> Flutter Demo APK
+                </a>
+              )}
             </div>
 
             {/* AI Prompt Copy & Chat Bar */}
@@ -746,19 +756,19 @@ export default function Home() {
                       <span className="keyword">import</span> com.zaitxcode.android.net.Network;
                     </CodeLineRow>
                     <CodeLineRow rawCode="boolean isOnline = Network.isConnected();">
-                      <span className="keyword">boolean</span> isOnline = <span className="type">Network</span>.<span className="function">isConnected</span>();
+                      <span className="type">boolean</span> isOnline = <span className="type">Network</span>.<span className="function">isConnected</span>();
                     </CodeLineRow>
                     <CodeLineRow rawCode="boolean isValidated = Network.hasValidatedInternet();">
-                      <span className="keyword">boolean</span> isValidated = <span className="type">Network</span>.<span className="function">hasValidatedInternet</span>();
+                      <span className="type">boolean</span> isValidated = <span className="type">Network</span>.<span className="function">hasValidatedInternet</span>();
                     </CodeLineRow>
                     <CodeLineRow rawCode="boolean isMetered = Network.isConnectionMetered();">
-                      <span className="keyword">boolean</span> isMetered = <span className="type">Network</span>.<span className="function">isConnectionMetered</span>();
+                      <span className="type">boolean</span> isMetered = <span className="type">Network</span>.<span className="function">isConnectionMetered</span>();
                     </CodeLineRow>
                     <CodeLineRow rawCode='String transport = Network.activeTransport(); // "WIFI", "CELLULAR"'>
                       <span className="type">String</span> transport = <span className="type">Network</span>.<span className="function">activeTransport</span>();
                     </CodeLineRow>
                     <CodeLineRow rawCode="boolean isWifi = Network.isWifiConnected();">
-                      <span className="keyword">boolean</span> isWifi = <span className="type">Network</span>.<span className="function">isWifiConnected</span>();
+                      <span className="type">boolean</span> isWifi = <span className="type">Network</span>.<span className="function">isWifiConnected</span>();
                     </CodeLineRow>
                     <CodeLineRow rawCode="String ip = Network.getIpAddress();">
                       <span className="type">String</span> ip = <span className="type">Network</span>.<span className="function">getIpAddress</span>();
@@ -786,7 +796,7 @@ export default function Home() {
             <div className="card" data-reveal data-tilt="4">
               <div className="card-header">
                 <div className="card-title-group">
-                  <span className="card-title">🔗 Intent.openWhatsApp, dial, sendSms, sendEmail, openAppSettings</span>
+                  <span className="card-title">🔗 Intent.openWhatsApp, dial, sendSms, sendEmail, shareText, openMap, openAppSettings</span>
                 </div>
               </div>
               <div className="card-desc">{t.secIntentsDesc}</div>
@@ -795,6 +805,12 @@ export default function Home() {
                   <div className="code-block">
                     <CodeLineRow rawCode="import com.zaitxcode.android.content.Intent">
                       <span className="keyword">import</span> com.zaitxcode.android.content.Intent
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.browser.Browser">
+                      <span className="keyword">import</span> com.zaitxcode.android.browser.Browser
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='Browser.openUrl("https://docs.zaitxcode.com/androidhelper")'>
+                      <span className="type">Browser</span>.<span className="function">openUrl</span>(<span className="string">&quot;https://docs.zaitxcode.com/androidhelper&quot;</span>)
                     </CodeLineRow>
                     <CodeLineRow rawCode='Intent.openWhatsApp("+201000000000", "Hello from Android Helper")'>
                       <span className="type">Intent</span>.<span className="function">openWhatsApp</span>(<span className="string">&quot;+201000000000&quot;</span>, <span className="string">&quot;Hello from Android Helper&quot;</span>)
@@ -808,11 +824,17 @@ export default function Home() {
                     <CodeLineRow rawCode='Intent.sendEmail("support@example.com", "App Support", "Message body")'>
                       <span className="type">Intent</span>.<span className="function">sendEmail</span>(<span className="string">&quot;support@example.com&quot;</span>, <span className="string">&quot;App Support&quot;</span>, <span className="string">&quot;Message body&quot;</span>)
                     </CodeLineRow>
+                    <CodeLineRow rawCode='Intent.shareText("Text to share")'>
+                      <span className="type">Intent</span>.<span className="function">shareText</span>(<span className="string">&quot;Text to share&quot;</span>)
+                    </CodeLineRow>
                     <CodeLineRow rawCode='Intent.openMap(30.0444, 31.2357, "Cairo, Egypt")'>
                       <span className="type">Intent</span>.<span className="function">openMap</span>(<span className="number">30.0444</span>, <span className="number">31.2357</span>, <span className="string">&quot;Cairo, Egypt&quot;</span>)
                     </CodeLineRow>
                     <CodeLineRow rawCode="Intent.openAppSettings()">
                       <span className="type">Intent</span>.<span className="function">openAppSettings</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Intent.openPlayStore()">
+                      <span className="type">Intent</span>.<span className="function">openPlayStore</span>()
                     </CodeLineRow>
                   </div>
                 </div>
@@ -822,7 +844,7 @@ export default function Home() {
                     <CodeLineRow rawCode="import com.zaitxcode.android.content.Intent;">
                       <span className="keyword">import</span> com.zaitxcode.android.content.Intent;
                     </CodeLineRow>
-                    <CodeLineRow rawCode='import com.zaitxcode.android.browser.Browser;'>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.browser.Browser;">
                       <span className="keyword">import</span> com.zaitxcode.android.browser.Browser;
                     </CodeLineRow>
                     <CodeLineRow rawCode='Browser.openUrl("https://docs.zaitxcode.com/androidhelper");'>
@@ -834,19 +856,55 @@ export default function Home() {
                     <CodeLineRow rawCode='Intent.dial("+201000000000");'>
                       <span className="type">Intent</span>.<span className="function">dial</span>(<span className="string">&quot;+201000000000&quot;</span>);
                     </CodeLineRow>
+                    <CodeLineRow rawCode='Intent.sendSms("+201000000000", "SMS message");'>
+                      <span className="type">Intent</span>.<span className="function">sendSms</span>(<span className="string">&quot;+201000000000&quot;</span>, <span className="string">&quot;SMS message&quot;</span>);
+                    </CodeLineRow>
                     <CodeLineRow rawCode='Intent.sendEmail("support@example.com", "Support", "Body");'>
                       <span className="type">Intent</span>.<span className="function">sendEmail</span>(<span className="string">&quot;support@example.com&quot;</span>, <span className="string">&quot;Support&quot;</span>, <span className="string">&quot;Body&quot;</span>);
                     </CodeLineRow>
+                    <CodeLineRow rawCode='Intent.shareText("Text to share");'>
+                      <span className="type">Intent</span>.<span className="function">shareText</span>(<span className="string">&quot;Text to share&quot;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='Intent.openMap(30.0444, 31.2357, "Cairo, Egypt");'>
+                      <span className="type">Intent</span>.<span className="function">openMap</span>(<span className="number">30.0444</span>, <span className="number">31.2357</span>, <span className="string">&quot;Cairo, Egypt&quot;</span>);
+                    </CodeLineRow>
                     <CodeLineRow rawCode="Intent.openAppSettings();">
                       <span className="type">Intent</span>.<span className="function">openAppSettings</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Intent.openPlayStore();">
+                      <span className="type">Intent</span>.<span className="function">openPlayStore</span>();
                     </CodeLineRow>
                   </div>
                 </div>
               ) : (
                 <div className="code-snippet">
                   <div className="code-block">
-                    <CodeLineRow rawCode="await _channel.invokeMethod('openWhatsApp', {'phone': '+201000000000'});">
-                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openWhatsApp&apos;</span>, &#123;<span className="string">&apos;phone&apos;</span>: <span className="string">&apos;+201000000000&apos;</span>&#125;);
+                    <CodeLineRow rawCode="await _channel.invokeMethod('openUrl', {'url': 'https://docs.zaitxcode.com/androidhelper'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openUrl&apos;</span>, &#123;<span className="string">&apos;url&apos;</span>: <span className="string">&apos;https://docs.zaitxcode.com/androidhelper&apos;</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('openWhatsApp', {'phone': '+201000000000', 'text': 'Hello'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openWhatsApp&apos;</span>, &#123;<span className="string">&apos;phone&apos;</span>: <span className="string">&apos;+201000000000&apos;</span>, <span className="string">&apos;text&apos;</span>: <span className="string">&apos;Hello&apos;</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('dial', {'phone': '+201000000000'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;dial&apos;</span>, &#123;<span className="string">&apos;phone&apos;</span>: <span className="string">&apos;+201000000000&apos;</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('sendSms', {'phone': '+201000000000', 'text': 'Hello'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;sendSms&apos;</span>, &#123;<span className="string">&apos;phone&apos;</span>: <span className="string">&apos;+201000000000&apos;</span>, <span className="string">&apos;text&apos;</span>: <span className="string">&apos;Hello&apos;</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('sendEmail', {'email': 'test@example.com'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;sendEmail&apos;</span>, &#123;<span className="string">&apos;email&apos;</span>: <span className="string">&apos;test@example.com&apos;</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('shareText', {'text': 'Shared text'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;shareText&apos;</span>, &#123;<span className="string">&apos;text&apos;</span>: <span className="string">&apos;Shared text&apos;</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('openMap');">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openMap&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('openAppSettings');">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openAppSettings&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('openPlayStore');">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;openPlayStore&apos;</span>);
                     </CodeLineRow>
                   </div>
                 </div>
@@ -873,11 +931,32 @@ export default function Home() {
                     <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Vibration">
                       <span className="keyword">import</span> com.zaitxcode.android.hardware.Vibration
                     </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.view.Screen">
+                      <span className="keyword">import</span> com.zaitxcode.android.view.Screen
+                    </CodeLineRow>
                     <CodeLineRow rawCode='Clipboard.copyText("Hello Android Helper")'>
                       <span className="type">Clipboard</span>.<span className="function">copyText</span>(<span className="string">&quot;Hello Android Helper&quot;</span>)
                     </CodeLineRow>
+                    <CodeLineRow rawCode="val text: String? = Clipboard.getText()">
+                      <span className="keyword">val</span> text: <span className="type">String?</span> = <span className="type">Clipboard</span>.<span className="function">getText</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val hasText: Boolean = Clipboard.hasCopiedText()">
+                      <span className="keyword">val</span> hasText: <span className="type">Boolean</span> = <span className="type">Clipboard</span>.<span className="function">hasCopiedText</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Clipboard.clear()">
+                      <span className="type">Clipboard</span>.<span className="function">clear</span>()
+                    </CodeLineRow>
                     <CodeLineRow rawCode="Vibration.vibrate(200)">
                       <span className="type">Vibration</span>.<span className="function">vibrate</span>(<span className="number">200</span>)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Vibration.vibratePattern(longArrayOf(0, 100, 50, 200), -1)">
+                      <span className="type">Vibration</span>.<span className="function">vibratePattern</span>(<span className="keyword">longArrayOf</span>(<span className="number">0</span>, <span className="number">100</span>, <span className="number">50</span>, <span className="number">200</span>), -<span className="number">1</span>)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Screen.blockCapture()">
+                      <span className="type">Screen</span>.<span className="function">blockCapture</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Screen.unblockCapture()">
+                      <span className="type">Screen</span>.<span className="function">unblockCapture</span>()
                     </CodeLineRow>
                   </div>
                 </div>
@@ -899,14 +978,20 @@ export default function Home() {
                     <CodeLineRow rawCode="String text = Clipboard.getText();">
                       <span className="type">String</span> text = <span className="type">Clipboard</span>.<span className="function">getText</span>();
                     </CodeLineRow>
+                    <CodeLineRow rawCode="boolean hasText = Clipboard.hasCopiedText();">
+                      <span className="type">boolean</span> hasText = <span className="type">Clipboard</span>.<span className="function">hasCopiedText</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Clipboard.clear();">
+                      <span className="type">Clipboard</span>.<span className="function">clear</span>();
+                    </CodeLineRow>
                     <CodeLineRow rawCode="Vibration.vibrate(200);">
                       <span className="type">Vibration</span>.<span className="function">vibrate</span>(<span className="number">200</span>);
                     </CodeLineRow>
                     <CodeLineRow rawCode="Screen.blockCapture();">
                       <span className="type">Screen</span>.<span className="function">blockCapture</span>();
                     </CodeLineRow>
-                    <CodeLineRow rawCode="Screen.unblockCapture();">
-                      <span className="type">Screen</span>.<span className="function">unblockCapture</span>();
+                    <CodeLineRow rawCode="boolean blocked = Screen.isCaptureBlocked();">
+                      <span className="type">boolean</span> blocked = <span className="type">Screen</span>.<span className="function">isCaptureBlocked</span>();
                     </CodeLineRow>
                   </div>
                 </div>
@@ -916,8 +1001,14 @@ export default function Home() {
                     <CodeLineRow rawCode="await _channel.invokeMethod('copyText', {'text': 'Hello'});">
                       <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;copyText&apos;</span>, &#123;<span className="string">&apos;text&apos;</span>: <span className="string">&apos;Hello&apos;</span>&#125;);
                     </CodeLineRow>
+                    <CodeLineRow rawCode="final text = await _channel.invokeMethod<String>('getClipboard');">
+                      <span className="keyword">final</span> text = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;getClipboard&apos;</span>);
+                    </CodeLineRow>
                     <CodeLineRow rawCode="await _channel.invokeMethod('vibrate', {'ms': 200});">
                       <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;vibrate&apos;</span>, &#123;<span className="string">&apos;ms&apos;</span>: <span className="number">200</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final blocked = await _channel.invokeMethod<bool>('blockCapture');">
+                      <span className="keyword">final</span> blocked = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">bool</span>&gt;(<span className="string">&apos;blockCapture&apos;</span>);
                     </CodeLineRow>
                   </div>
                 </div>
@@ -925,13 +1016,414 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Security & Biometrics Section */}
+          {/* Notifications & Keyboard Section */}
+          <section id="notifications" className="section">
+            <div className="section-header">{t.secNotif}</div>
+            <div className="card" data-reveal data-tilt="4">
+              <div className="card-header">
+                <div className="card-title-group">
+                  <span className="card-title">🔔 Notification.showNotification, createChannel, cancelAll &amp; Keyboard.hideKeyboard</span>
+                </div>
+              </div>
+              <div className="card-desc">{t.secNotifDesc}</div>
+              {activeTab === "kotlin" ? (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="import com.zaitxcode.android.app.Notification">
+                      <span className="keyword">import</span> com.zaitxcode.android.app.Notification
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.view.Keyboard">
+                      <span className="keyword">import</span> com.zaitxcode.android.view.Keyboard
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='Notification.createChannel("demo", "Demo Channel")'>
+                      <span className="type">Notification</span>.<span className="function">createChannel</span>(<span className="string">&quot;demo&quot;</span>, <span className="string">&quot;Demo Channel&quot;</span>)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='Notification.showNotification("demo", "Title", "Message", R.drawable.ic_launcher)'>
+                      <span className="type">Notification</span>.<span className="function">showNotification</span>(<span className="string">&quot;demo&quot;</span>, <span className="string">&quot;Title&quot;</span>, <span className="string">&quot;Message&quot;</span>, <span className="type">R</span>.drawable.ic_launcher)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Notification.cancelAll()">
+                      <span className="type">Notification</span>.<span className="function">cancelAll</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val canPost: Boolean = Notification.canPostNotifications()">
+                      <span className="keyword">val</span> canPost: <span className="type">Boolean</span> = <span className="type">Notification</span>.<span className="function">canPostNotifications</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Keyboard.hideKeyboard()">
+                      <span className="type">Keyboard</span>.<span className="function">hideKeyboard</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Keyboard.showKeyboard(editText)">
+                      <span className="type">Keyboard</span>.<span className="function">showKeyboard</span>(editText)
+                    </CodeLineRow>
+                  </div>
+                </div>
+              ) : activeTab === "java" ? (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="import com.zaitxcode.android.app.Notification;">
+                      <span className="keyword">import</span> com.zaitxcode.android.app.Notification;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.view.Keyboard;">
+                      <span className="keyword">import</span> com.zaitxcode.android.view.Keyboard;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='Notification.createChannel("demo", "Demo Channel");'>
+                      <span className="type">Notification</span>.<span className="function">createChannel</span>(<span className="string">&quot;demo&quot;</span>, <span className="string">&quot;Demo Channel&quot;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='Notification.showNotification("demo", "Title", "Message", R.drawable.ic_launcher);'>
+                      <span className="type">Notification</span>.<span className="function">showNotification</span>(<span className="string">&quot;demo&quot;</span>, <span className="string">&quot;Title&quot;</span>, <span className="string">&quot;Message&quot;</span>, <span className="type">R</span>.drawable.ic_launcher);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Notification.cancelAll();">
+                      <span className="type">Notification</span>.<span className="function">cancelAll</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="boolean canPost = Notification.canPostNotifications();">
+                      <span className="type">boolean</span> canPost = <span className="type">Notification</span>.<span className="function">canPostNotifications</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Keyboard.hideKeyboard();">
+                      <span className="type">Keyboard</span>.<span className="function">hideKeyboard</span>();
+                    </CodeLineRow>
+                  </div>
+                </div>
+              ) : (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="await _channel.invokeMethod('showNotification', {'text': 'Flutter Notification'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;showNotification&apos;</span>, &#123;<span className="string">&apos;text&apos;</span>: <span className="string">&apos;Flutter Notification&apos;</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('cancelNotifications');">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;cancelNotifications&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('hideKeyboard');">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;hideKeyboard&apos;</span>);
+                    </CodeLineRow>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* Device & Battery Section */}
+          <section id="device" className="section">
+            <div className="section-header">{t.secDevice}</div>
+            <div className="card" data-reveal data-tilt="4">
+              <div className="card-header">
+                <div className="card-title-group">
+                  <span className="card-title">📱 Device, Battery, AppInfo &amp; AppState Metrics</span>
+                </div>
+              </div>
+              <div className="card-desc">{t.secDeviceDesc}</div>
+              {activeTab === "kotlin" ? (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Device">
+                      <span className="keyword">import</span> com.zaitxcode.android.hardware.Device
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Battery">
+                      <span className="keyword">import</span> com.zaitxcode.android.hardware.Battery
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.app.AppInfo">
+                      <span className="keyword">import</span> com.zaitxcode.android.app.AppInfo
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.app.AppState">
+                      <span className="keyword">import</span> com.zaitxcode.android.app.AppState
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val deviceName: String = Device.deviceName()">
+                      <span className="keyword">val</span> deviceName: <span className="type">String</span> = <span className="type">Device</span>.<span className="function">deviceName</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val brand: String = Device.brand()">
+                      <span className="keyword">val</span> brand: <span className="type">String</span> = <span className="type">Device</span>.<span className="function">brand</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val model: String = Device.model()">
+                      <span className="keyword">val</span> model: <span className="type">String</span> = <span className="type">Device</span>.<span className="function">model</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val sdk: Int = Device.sdk()">
+                      <span className="keyword">val</span> sdk: <span className="type">Int</span> = <span className="type">Device</span>.<span className="function">sdk</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val totalRam: Long = Device.getTotalRam()">
+                      <span className="keyword">val</span> totalRam: <span className="type">Long</span> = <span className="type">Device</span>.<span className="function">getTotalRam</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val isTablet: Boolean = Device.isTablet()">
+                      <span className="keyword">val</span> isTablet: <span className="type">Boolean</span> = <span className="type">Device</span>.<span className="function">isTablet</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val isEmulator: Boolean = Device.isEmulator()">
+                      <span className="keyword">val</span> isEmulator: <span className="type">Boolean</span> = <span className="type">Device</span>.<span className="function">isEmulator</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val batteryLevel: Int = Battery.getBatteryLevel()">
+                      <span className="keyword">val</span> batteryLevel: <span className="type">Int</span> = <span className="type">Battery</span>.<span className="function">getBatteryLevel</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val isCharging: Boolean = Battery.isCharging()">
+                      <span className="keyword">val</span> isCharging: <span className="type">Boolean</span> = <span className="type">Battery</span>.<span className="function">isCharging</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val appVersion: String = AppInfo.versionName()">
+                      <span className="keyword">val</span> appVersion: <span className="type">String</span> = <span className="type">AppInfo</span>.<span className="function">versionName</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val isForeground: Boolean = AppState.isAppInForeground()">
+                      <span className="keyword">val</span> isForeground: <span className="type">Boolean</span> = <span className="type">AppState</span>.<span className="function">isAppInForeground</span>()
+                    </CodeLineRow>
+                  </div>
+                </div>
+              ) : activeTab === "java" ? (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Device;">
+                      <span className="keyword">import</span> com.zaitxcode.android.hardware.Device;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Battery;">
+                      <span className="keyword">import</span> com.zaitxcode.android.hardware.Battery;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.app.AppInfo;">
+                      <span className="keyword">import</span> com.zaitxcode.android.app.AppInfo;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.app.AppState;">
+                      <span className="keyword">import</span> com.zaitxcode.android.app.AppState;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="String deviceName = Device.deviceName();">
+                      <span className="type">String</span> deviceName = <span className="type">Device</span>.<span className="function">deviceName</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="int sdk = Device.sdk();">
+                      <span className="type">int</span> sdk = <span className="type">Device</span>.<span className="function">sdk</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="boolean isEmulator = Device.isEmulator();">
+                      <span className="type">boolean</span> isEmulator = <span className="type">Device</span>.<span className="function">isEmulator</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="int batteryLevel = Battery.getBatteryLevel();">
+                      <span className="type">int</span> batteryLevel = <span className="type">Battery</span>.<span className="function">getBatteryLevel</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="boolean isCharging = Battery.isCharging();">
+                      <span className="type">boolean</span> isCharging = <span className="type">Battery</span>.<span className="function">isCharging</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="String packageName = AppInfo.packageName();">
+                      <span className="type">String</span> packageName = <span className="type">AppInfo</span>.<span className="function">packageName</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="boolean isForeground = AppState.isAppInForeground();">
+                      <span className="type">boolean</span> isForeground = <span className="type">AppState</span>.<span className="function">isAppInForeground</span>();
+                    </CodeLineRow>
+                  </div>
+                </div>
+              ) : (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="final devInfo = await _channel.invokeMethod<String>('deviceInfo');">
+                      <span className="keyword">final</span> devInfo = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;deviceInfo&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final batInfo = await _channel.invokeMethod<String>('batteryInfo');">
+                      <span className="keyword">final</span> batInfo = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;batteryInfo&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final appInfo = await _channel.invokeMethod<String>('appInfo');">
+                      <span className="keyword">final</span> appInfo = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;appInfo&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final appState = await _channel.invokeMethod<String>('appState');">
+                      <span className="keyword">final</span> appState = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;appState&apos;</span>);
+                    </CodeLineRow>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* Audio & Display Section */}
+          <section id="audio" className="section">
+            <div className="section-header">{t.secAudio}</div>
+            <div className="card" data-reveal data-tilt="4">
+              <div className="card-header">
+                <div className="card-title-group">
+                  <span className="card-title">🔊 Audio.playClickSound, isMuted, getMusicVolume &amp; Display Metrics</span>
+                </div>
+              </div>
+              <div className="card-desc">{t.secAudioDesc}</div>
+              {activeTab === "kotlin" ? (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Audio">
+                      <span className="keyword">import</span> com.zaitxcode.android.hardware.Audio
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Display">
+                      <span className="keyword">import</span> com.zaitxcode.android.hardware.Display
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Audio.playClickSound()">
+                      <span className="type">Audio</span>.<span className="function">playClickSound</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val muted: Boolean = Audio.isMuted()">
+                      <span className="keyword">val</span> muted: <span className="type">Boolean</span> = <span className="type">Audio</span>.<span className="function">isMuted</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val volume: Int = Audio.getMusicVolume()">
+                      <span className="keyword">val</span> volume: <span className="type">Int</span> = <span className="type">Audio</span>.<span className="function">getMusicVolume</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val isHeadphones: Boolean = Audio.isHeadphonesConnected()">
+                      <span className="keyword">val</span> isHeadphones: <span className="type">Boolean</span> = <span className="type">Audio</span>.<span className="function">isHeadphonesConnected</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val isPortrait: Boolean = Display.isPortrait()">
+                      <span className="keyword">val</span> isPortrait: <span className="type">Boolean</span> = <span className="type">Display</span>.<span className="function">isPortrait</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val widthDp: Int = Display.getScreenWidthDp()">
+                      <span className="keyword">val</span> widthDp: <span className="type">Int</span> = <span className="type">Display</span>.<span className="function">getScreenWidthDp</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val heightDp: Int = Display.getScreenHeightDp()">
+                      <span className="keyword">val</span> heightDp: <span className="type">Int</span> = <span className="type">Display</span>.<span className="function">getScreenHeightDp</span>()
+                    </CodeLineRow>
+                  </div>
+                </div>
+              ) : activeTab === "java" ? (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Audio;">
+                      <span className="keyword">import</span> com.zaitxcode.android.hardware.Audio;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Display;">
+                      <span className="keyword">import</span> com.zaitxcode.android.hardware.Display;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="Audio.playClickSound();">
+                      <span className="type">Audio</span>.<span className="function">playClickSound</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="boolean muted = Audio.isMuted();">
+                      <span className="type">boolean</span> muted = <span className="type">Audio</span>.<span className="function">isMuted</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="int volume = Audio.getMusicVolume();">
+                      <span className="type">int</span> volume = <span className="type">Audio</span>.<span className="function">getMusicVolume</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="boolean isPortrait = Display.isPortrait();">
+                      <span className="type">boolean</span> isPortrait = <span className="type">Display</span>.<span className="function">isPortrait</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="int widthDp = Display.getScreenWidthDp();">
+                      <span className="type">int</span> widthDp = <span className="type">Display</span>.<span className="function">getScreenWidthDp</span>();
+                    </CodeLineRow>
+                  </div>
+                </div>
+              ) : (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="final audioRes = await _channel.invokeMethod<String>('audioInfo');">
+                      <span className="keyword">final</span> audioRes = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;audioInfo&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final displayRes = await _channel.invokeMethod<String>('displayInfo');">
+                      <span className="keyword">final</span> displayRes = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;displayInfo&apos;</span>);
+                    </CodeLineRow>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* Data & Storage Section */}
+          <section id="data" className="section">
+            <div className="section-header">{t.secData}</div>
+            <div className="card" data-reveal data-tilt="4">
+              <div className="card-header">
+                <div className="card-title-group">
+                  <span className="card-title">💾 File, Storage, Time, Validation &amp; Encryption</span>
+                </div>
+              </div>
+              <div className="card-desc">{t.secDataDesc}</div>
+              {activeTab === "kotlin" ? (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode='import com.zaitxcode.android.io.File as AppFile'>
+                      <span className="keyword">import</span> com.zaitxcode.android.io.File <span className="keyword">as</span> AppFile
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.io.Storage">
+                      <span className="keyword">import</span> com.zaitxcode.android.io.Storage
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.util.Time">
+                      <span className="keyword">import</span> com.zaitxcode.android.util.Time
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.util.Validation">
+                      <span className="keyword">import</span> com.zaitxcode.android.util.Validation
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.security.Encryption">
+                      <span className="keyword">import</span> com.zaitxcode.android.security.Encryption
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='AppFile.writeText("notes.txt", "Hello World")'>
+                      <span className="type">AppFile</span>.<span className="function">writeText</span>(<span className="string">&quot;notes.txt&quot;</span>, <span className="string">&quot;Hello World&quot;</span>)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='val content: String? = AppFile.readText("notes.txt")'>
+                      <span className="keyword">val</span> content: <span className="type">String?</span> = <span className="type">AppFile</span>.<span className="function">readText</span>(<span className="string">&quot;notes.txt&quot;</span>)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='AppFile.delete("notes.txt")'>
+                      <span className="type">AppFile</span>.<span className="function">delete</span>(<span className="string">&quot;notes.txt&quot;</span>)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val freeBytes: Long = Storage.getFreeInternalStorage()">
+                      <span className="keyword">val</span> freeBytes: <span className="type">Long</span> = <span className="type">Storage</span>.<span className="function">getFreeInternalStorage</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val freeFormatted: String = Storage.formatBytes(freeBytes)">
+                      <span className="keyword">val</span> freeFormatted: <span className="type">String</span> = <span className="type">Storage</span>.<span className="function">formatBytes</span>(freeBytes)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='val timeFormatted: String = Time.format(Time.now(), "yyyy-MM-dd HH:mm:ss")'>
+                      <span className="keyword">val</span> timeFormatted: <span className="type">String</span> = <span className="type">Time</span>.<span className="function">format</span>(<span className="type">Time</span>.<span className="function">now</span>(), <span className="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='val isValidEmail: Boolean = Validation.isValidEmail("user@example.com")'>
+                      <span className="keyword">val</span> isValidEmail: <span className="type">Boolean</span> = <span className="type">Validation</span>.<span className="function">isValidEmail</span>(<span className="string">&quot;user@example.com&quot;</span>)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='val hash: String = Encryption.sha256("password")'>
+                      <span className="keyword">val</span> hash: <span className="type">String</span> = <span className="type">Encryption</span>.<span className="function">sha256</span>(<span className="string">&quot;password&quot;</span>)
+                    </CodeLineRow>
+                  </div>
+                </div>
+              ) : activeTab === "java" ? (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="import com.zaitxcode.android.io.File;">
+                      <span className="keyword">import</span> com.zaitxcode.android.io.File;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.io.Storage;">
+                      <span className="keyword">import</span> com.zaitxcode.android.io.Storage;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.util.Time;">
+                      <span className="keyword">import</span> com.zaitxcode.android.util.Time;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.util.Validation;">
+                      <span className="keyword">import</span> com.zaitxcode.android.util.Validation;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.security.Encryption;">
+                      <span className="keyword">import</span> com.zaitxcode.android.security.Encryption;
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='File.writeText("notes.txt", "Java content");'>
+                      <span className="type">File</span>.<span className="function">writeText</span>(<span className="string">&quot;notes.txt&quot;</span>, <span className="string">&quot;Java content&quot;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='String content = File.readText("notes.txt");'>
+                      <span className="type">String</span> content = <span className="type">File</span>.<span className="function">readText</span>(<span className="string">&quot;notes.txt&quot;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='File.delete("notes.txt");'>
+                      <span className="type">File</span>.<span className="function">delete</span>(<span className="string">&quot;notes.txt&quot;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="long freeBytes = Storage.getFreeInternalStorage();">
+                      <span className="type">long</span> freeBytes = <span className="type">Storage</span>.<span className="function">getFreeInternalStorage</span>();
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="String freeFormatted = Storage.formatBytes(freeBytes);">
+                      <span className="type">String</span> freeFormatted = <span className="type">Storage</span>.<span className="function">formatBytes</span>(freeBytes);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='boolean isValidEmail = Validation.isValidEmail("user@example.com");'>
+                      <span className="type">boolean</span> isValidEmail = <span className="type">Validation</span>.<span className="function">isValidEmail</span>(<span className="string">&quot;user@example.com&quot;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode='String hash = Encryption.sha256("password");'>
+                      <span className="type">String</span> hash = <span className="type">Encryption</span>.<span className="function">sha256</span>(<span className="string">&quot;password&quot;</span>);
+                    </CodeLineRow>
+                  </div>
+                </div>
+              ) : (
+                <div className="code-snippet">
+                  <div className="code-block">
+                    <CodeLineRow rawCode="await _channel.invokeMethod('writeFile', {'text': 'content'});">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;writeFile&apos;</span>, &#123;<span className="string">&apos;text&apos;</span>: <span className="string">&apos;content&apos;</span>&#125;);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final content = await _channel.invokeMethod<String>('readFile');">
+                      <span className="keyword">final</span> content = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;readFile&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final storage = await _channel.invokeMethod<String>('storage');">
+                      <span className="keyword">final</span> storage = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;storage&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final hash = await _channel.invokeMethod<String>('sha256', {'text': 'password'});">
+                      <span className="keyword">final</span> hash = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;sha256&apos;</span>, &#123;<span className="string">&apos;text&apos;</span>: <span className="string">&apos;password&apos;</span>&#125;);
+                    </CodeLineRow>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* Security Section */}
           <section id="security" className="section">
             <div className="section-header">{t.secSecurity}</div>
             <div className="card" data-reveal data-tilt="4">
               <div className="card-header">
                 <div className="card-title-group">
-                  <span className="card-title">🔐 Biometric.canAuthenticate, Permission.isGranted &amp; AppHelper.log</span>
+                  <span className="card-title">🔐 Biometric.canAuthenticate, Permission.isGranted, Signature &amp; AppHelper</span>
                 </div>
               </div>
               <div className="card-desc">{t.secSecurityDesc}</div>
@@ -941,8 +1433,23 @@ export default function Home() {
                     <CodeLineRow rawCode="import com.zaitxcode.android.hardware.Biometric">
                       <span className="keyword">import</span> com.zaitxcode.android.hardware.Biometric
                     </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.app.Permission">
+                      <span className="keyword">import</span> com.zaitxcode.android.app.Permission
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.app.Signature">
+                      <span className="keyword">import</span> com.zaitxcode.android.app.Signature
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="import com.zaitxcode.android.core.AppHelper">
+                      <span className="keyword">import</span> com.zaitxcode.android.core.AppHelper
+                    </CodeLineRow>
                     <CodeLineRow rawCode="val canBio: Boolean = Biometric.canAuthenticate()">
                       <span className="keyword">val</span> canBio: <span className="type">Boolean</span> = <span className="type">Biometric</span>.<span className="function">canAuthenticate</span>()
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val cameraGranted: Boolean = Permission.isGranted(Manifest.permission.CAMERA)">
+                      <span className="keyword">val</span> cameraGranted: <span className="type">Boolean</span> = <span className="type">Permission</span>.<span className="function">isGranted</span>(<span className="type">Manifest</span>.permission.CAMERA)
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="val sha1: String = Signature.getAppPrimarySignatureSHA1()">
+                      <span className="keyword">val</span> sha1: <span className="type">String</span> = <span className="type">Signature</span>.<span className="function">getAppPrimarySignatureSHA1</span>()
                     </CodeLineRow>
                     <CodeLineRow rawCode='AppHelper.log("AppTag", "Log diagnostic message")'>
                       <span className="type">AppHelper</span>.<span className="function">log</span>(<span className="string">&quot;AppTag&quot;</span>, <span className="string">&quot;Log diagnostic message&quot;</span>)
@@ -983,6 +1490,12 @@ export default function Home() {
                   <div className="code-block">
                     <CodeLineRow rawCode="final result = await _channel.invokeMethod<String>('biometric');">
                       <span className="keyword">final</span> result = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;biometric&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="final sig = await _channel.invokeMethod<String>('signatures');">
+                      <span className="keyword">final</span> sig = <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>&lt;<span className="type">String</span>&gt;(<span className="string">&apos;signatures&apos;</span>);
+                    </CodeLineRow>
+                    <CodeLineRow rawCode="await _channel.invokeMethod('logger');">
+                      <span className="keyword">await</span> _channel.<span className="function">invokeMethod</span>(<span className="string">&apos;logger&apos;</span>);
                     </CodeLineRow>
                   </div>
                 </div>

@@ -144,7 +144,7 @@ export default function PortalPage() {
           <a href="https://docs.zaitxcode.com" className="docs-link">docs.zaitxcode.com</a>
           <a href="https://github.com/zaitxcode" target="_blank" rel="noreferrer">GitHub</a>
         </div>
-        <p>&copy; 2025–2027 ZaitXCode. All rights reserved.</p>
+        <p>&copy; 2026 ZaitXCode. All rights reserved.</p>
       </footer>
     </div>
   );

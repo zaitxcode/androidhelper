@@ -20,8 +20,8 @@ android {
         applicationId = "com.zaitxcode.android.apps.flutterapphelper"
         minSdk = 28
         targetSdk = 37
-        versionCode = 103
-        versionName = "1.0.0-alpha04"
+        versionCode = 200
+        versionName = "1.0.0-beta01"
     }
 
     signingConfigs {
@@ -36,17 +36,13 @@ android {
     buildTypes {
         debug {
             isDebuggable = true
-            isMinifyEnabled = true
-            isShrinkResources = true
-            signingConfig = signingConfigs.getByName("debug")
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-        release {
             isMinifyEnabled = false
             isShrinkResources = false
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
