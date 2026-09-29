@@ -1,8 +1,0 @@
-# AppHelper Documentation for AI Models
-
-> AppHelper is a lightweight, modular, production-ready Android & Flutter utility library (v1.0.0-beta01).
-
-- Full Complete Raw Documentation: https://docs.zaitxcode.com/androidhelper/llms-full.txt
-- Full Complete Raw Markdown: https://docs.zaitxcode.com/androidhelper/llms-full.md
-- GitHub Repository: https://github.com/zaitxcode/androidhelper
-- Documentation Website: https://docs.zaitxcode.com/androidhelper/

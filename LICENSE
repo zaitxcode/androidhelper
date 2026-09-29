@@ -1,6 +1,25 @@
-Copyright (c) 2025 Mohamed Zaitoon. All rights reserved.
+ZaitXCode Source-Available Public Usage License (v1.0)
+Copyright (c) 2026 ZaitXCode / Mohamed Zaitoon. All rights reserved.
 
-This software and its source code are proprietary and may not be copied, modified, or distributed in any form.
-Commercial use is strictly prohibited without written permission from the author.
+1. PERMITTED USAGE:
+Permission is hereby granted, free of charge, to any developer, individual, or entity,
+to download, import, and integrate the compiled Android Helper library artifact
+("com.github.zaitxcode:androidhelper") as a dependency inside any commercial or
+non-commercial application.
 
-Unauthorized use, reproduction, or distribution may result in legal action.
+2. STRICT PROHIBITIONS & RESTRICTIONS:
+- FORKING & REDISTRIBUTION: Forking, copying, modifying, re-packaging, or re-publishing
+  the source code or binaries of this library under a different name, package, or account
+  is STRICTLY PROHIBITED without prior explicit written consent from ZaitXCode.
+- AUTHORSHIP & ATTRIBUTION: Claiming ownership, authorship, or creation of this library
+  or its underlying code is strictly forbidden.
+- RE-LICENSING: No user or third party has the right to re-license, sell, or sub-license
+  the source code of Android Helper.
+
+3. DISCLAIMER OF WARRANTY:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
