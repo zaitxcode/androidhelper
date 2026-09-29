@@ -276,6 +276,18 @@ export default function ArabicPage() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const activeLink = document.querySelector(".sidebar-link.active");
+    const sidebar = document.querySelector(".sidebar");
+    if (activeLink && sidebar) {
+      const activeRect = activeLink.getBoundingClientRect();
+      const sidebarRect = sidebar.getBoundingClientRect();
+      if (activeRect.top < sidebarRect.top + 20 || activeRect.bottom > sidebarRect.bottom - 20) {
+        activeLink.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
+  }, [activeSection]);
+
   const safeCopyText = (text: string) => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).catch(() => {
