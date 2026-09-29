@@ -418,6 +418,15 @@ export default function ArabicPage() {
               <span className="pill"><AndroidIcon /> {t.pillAndroid}</span>
               <span className="pill"><KotlinIcon /> {t.pillCoroutines}</span>
               <span className="pill"><FlutterIcon /> {t.pillBridge}</span>
+              <a
+                href="https://storage.zaitxcode.com/android/androidhelper-example-kotlin.apk"
+                target="_blank"
+                rel="noreferrer"
+                className="pill"
+                style={{ backgroundColor: "var(--accent-color)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
+              >
+                <KotlinIcon /> <i className="bi bi-download"></i> تحميل كوتلن Demo APK
+              </a>
             </div>
 
             {/* AI Prompt Copy & Chat Bar */}

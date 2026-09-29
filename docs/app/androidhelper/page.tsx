@@ -420,17 +420,6 @@ export default function Home() {
                   <KotlinIcon /> <i className="bi bi-download"></i> Kotlin Demo APK
                 </a>
               )}
-              {flutterApkUrl && (
-                <a
-                  href={flutterApkUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="pill"
-                  style={{ backgroundColor: "var(--accent-green)", color: "#ffffff", border: "none", fontWeight: "600", textDecoration: "none" }}
-                >
-                  <FlutterIcon /> <i className="bi bi-download"></i> Flutter Demo APK
-                </a>
-              )}
             </div>
 
             {/* AI Prompt Copy & Chat Bar */}
