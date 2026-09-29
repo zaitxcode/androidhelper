@@ -251,7 +251,7 @@ function CodeLineRow({ id, rawCode, children }: { id?: string; rawCode: string; 
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("en");
-  const [activeTab, setActiveTab] = useState<"kotlin" | "java" | "flutter" | "python">("kotlin");
+  const [activeTab, setActiveTab] = useState<"kotlin" | "java" | "flutter">("kotlin");
   const [buildTab, setBuildTab] = useState<BuildTab>("toml");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
@@ -492,21 +492,11 @@ export default function Home() {
               <FlutterIcon />
               <span>{t.tabFlutter}</span>
             </button>
-            <button className={`tab-btn ${activeTab === "python" ? "active" : ""}`} onClick={() => setActiveTab("python")}>
-              <PythonIcon />
-              <span>{t.tabPython}</span>
-            </button>
           </div>
 
           {activeTab === "flutter" && (
             <div className="explain-box">
               {t.flutterBridgeExplain}
-            </div>
-          )}
-
-          {activeTab === "python" && (
-            <div className="explain-box">
-              {t.pythonExplain}
             </div>
           )}
 
@@ -625,8 +615,8 @@ export default function Home() {
                 </div>
                 <div className="card-actions">
                   <span className="lang-tag">
-                    {activeTab === "kotlin" ? <KotlinIcon /> : activeTab === "java" ? <JavaIcon /> : activeTab === "flutter" ? <FlutterIcon /> : <PythonIcon />}
-                    {activeTab === "kotlin" ? "Kotlin" : activeTab === "java" ? "Java" : activeTab === "flutter" ? "Flutter" : "Python"}
+                    {activeTab === "kotlin" ? <KotlinIcon /> : activeTab === "java" ? <JavaIcon /> : <FlutterIcon />}
+                    {activeTab === "kotlin" ? "Kotlin" : activeTab === "java" ? "Java" : "Flutter"}
                   </span>
                 </div>
               </div>
