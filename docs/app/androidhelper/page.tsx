@@ -239,6 +239,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("overview");
 
   const { theme, toggleTheme } = useTheme();
   useReveal();
@@ -249,6 +250,25 @@ export default function Home() {
     document.documentElement.setAttribute("lang", lang);
     document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
   }, [lang]);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-15% 0px -55% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   const safeCopyText = (text: string) => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -352,16 +372,16 @@ export default function Home() {
         <aside className={`sidebar ${mobileMenuOpen ? "open" : ""}`}>
           <div className="sidebar-title">NAVIGATION</div>
           <ul className="sidebar-menu">
-            <li><a href="#overview" className="sidebar-link active" onClick={() => setMobileMenuOpen(false)}>{t.navOverview}</a></li>
-            <li><a href="#installation" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navInstallation}</a></li>
-            <li><a href="#network" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navNetwork}</a></li>
-            <li><a href="#intents" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navIntents}</a></li>
-            <li><a href="#clipboard" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navClipboard}</a></li>
-            <li><a href="#notifications" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navNotifications}</a></li>
-            <li><a href="#device" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navDevice}</a></li>
-            <li><a href="#audio" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navAudio}</a></li>
-            <li><a href="#data" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navData}</a></li>
-            <li><a href="#security" className="sidebar-link" onClick={() => setMobileMenuOpen(false)}>{t.navSecurity}</a></li>
+            <li><a href="#overview" className={`sidebar-link ${activeSection === "overview" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navOverview}</a></li>
+            <li><a href="#installation" className={`sidebar-link ${activeSection === "installation" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navInstallation}</a></li>
+            <li><a href="#network" className={`sidebar-link ${activeSection === "network" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navNetwork}</a></li>
+            <li><a href="#intents" className={`sidebar-link ${activeSection === "intents" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navIntents}</a></li>
+            <li><a href="#clipboard" className={`sidebar-link ${activeSection === "clipboard" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navClipboard}</a></li>
+            <li><a href="#notifications" className={`sidebar-link ${activeSection === "notifications" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navNotifications}</a></li>
+            <li><a href="#device" className={`sidebar-link ${activeSection === "device" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navDevice}</a></li>
+            <li><a href="#audio" className={`sidebar-link ${activeSection === "audio" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navAudio}</a></li>
+            <li><a href="#data" className={`sidebar-link ${activeSection === "data" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navData}</a></li>
+            <li><a href="#security" className={`sidebar-link ${activeSection === "security" ? "active" : ""}`} onClick={() => setMobileMenuOpen(false)}>{t.navSecurity}</a></li>
           </ul>
         </aside>
 
