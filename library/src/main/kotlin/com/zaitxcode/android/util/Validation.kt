@@ -35,26 +35,54 @@ object Validation {
         }
     }
 
+    /**
+     * Validates an IPv4 or IPv6 address.
+     *
+     * This uses the library's own parsing instead of the platform
+     * `Patterns.IP_ADDRESS` constant, which is deprecated as of API 35.
+     */
     @JvmStatic fun isValidIpAddress(ip: String): Boolean {
         if (ip.isBlank()) return false
-        return try {
-            Patterns.IP_ADDRESS?.matcher(ip)?.matches() ?: isValidIPv4(ip)
-        } catch (_: Throwable) {
-            isValidIPv4(ip)
-        }
+        return if (ip.contains(":")) isValidIPv6(ip) else isValidIPv4(ip)
     }
 
-    private fun isValidIPv4(ip: String): Boolean {
+    @JvmStatic fun isValidIPv4(ip: String): Boolean {
         val parts = ip.split(".")
         if (parts.size != 4) return false
         return parts.all { part ->
-            part.toIntOrNull()?.let { it in 0..255 } ?: false
+            if (part.isEmpty() || part.length > 3) return@all false
+            if (!part.all { it.isDigit() }) return@all false
+            // Reject leading zeros such as "01", but allow a single "0".
+            if (part.length > 1 && part[0] == '0') return@all false
+            val value = part.toIntOrNull() ?: return@all false
+            value in 0..255
         }
     }
 
     @JvmStatic fun isValidIPv6(ip: String): Boolean {
-        return ip.contains(":") && ip.split(":").size <= 8
+        if (ip.isBlank()) return false
+
+        // At most one "::" compression is allowed.
+        val doubleColonCount = Regex("::").findAll(ip).count()
+        if (doubleColonCount > 1) return false
+
+        val hasCompression = doubleColonCount == 1
+        val groups = ip.split(":")
+        val nonEmptyGroups = groups.filter { it.isNotEmpty() }
+
+        // Each group is at most 4 hex digits.
+        if (nonEmptyGroups.any { it.length > 4 || !it.all(Validation::isHexDigit) }) return false
+
+        return if (hasCompression) {
+            // "::" stands for at least one omitted group.
+            nonEmptyGroups.size < 8
+        } else {
+            nonEmptyGroups.size == 8
+        }
     }
+
+    private fun isHexDigit(c: Char): Boolean =
+        c.isDigit() || c in 'a'..'f' || c in 'A'..'F'
 
     @JvmStatic fun isValidUsername(username: String): Boolean {
         val regex = "^[a-zA-Z0-9._-]{3,20}$".toRegex()

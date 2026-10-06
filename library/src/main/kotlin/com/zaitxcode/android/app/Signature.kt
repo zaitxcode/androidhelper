@@ -10,9 +10,17 @@ import java.util.Locale
 
 object Signature {
 
+    /**
+     * Returns the SHA-1 hashes of every signing certificate of this app.
+     *
+     * The deprecated [PackageManager.GET_SIGNATURES] path is only reached on
+     * API 26-27, where the modern signing API does not exist. The suppression is
+     * applied at function level so it also covers the deprecated field access.
+     */
     @JvmStatic
     @JvmOverloads
     @SuppressLint("PackageManagerGetSignatures")
+    @Suppress("DEPRECATION")
     fun getAppSignatures(context: Context = AppHelper.ctx()): List<String> {
         val signaturesList = mutableListOf<String>()
 
@@ -36,7 +44,6 @@ object Signature {
                     signaturesList.add(toHexString(hash))
                 }
             } else {
-                @Suppress("DEPRECATION")
                 val info = pm.getPackageInfo(pkg, PackageManager.GET_SIGNATURES)
                 val signatures = info.signatures ?: return emptyList()
 
