@@ -38,6 +38,22 @@ object AppHelper {
         initialize(activity as Context)
     }
 
+    /**
+     * Returns the application context.
+     * Public entry point so Kotlin and Java consumers can obtain the context
+     * without relying on internal-only accessors.
+     *
+     * @throws IllegalStateException when [initialize] has not been called yet.
+     */
+    @JvmStatic
+    fun getContext(): Context = ctx()
+
+    /**
+     * Returns the current foreground Activity, or null when none is available.
+     */
+    @JvmStatic
+    fun getActivity(): Activity? = act()
+
     internal fun ctx(): Context {
         return applicationContext
             ?: currentActivity?.applicationContext

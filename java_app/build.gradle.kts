@@ -3,16 +3,15 @@ import org.gradle.kotlin.dsl.configure
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
 }
 
 configure<ApplicationExtension> {
-    namespace = "com.zaitxcode.android.apps.apphelper"
+    namespace = "com.zaitxcode.android.apps.javaapp"
     compileSdk = libs.versions.compileSdk.get().toInt()
     buildToolsVersion = libs.versions.buildTools.get()
 
     defaultConfig {
-        applicationId = "com.zaitxcode.android.apps.apphelper"
+        applicationId = "com.zaitxcode.android.apps.javaapp"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
 
@@ -56,10 +55,6 @@ configure<ApplicationExtension> {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
@@ -67,24 +62,4 @@ dependencies {
 
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.constraintlayout)
-
-    // Compose
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material.icons.extended)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-
-    // Miuix (Xiaomi HyperOS design)
-    implementation(libs.miuix.ui)
-    implementation(libs.miuix.preference)
-    implementation(libs.miuix.icons)
 }

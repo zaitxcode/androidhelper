@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest 
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- الأذونات المطلوبة -->
-	
+    <!-- Required permissions -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
- 
-    <!-- إزالة أذونات البلوتوث غير المستخدمة -->
-	
-    <!-- <uses-permission android:name="android.permission.BLUETOOTH" /> -->
-    <!-- <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application>
 
-        <!-- FileProvider للإشعارات -->
-		
+        <!-- FileProvider used to share generated files -->
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -28,7 +23,6 @@
                 android:resource="@xml/androidhelper_file_paths" />
         </provider>
 
-       
     </application>
 
 </manifest>

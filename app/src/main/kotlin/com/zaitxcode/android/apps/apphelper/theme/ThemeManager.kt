@@ -29,21 +29,10 @@ enum class DarkMode {
     }
 }
 
-enum class Language {
-    SYSTEM,
-    ENGLISH,
-    ARABIC;
-
-    companion object {
-        fun fromOrdinal(value: Int): Language = entries.getOrElse(value) { SYSTEM }
-    }
-}
-
 data class AppSettings(
     val themeMode: ThemeMode = ThemeMode.MATERIAL3,
     val darkMode: DarkMode = DarkMode.SYSTEM,
-    val glassEffect: Boolean = false,
-    val language: Language = Language.SYSTEM
+    val glassEffect: Boolean = false
 )
 
 private val Context.appSettingsDataStore: DataStore<Preferences> by preferencesDataStore(
@@ -56,15 +45,13 @@ class ThemeManager(private val context: Context) {
         val THEME_MODE = intPreferencesKey("theme_mode")
         val DARK_MODE = intPreferencesKey("dark_mode")
         val GLASS_EFFECT = booleanPreferencesKey("glass_effect")
-        val LANGUAGE = intPreferencesKey("language")
     }
 
     val settings: Flow<AppSettings> = context.appSettingsDataStore.data.map { prefs ->
         AppSettings(
             themeMode = ThemeMode.fromOrdinal(prefs[Keys.THEME_MODE] ?: 0),
             darkMode = DarkMode.fromOrdinal(prefs[Keys.DARK_MODE] ?: 0),
-            glassEffect = prefs[Keys.GLASS_EFFECT] ?: false,
-            language = Language.fromOrdinal(prefs[Keys.LANGUAGE] ?: 0)
+            glassEffect = prefs[Keys.GLASS_EFFECT] ?: false
         )
     }
 
@@ -78,9 +65,5 @@ class ThemeManager(private val context: Context) {
 
     suspend fun setGlassEffect(enabled: Boolean) {
         context.appSettingsDataStore.edit { it[Keys.GLASS_EFFECT] = enabled }
-    }
-
-    suspend fun setLanguage(language: Language) {
-        context.appSettingsDataStore.edit { it[Keys.LANGUAGE] = language.ordinal }
     }
 }

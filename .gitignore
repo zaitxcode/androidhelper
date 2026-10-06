@@ -35,10 +35,6 @@ Thumbs.db
 app/build/
 */build/
 
-# Proguard files
-proguard/
-proguard-rules.pro
-
 # Android artifacts
 *.apk
 *.ap_
@@ -50,5 +46,6 @@ releases/
 ndkBuild/
 obj/
 jniLibs/
+
 # Python helper scripts
 *.py

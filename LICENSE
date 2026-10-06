@@ -1,25 +1,78 @@
-ZaitXCode Source-Available Public Usage License (v1.0)
-Copyright (c) 2026 ZaitXCode / Mohamed Zaitoon. All rights reserved.
+ZaitXCode Open Source License
+Copyright (c) 2026-2027 ZaitXCode. All rights reserved.
 
-1. PERMITTED USAGE:
-Permission is hereby granted, free of charge, to any developer, individual, or entity,
-to download, import, and integrate the compiled Android Helper library artifact
-("com.github.zaitxcode:androidhelper") as a dependency inside any commercial or
-non-commercial application.
+Android Helper is an open source library. You are free to use it in any project,
+commercial or non-commercial, and you are free to read, download, and modify its
+source code to fit your own needs. In return, the ZaitXCode identity must always
+be preserved.
 
-2. STRICT PROHIBITIONS & RESTRICTIONS:
-- FORKING & REDISTRIBUTION: Forking, copying, modifying, re-packaging, or re-publishing
-  the source code or binaries of this library under a different name, package, or account
-  is STRICTLY PROHIBITED without prior explicit written consent from ZaitXCode.
-- AUTHORSHIP & ATTRIBUTION: Claiming ownership, authorship, or creation of this library
-  or its underlying code is strictly forbidden.
-- RE-LICENSING: No user or third party has the right to re-license, sell, or sub-license
-  the source code of Android Helper.
+=====================================================================
+1. GRANTED RIGHTS
+=====================================================================
 
-3. DISCLAIMER OF WARRANTY:
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
+Permission is hereby granted, free of charge, to any developer, individual, or
+entity, to:
+
+  a) Integrate the library as a dependency inside any project by declaring it in
+     a Gradle build file (build.gradle / build.gradle.kts) or equivalent build
+     configuration, and use its full public API in any commercial or
+     non-commercial application.
+
+  b) Download, read, study, and modify the source code of the library for private
+     or public use, including adapting it to your own requirements.
+
+=====================================================================
+2. MANDATORY ATTRIBUTION AND IDENTITY PRESERVATION
+=====================================================================
+
+The following conditions are mandatory and apply to every use of the library,
+whether it is consumed as a compiled dependency or as modified source code:
+
+  a) The ZaitXCode identity and authorship must be preserved at all times. You
+     may not claim ownership, authorship, or creation of this library or of any
+     part of its underlying code.
+
+  b) The namespace line "com.zaitxcode.*" MUST be kept intact in every file that
+     belongs to the library. This includes, without limitation, package
+     declarations, imports, namespaces, manifest entries, resource identifiers,
+     and ProGuard/R8 rules.
+
+  c) You may not rename, replace, or remove the "com.zaitxcode" namespace, nor
+     re-publish the library or any modified version of it under a different name,
+     package, namespace, or account.
+
+=====================================================================
+3. STRICT PROHIBITIONS
+=====================================================================
+
+  a) RE-BRANDING: Re-packaging, re-naming, or re-distributing the library or its
+     source under a different identity, package, or namespace is strictly
+     prohibited.
+
+  b) ATTRIBUTION REMOVAL: Removing, altering, or hiding the ZaitXCode attribution
+     or the "com.zaitxcode.*" namespace is strictly prohibited.
+
+  c) RE-LICENSING: No user or third party has the right to re-license, sell, or
+     sub-license the library or its source code.
+
+  d) Any of the above acts requires prior explicit written consent from ZaitXCode.
+
+=====================================================================
+4. ENFORCEMENT
+=====================================================================
+
+Any violation of the conditions in Section 2 (Mandatory Attribution and Identity
+Preservation) or Section 3 (Strict Prohibitions) immediately terminates the rights
+granted in Section 1, and ZaitXCode reserves the right to take legal action
+against the violating party.
+
+=====================================================================
+5. DISCLAIMER OF WARRANTY
+=====================================================================
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

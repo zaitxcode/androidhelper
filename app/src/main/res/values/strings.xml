@@ -20,11 +20,6 @@
     <string name="settings_dark_mode_dark">Dark</string>
     <string name="settings_glass">Glass effect</string>
     <string name="settings_glass_summary">Frosted glass effect (Xiaomi theme only)</string>
-    <string name="settings_language">Language</string>
-    <string name="settings_language_summary">Choose app language</string>
-    <string name="settings_language_system">Follow system</string>
-    <string name="settings_language_english">English</string>
-    <string name="settings_language_arabic">العربية</string>
 
     <!-- Home -->
     <string name="home_title">Android Helper Demo</string>
@@ -91,4 +86,8 @@
     <string name="action_signatures">App signatures</string>
     <string name="action_biometric">Biometric authenticate</string>
     <string name="action_logger">Logger demo</string>
+
+    <!-- Java Example Activity -->
+    <string name="java_example_activity">Java Example</string>
+    <string name="java_example_title">Java Example Activity</string>
 </resources>

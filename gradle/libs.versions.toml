@@ -1,12 +1,12 @@
 [versions]
 # App & Library Versions
-versionCode = "201"
-versionName = "1.0.0-beta02"
+versionCode = "203"
+versionName = "1.0.0-beta3"
 
 # SDK Versions
 compileSdk = "37"
 buildTools = "37.0.0"
-minSdk = "28"
+minSdk = "26"
 targetSdk = "37"
 
 # Dependencies

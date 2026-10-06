@@ -18,14 +18,20 @@ android {
 
     defaultConfig {
         applicationId = "com.zaitxcode.android.apps.flutterapphelper"
-        minSdk = 28
+        minSdk = 26
         targetSdk = 37
-        versionCode = 201
-        versionName = "1.0.0-beta02"
+        versionCode = 203
+        versionName = "1.0.0-beta3"
     }
 
     signingConfigs {
         getByName("debug") {
+            enableV1Signing = true
+            enableV2Signing = true
+            enableV3Signing = true
+            enableV4Signing = true
+        }
+        create("release") {
             enableV1Signing = true
             enableV2Signing = true
             enableV3Signing = true

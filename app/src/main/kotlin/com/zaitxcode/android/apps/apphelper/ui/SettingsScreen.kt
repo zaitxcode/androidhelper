@@ -45,7 +45,6 @@ import androidx.compose.ui.unit.dp
 import com.zaitxcode.android.apps.apphelper.R
 import com.zaitxcode.android.apps.apphelper.theme.AppSettings
 import com.zaitxcode.android.apps.apphelper.theme.DarkMode
-import com.zaitxcode.android.apps.apphelper.theme.Language
 import com.zaitxcode.android.apps.apphelper.theme.LocalGlassEffect
 import com.zaitxcode.android.apps.apphelper.theme.ThemeMode
 import com.zaitxcode.android.apps.apphelper.theme.glassAppBackground
@@ -72,7 +71,6 @@ fun SettingsScreen(
     onThemeModeChange: (ThemeMode) -> Unit,
     onDarkModeChange: (DarkMode) -> Unit,
     onGlassEffectChange: (Boolean) -> Unit,
-    onLanguageChange: (Language) -> Unit,
     onBack: () -> Unit
 ) {
     val isDark = resolveDarkMode(state.settings.darkMode)
@@ -84,7 +82,6 @@ fun SettingsScreen(
                 onThemeModeChange = onThemeModeChange,
                 onDarkModeChange = onDarkModeChange,
                 onGlassEffectChange = onGlassEffectChange,
-                onLanguageChange = onLanguageChange,
                 onBack = onBack
             )
         }
@@ -96,7 +93,6 @@ fun SettingsScreen(
                 onThemeModeChange = onThemeModeChange,
                 onDarkModeChange = onDarkModeChange,
                 onGlassEffectChange = onGlassEffectChange,
-                onLanguageChange = onLanguageChange,
                 onBack = onBack
             )
         }
@@ -110,7 +106,6 @@ private fun Material3SettingsScreen(
     onThemeModeChange: (ThemeMode) -> Unit,
     onDarkModeChange: (DarkMode) -> Unit,
     onGlassEffectChange: (Boolean) -> Unit,
-    onLanguageChange: (Language) -> Unit,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -175,21 +170,6 @@ private fun Material3SettingsScreen(
                     },
                     selected = state.settings.darkMode,
                     onSelected = onDarkModeChange
-                )
-
-                M3SelectionItem<Language>(
-                    title = stringResource(R.string.settings_language),
-                    summary = stringResource(R.string.settings_language_summary),
-                    entries = Language.entries,
-                    labelFor = { language ->
-                        when (language) {
-                            Language.SYSTEM -> stringResource(R.string.settings_language_system)
-                            Language.ENGLISH -> stringResource(R.string.settings_language_english)
-                            Language.ARABIC -> stringResource(R.string.settings_language_arabic)
-                        }
-                    },
-                    selected = state.settings.language,
-                    onSelected = onLanguageChange
                 )
             }
 
@@ -302,7 +282,6 @@ private fun MiuixSettingsScreen(
     onThemeModeChange: (ThemeMode) -> Unit,
     onDarkModeChange: (DarkMode) -> Unit,
     onGlassEffectChange: (Boolean) -> Unit,
-    onLanguageChange: (Language) -> Unit,
     onBack: () -> Unit
 ) {
     val cardColors = MiuixCardDefaults.defaultColors(color = Color.Transparent)
@@ -376,21 +355,6 @@ private fun MiuixSettingsScreen(
                     },
                     selected = state.settings.darkMode,
                     onSelected = onDarkModeChange
-                )
-                MiuixHorizontalDivider()
-                SelectionItem<Language>(
-                    title = stringResource(R.string.settings_language),
-                    summary = stringResource(R.string.settings_language_summary),
-                    entries = Language.entries,
-                    labelFor = { language ->
-                        when (language) {
-                            Language.SYSTEM -> stringResource(R.string.settings_language_system)
-                            Language.ENGLISH -> stringResource(R.string.settings_language_english)
-                            Language.ARABIC -> stringResource(R.string.settings_language_arabic)
-                        }
-                    },
-                    selected = state.settings.language,
-                    onSelected = onLanguageChange
                 )
             }
 

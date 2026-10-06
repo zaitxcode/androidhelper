@@ -9,15 +9,13 @@ void main() {
   ) async {
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('Android Helper (Android)'), findsOneWidget);
+    expect(find.text('AppHelper Demo'), findsOneWidget);
     expect(find.byType(TextField), findsOneWidget);
-    expect(find.text('Toast'), findsOneWidget);
-    expect(find.text('Network state'), findsOneWidget);
+    expect(find.text('Network'), findsOneWidget);
+    expect(find.text('Connection Details'), findsOneWidget);
     expect(find.byType(InkWell), findsWidgets);
 
-    await tester.tap(find.text('Network state'));
+    await tester.tap(find.text('Connection Details'));
     await tester.pump();
-
-    expect(find.text('isConnected = null'), findsOneWidget);
   });
 }

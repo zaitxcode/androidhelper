@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.zaitxcode.android.apps.apphelper.theme.AppSettings
 import com.zaitxcode.android.apps.apphelper.theme.DarkMode
-import com.zaitxcode.android.apps.apphelper.theme.Language
 import com.zaitxcode.android.apps.apphelper.theme.ThemeManager
 import com.zaitxcode.android.apps.apphelper.theme.ThemeMode
 import kotlinx.coroutines.flow.SharingStarted
@@ -33,9 +32,5 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
 
     fun setGlassEffect(enabled: Boolean) = viewModelScope.launch {
         manager.setGlassEffect(enabled)
-    }
-
-    fun setLanguage(language: Language) = viewModelScope.launch {
-        manager.setLanguage(language)
     }
 }

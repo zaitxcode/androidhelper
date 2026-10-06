@@ -10,8 +10,7 @@
 
 Android Helper provides clean Android category helpers — Network, Audio, Vibration, Display, Biometrics, Secure Intents, Clipboard, Notifications, File Management, Device/Battery info, and Cryptography.
 
-🌐 **Documentation:** [docs.zaitxcode.com/androidhelper](https://docs.zaitxcode.com/androidhelper)  
-📖 **العربية:** [README.ar.md](README.ar.md)
+🌐 **Documentation:** [docs.zaitxcode.com/androidhelper](https://docs.zaitxcode.com/androidhelper)
 
 ---
 
@@ -21,7 +20,7 @@ Android Helper provides clean Android category helpers — Network, Audio, Vibra
 
 ```toml
 [versions]
-androidHelper = "1.0.0-beta02"
+androidHelper = "1.0.0-beta3"
 
 [libraries]
 androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
@@ -89,6 +88,32 @@ val battery = Battery.getBatteryLevel()
 
 ---
 
+## 🔒 Code Obfuscation & Consumer Safety
+
+The published AAR ships with `consumer-rules.pro`, which is applied automatically
+to every app that depends on the library. Enabling R8/minification in a consumer
+project therefore never strips or renames the public API it calls — existing apps
+keep working even though the library implementation itself is shrunk and obfuscated.
+
+---
+
 ## 📄 License
 
-Copyright (c) 2025–2027 Mohamed Zaitoon. All rights reserved.
+**Android Helper is open source.**
+
+You are free to use it in any project, commercial or non-commercial, either by
+declaring it as a dependency in your Gradle build file, or by downloading the
+source code and modifying it to fit your own needs.
+
+In return, the **ZaitXCode identity must be preserved**, and the namespace line
+
+```
+com.zaitxcode.*
+```
+
+must be kept intact in every file that belongs to the library. Any violation of
+these terms will be subject to legal action.
+
+See the [LICENSE](LICENSE) file for full terms.
+
+Copyright (c) 2026–2027 ZaitXCode. All rights reserved.

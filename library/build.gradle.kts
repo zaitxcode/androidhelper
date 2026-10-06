@@ -17,6 +17,11 @@ configure<LibraryExtension> {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+
+        // Keep rules shipped inside the AAR. They are automatically applied to
+        // every consumer app, so enabling R8/minification in a consumer project
+        // can never strip or rename the public API it calls.
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -24,7 +29,11 @@ configure<LibraryExtension> {
             isMinifyEnabled = false
         }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 

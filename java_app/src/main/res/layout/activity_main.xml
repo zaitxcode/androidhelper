@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_hint"
+        android:inputType="text"
+        android:minLines="2"
+        android:gravity="top" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Output:"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="6dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F5F5F5"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/output_hint"
+            android:textSize="12sp"
+            android:fontFamily="monospace" />
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Network -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="NETWORK" />
+            <Button android:id="@+id/btnNetworkState" style="@style/AppTheme.DemoButton" android:text="Connection details" />
+            <Button android:id="@+id/btnNetworkTransport" style="@style/AppTheme.DemoButton" android:text="Transport and metered state" />
+            <Button android:id="@+id/btnGetIp" style="@style/AppTheme.DemoButton" android:text="Get IP address" />
+            <Button android:id="@+id/btnNetworkListener" style="@style/AppTheme.DemoButton" android:text="Add connection listener" />
+
+            <!-- Hardware -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="HARDWARE" />
+            <Button android:id="@+id/btnVibrateShort" style="@style/AppTheme.DemoButton" android:text="Vibrate 200 ms" />
+            <Button android:id="@+id/btnVibratePattern" style="@style/AppTheme.DemoButton" android:text="Vibrate pattern" />
+            <Button android:id="@+id/btnBatteryInfo" style="@style/AppTheme.DemoButton" android:text="Battery info" />
+            <Button android:id="@+id/btnBiometricCheck" style="@style/AppTheme.DemoButton" android:text="Biometric check" />
+            <Button android:id="@+id/btnDeviceInfo" style="@style/AppTheme.DemoButton" android:text="Device info" />
+            <Button android:id="@+id/btnDisplayInfo" style="@style/AppTheme.DemoButton" android:text="Display info" />
+            <Button android:id="@+id/btnClickSound" style="@style/AppTheme.DemoButton" android:text="Play click sound" />
+
+            <!-- Content -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="CONTENT" />
+            <Button android:id="@+id/btnCopyText" style="@style/AppTheme.DemoButton" android:text="Copy text" />
+            <Button android:id="@+id/btnPasteText" style="@style/AppTheme.DemoButton" android:text="Read clipboard" />
+            <Button android:id="@+id/btnOpenUrl" style="@style/AppTheme.DemoButton" android:text="Open URL" />
+            <Button android:id="@+id/btnOpenSettings" style="@style/AppTheme.DemoButton" android:text="Open app settings" />
+            <Button android:id="@+id/btnWhatsApp" style="@style/AppTheme.DemoButton" android:text="Open WhatsApp chat" />
+            <Button android:id="@+id/btnDial" style="@style/AppTheme.DemoButton" android:text="Dial number" />
+            <Button android:id="@+id/btnSms" style="@style/AppTheme.DemoButton" android:text="Send SMS" />
+            <Button android:id="@+id/btnEmail" style="@style/AppTheme.DemoButton" android:text="Send email" />
+            <Button android:id="@+id/btnShareText" style="@style/AppTheme.DemoButton" android:text="Share text" />
+            <Button android:id="@+id/btnShareFile" style="@style/AppTheme.DemoButton" android:text="Share generated file" />
+            <Button android:id="@+id/btnOpenMap" style="@style/AppTheme.DemoButton" android:text="Open map" />
+            <Button android:id="@+id/btnPlayStore" style="@style/AppTheme.DemoButton" android:text="Open Play Store page" />
+
+            <!-- Notifications -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="NOTIFICATIONS" />
+            <Button android:id="@+id/btnShowNotification" style="@style/AppTheme.DemoButton" android:text="Show notification" />
+            <Button android:id="@+id/btnCancelNotifications" style="@style/AppTheme.DemoButton" android:text="Cancel notifications" />
+
+            <!-- Permissions -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="PERMISSIONS" />
+            <Button android:id="@+id/btnCheckPermission" style="@style/AppTheme.DemoButton" android:text="Check permissions" />
+            <Button android:id="@+id/btnRequestCamera" style="@style/AppTheme.DemoButton" android:text="Request camera permission" />
+
+            <!-- App -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="APP" />
+            <Button android:id="@+id/btnAppInfo" style="@style/AppTheme.DemoButton" android:text="App info" />
+            <Button android:id="@+id/btnAppState" style="@style/AppTheme.DemoButton" android:text="App state" />
+            <Button android:id="@+id/btnSignatures" style="@style/AppTheme.DemoButton" android:text="App signatures" />
+            <Button android:id="@+id/btnLogger" style="@style/AppTheme.DemoButton" android:text="Logger demo" />
+
+            <!-- Data -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="DATA" />
+            <Button android:id="@+id/btnTime" style="@style/AppTheme.DemoButton" android:text="Time helpers" />
+            <Button android:id="@+id/btnValidation" style="@style/AppTheme.DemoButton" android:text="Validation helpers" />
+            <Button android:id="@+id/btnStorage" style="@style/AppTheme.DemoButton" android:text="Storage helpers" />
+            <Button android:id="@+id/btnWriteFile" style="@style/AppTheme.DemoButton" android:text="Write and append file" />
+            <Button android:id="@+id/btnReadFile" style="@style/AppTheme.DemoButton" android:text="Read file and bytes" />
+            <Button android:id="@+id/btnDeleteFile" style="@style/AppTheme.DemoButton" android:text="Delete file" />
+
+            <!-- Security -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="SECURITY" />
+            <Button android:id="@+id/btnHashes" style="@style/AppTheme.DemoButton" android:text="MD5 / SHA hashes" />
+            <Button android:id="@+id/btnHmac" style="@style/AppTheme.DemoButton" android:text="HMAC-SHA256" />
+            <Button android:id="@+id/btnBase64" style="@style/AppTheme.DemoButton" android:text="Base64 encode and decode" />
+            <Button android:id="@+id/btnAesEncrypt" style="@style/AppTheme.DemoButton" android:text="AES encrypt" />
+            <Button android:id="@+id/btnAesDecrypt" style="@style/AppTheme.DemoButton" android:text="AES decrypt" />
+
+            <!-- View -->
+            <TextView style="@style/AppTheme.SectionLabel" android:text="VIEW" />
+            <Button android:id="@+id/btnHideKeyboard" style="@style/AppTheme.DemoButton" android:text="Hide keyboard" />
+            <Button android:id="@+id/btnBlockCapture" style="@style/AppTheme.DemoButton" android:text="Block screen capture" />
+            <Button android:id="@+id/btnUnblockCapture" style="@style/AppTheme.DemoButton" android:text="Unblock screen capture" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
                         onThemeModeChange = { settingsViewModel.setThemeMode(it) },
                         onDarkModeChange = { settingsViewModel.setDarkMode(it) },
                         onGlassEffectChange = { settingsViewModel.setGlassEffect(it) },
-                        onLanguageChange = { settingsViewModel.setLanguage(it) },
                         onBack = { showSettings = false }
                     )
                 } else {

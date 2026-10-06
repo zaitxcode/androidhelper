@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Helper Java Demo</string>
+    <string name="input_hint">Text for helpers</string>
+    <string name="output_hint">Results will appear here</string>
+</resources>

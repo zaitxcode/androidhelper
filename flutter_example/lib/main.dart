@@ -12,7 +12,6 @@ Future<T?> _invoke<T>(String method, [Map<String, dynamic>? args]) async {
 
 enum AppThemeMode { material3, xiaomi }
 enum AppDarkMode { system, light, dark }
-enum AppLanguage { system, english, arabic }
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +28,6 @@ class _MyAppState extends State<MyApp> {
   AppThemeMode _themeMode = AppThemeMode.material3;
   AppDarkMode _darkMode = AppDarkMode.system;
   bool _glassEffect = true;
-  AppLanguage _language = AppLanguage.system;
 
   @override
   Widget build(BuildContext context) {
@@ -41,24 +39,10 @@ class _MyAppState extends State<MyApp> {
       AppDarkMode.dark => true,
     };
 
-    final isRtl = switch (_language) {
-      AppLanguage.system => false,
-      AppLanguage.english => false,
-      AppLanguage.arabic => true,
-    };
-
-    final textDirection = isRtl ? TextDirection.rtl : TextDirection.ltr;
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'AppHelper Flutter Demo',
       themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-      builder: (context, child) {
-        return Directionality(
-          textDirection: textDirection,
-          child: child ?? const SizedBox.shrink(),
-        );
-      },
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -86,12 +70,9 @@ class _MyAppState extends State<MyApp> {
         darkMode: _darkMode,
         isDark: isDark,
         glassEffect: _glassEffect,
-        language: _language,
-        isRtl: isRtl,
         onThemeModeChanged: (v) => setState(() => _themeMode = v),
         onDarkModeChanged: (v) => setState(() => _darkMode = v),
         onGlassEffectChanged: (v) => setState(() => _glassEffect = v),
-        onLanguageChanged: (v) => setState(() => _language = v),
       ),
     );
   }
@@ -104,24 +85,18 @@ class DemoPage extends StatefulWidget {
     required this.darkMode,
     required this.isDark,
     required this.glassEffect,
-    required this.language,
-    required this.isRtl,
     required this.onThemeModeChanged,
     required this.onDarkModeChanged,
     required this.onGlassEffectChanged,
-    required this.onLanguageChanged,
   });
 
   final AppThemeMode themeMode;
   final AppDarkMode darkMode;
   final bool isDark;
   final bool glassEffect;
-  final AppLanguage language;
-  final bool isRtl;
   final ValueChanged<AppThemeMode> onThemeModeChanged;
   final ValueChanged<AppDarkMode> onDarkModeChanged;
   final ValueChanged<bool> onGlassEffectChanged;
-  final ValueChanged<AppLanguage> onLanguageChanged;
 
   @override
   State<DemoPage> createState() => _DemoPageState();
@@ -224,9 +199,9 @@ class _DemoPageState extends State<DemoPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          widget.isRtl ? 'الإعدادات' : 'Settings',
-                          style: const TextStyle(
+                        const Text(
+                          'Settings',
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -239,21 +214,17 @@ class _DemoPageState extends State<DemoPage> {
                     ),
                     const Divider(),
                     ListTile(
-                      title: Text(widget.isRtl ? 'الثيم' : 'Theme'),
+                      title: const Text('Theme'),
                       trailing: DropdownButton<AppThemeMode>(
                         value: widget.themeMode,
-                        items: [
+                        items: const [
                           DropdownMenuItem(
                             value: AppThemeMode.material3,
-                            child: Text(
-                              widget.isRtl ? 'Material 3' : 'Material 3',
-                            ),
+                            child: Text('Material 3'),
                           ),
                           DropdownMenuItem(
                             value: AppThemeMode.xiaomi,
-                            child: Text(
-                              widget.isRtl ? 'شاومي (HyperOS)' : 'Xiaomi (HyperOS)',
-                            ),
+                            child: Text('Xiaomi (HyperOS)'),
                           ),
                         ],
                         onChanged: (v) {
@@ -265,21 +236,21 @@ class _DemoPageState extends State<DemoPage> {
                       ),
                     ),
                     ListTile(
-                      title: Text(widget.isRtl ? 'الوضع الداكن' : 'Dark Mode'),
+                      title: const Text('Dark Mode'),
                       trailing: DropdownButton<AppDarkMode>(
                         value: widget.darkMode,
-                        items: [
+                        items: const [
                           DropdownMenuItem(
                             value: AppDarkMode.system,
-                            child: Text(widget.isRtl ? 'النظام' : 'System'),
+                            child: Text('System'),
                           ),
                           DropdownMenuItem(
                             value: AppDarkMode.light,
-                            child: Text(widget.isRtl ? 'فاتح' : 'Light'),
+                            child: Text('Light'),
                           ),
                           DropdownMenuItem(
                             value: AppDarkMode.dark,
-                            child: Text(widget.isRtl ? 'داكن' : 'Dark'),
+                            child: Text('Dark'),
                           ),
                         ],
                         onChanged: (v) {
@@ -292,41 +263,13 @@ class _DemoPageState extends State<DemoPage> {
                     ),
                     if (widget.themeMode == AppThemeMode.xiaomi)
                       SwitchListTile(
-                        title: Text(
-                          widget.isRtl ? 'تأثير الزجاج السائل' : 'Liquid Glass Effect',
-                        ),
+                        title: const Text('Liquid Glass Effect'),
                         value: widget.glassEffect,
                         onChanged: (v) {
                           widget.onGlassEffectChanged(v);
                           setModalState(() {});
                         },
                       ),
-                    ListTile(
-                      title: Text(widget.isRtl ? 'اللغة' : 'Language'),
-                      trailing: DropdownButton<AppLanguage>(
-                        value: widget.language,
-                        items: [
-                          DropdownMenuItem(
-                            value: AppLanguage.system,
-                            child: Text(widget.isRtl ? 'النظام' : 'System'),
-                          ),
-                          DropdownMenuItem(
-                            value: AppLanguage.english,
-                            child: Text(widget.isRtl ? 'English' : 'English'),
-                          ),
-                          DropdownMenuItem(
-                            value: AppLanguage.arabic,
-                            child: Text(widget.isRtl ? 'العربية' : 'Arabic'),
-                          ),
-                        ],
-                        onChanged: (v) {
-                          if (v != null) {
-                            widget.onLanguageChanged(v);
-                            setModalState(() {});
-                          }
-                        },
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -356,9 +299,9 @@ class _DemoPageState extends State<DemoPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.isRtl ? 'تجربة AppHelper' : 'AppHelper Demo',
-                    style: const TextStyle(
+                  const Text(
+                    'AppHelper Demo',
+                    style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -379,34 +322,34 @@ class _DemoPageState extends State<DemoPage> {
               padding: const EdgeInsets.all(12),
               child: TextField(
                 controller: _input,
-                decoration: InputDecoration(
-                  labelText: widget.isRtl ? 'نص الإدخال' : 'Input text',
-                  border: const OutlineInputBorder(),
+                decoration: const InputDecoration(
+                  labelText: 'Input text',
+                  border: OutlineInputBorder(),
                 ),
               ),
             ),
             const SizedBox(height: 16),
 
             // Section: Network
-            _SectionTitle(widget.isRtl ? 'الشبكة' : 'Network'),
+            const _SectionTitle('Network'),
             _GlassPanel(
               isDark: widget.isDark,
               enabled: isGlass,
               child: Column(
                 children: [
                   _ActionTile(
-                    title: widget.isRtl ? 'تفاصيل الاتصال' : 'Connection Details',
+                    title: 'Connection Details',
                     onTap: () async {
                       final res = await _invoke<String>('networkState');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'تفاصيل الاتصال' : 'Connection Details', res);
+                      if (res != null) _showResultDialog('Connection Details', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'نوع الاتصال والقیاس' : 'Network Transport',
+                    title: 'Network Transport',
                     onTap: () async {
                       final res = await _invoke<String>('networkTransport');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'نوع الاتصال والقیاس' : 'Network Transport', res);
+                      if (res != null) _showResultDialog('Network Transport', res);
                     },
                   ),
                 ],
@@ -415,54 +358,54 @@ class _DemoPageState extends State<DemoPage> {
             const SizedBox(height: 16),
 
             // Section: Intents (Execute directly without dialog)
-            _SectionTitle(widget.isRtl ? 'المقاصد (Intents)' : 'Intents'),
+            const _SectionTitle('Intents'),
             _GlassPanel(
               isDark: widget.isDark,
               enabled: isGlass,
               child: Column(
                 children: [
                   _ActionTile(
-                    title: widget.isRtl ? 'فتح رابط' : 'Open URL',
+                    title: 'Open URL',
                     onTap: () => _invoke('openUrl', {'url': 'https://docs.zaitxcode.com/androidhelper'}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'فتح إعدادات التطبيق' : 'Open App Settings',
+                    title: 'Open App Settings',
                     onTap: () => _invoke('openAppSettings'),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'فتح محادثة واتساب' : 'Open WhatsApp',
+                    title: 'Open WhatsApp',
                     onTap: () => _invoke('openWhatsApp', {'text': _input.text}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'اتصال بالرقم' : 'Dial Number',
+                    title: 'Dial Number',
                     onTap: () => _invoke('dial'),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'إرسال رسالة SMS' : 'Send SMS',
+                    title: 'Send SMS',
                     onTap: () => _invoke('sendSms', {'text': _input.text}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'إرسال بريد إلكتروني' : 'Send Email',
+                    title: 'Send Email',
                     onTap: () => _invoke('sendEmail', {'text': _input.text}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'مشاركة نص' : 'Share Text',
+                    title: 'Share Text',
                     onTap: () => _invoke('shareText', {'text': _input.text}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'فتح الخريطة' : 'Open Map',
+                    title: 'Open Map',
                     onTap: () => _invoke('openMap'),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'متجر متجر بلاي' : 'Open Play Store',
+                    title: 'Open Play Store',
                     onTap: () => _invoke('openPlayStore'),
                   ),
                 ],
@@ -471,42 +414,42 @@ class _DemoPageState extends State<DemoPage> {
             const SizedBox(height: 16),
 
             // Section: Clipboard & Screen
-            _SectionTitle(widget.isRtl ? 'الحافظة والاهتزاز والمنع' : 'Clipboard & Screen'),
+            const _SectionTitle('Clipboard & Screen'),
             _GlassPanel(
               isDark: widget.isDark,
               enabled: isGlass,
               child: Column(
                 children: [
                   _ActionTile(
-                    title: widget.isRtl ? 'نسخ النص' : 'Copy Text',
+                    title: 'Copy Text',
                     onTap: () => _invoke('copyText', {'text': _input.text}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'لصق النص' : 'Paste Text',
+                    title: 'Paste Text',
                     onTap: () async {
                       final text = await _invoke<String>('getClipboard');
-                      if (text != null) _showResultDialog(widget.isRtl ? 'محتوى الحافظة' : 'Clipboard Text', text);
+                      if (text != null) _showResultDialog('Clipboard Text', text);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'اهتزاز سريع (200ms)' : 'Vibrate (200ms)',
+                    title: 'Vibrate (200ms)',
                     onTap: () => _invoke('vibrate', {'ms': 200}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'نمط اهتزاز' : 'Vibrate Pattern',
+                    title: 'Vibrate Pattern',
                     onTap: () => _invoke('vibratePattern'),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'حظر تصوير الشاشة' : 'Block Screen Capture',
+                    title: 'Block Screen Capture',
                     onTap: () => _invoke('blockCapture'),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'إلغاء حظر تصوير الشاشة' : 'Unblock Screen Capture',
+                    title: 'Unblock Screen Capture',
                     onTap: () => _invoke('unblockCapture'),
                   ),
                 ],
@@ -515,24 +458,24 @@ class _DemoPageState extends State<DemoPage> {
             const SizedBox(height: 16),
 
             // Section: Notifications & Keyboard
-            _SectionTitle(widget.isRtl ? 'الإشعارات ولـوحة المفاتيح' : 'Notifications & Keyboard'),
+            const _SectionTitle('Notifications & Keyboard'),
             _GlassPanel(
               isDark: widget.isDark,
               enabled: isGlass,
               child: Column(
                 children: [
                   _ActionTile(
-                    title: widget.isRtl ? 'عرض إشعار' : 'Show Notification',
+                    title: 'Show Notification',
                     onTap: () => _invoke('showNotification', {'text': _input.text}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'إلغاء الإشعارات' : 'Cancel Notifications',
+                    title: 'Cancel Notifications',
                     onTap: () => _invoke('cancelNotifications'),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'إخفاء لوحة المفاتيح' : 'Hide Keyboard',
+                    title: 'Hide Keyboard',
                     onTap: () => _invoke('hideKeyboard'),
                   ),
                 ],
@@ -541,41 +484,41 @@ class _DemoPageState extends State<DemoPage> {
             const SizedBox(height: 16),
 
             // Section: Device & App Info
-            _SectionTitle(widget.isRtl ? 'الجهاز والتطبيق' : 'Device & App'),
+            const _SectionTitle('Device & App'),
             _GlassPanel(
               isDark: widget.isDark,
               enabled: isGlass,
               child: Column(
                 children: [
                   _ActionTile(
-                    title: widget.isRtl ? 'معلومات الجهاز' : 'Device Info',
+                    title: 'Device Info',
                     onTap: () async {
                       final res = await _invoke<String>('deviceInfo');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'معلومات الجهاز' : 'Device Info', res);
+                      if (res != null) _showResultDialog('Device Info', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'معلومات التطبيق' : 'App Info',
+                    title: 'App Info',
                     onTap: () async {
                       final res = await _invoke<String>('appInfo');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'معلومات التطبيق' : 'App Info', res);
+                      if (res != null) _showResultDialog('App Info', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'معلومات البطارية' : 'Battery Info',
+                    title: 'Battery Info',
                     onTap: () async {
                       final res = await _invoke<String>('batteryInfo');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'معلومات البطارية' : 'Battery Info', res);
+                      if (res != null) _showResultDialog('Battery Info', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'حالة التطبيق' : 'App State',
+                    title: 'App State',
                     onTap: () async {
                       final res = await _invoke<String>('appState');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'حالة التطبيق' : 'App State', res);
+                      if (res != null) _showResultDialog('App State', res);
                     },
                   ),
                 ],
@@ -584,56 +527,56 @@ class _DemoPageState extends State<DemoPage> {
             const SizedBox(height: 16),
 
             // Section: Data & Storage
-            _SectionTitle(widget.isRtl ? 'البيانات والتخزين' : 'Data & Storage'),
+            const _SectionTitle('Data & Storage'),
             _GlassPanel(
               isDark: widget.isDark,
               enabled: isGlass,
               child: Column(
                 children: [
                   _ActionTile(
-                    title: widget.isRtl ? 'مساعدو الوقت' : 'Time Helpers',
+                    title: 'Time Helpers',
                     onTap: () async {
                       final res = await _invoke<String>('timeNow');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'مساعدو الوقت' : 'Time Helpers', res);
+                      if (res != null) _showResultDialog('Time Helpers', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'مساعدو التحقق' : 'Validation',
+                    title: 'Validation',
                     onTap: () async {
                       final res = await _invoke<String>('validate');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'مساعدو التحقق' : 'Validation', res);
+                      if (res != null) _showResultDialog('Validation', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'مساعدو التخزين' : 'Storage Info',
+                    title: 'Storage Info',
                     onTap: () async {
                       final res = await _invoke<String>('storage');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'مساعدو التخزين' : 'Storage Info', res);
+                      if (res != null) _showResultDialog('Storage Info', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'كتابة ملف' : 'Write File',
+                    title: 'Write File',
                     onTap: () => _invoke('writeFile', {'text': _input.text}),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'قراءة ملف' : 'Read File',
+                    title: 'Read File',
                     onTap: () async {
                       final res = await _invoke<String>('readFile');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'قراءة ملف' : 'Read File', res);
+                      if (res != null) _showResultDialog('Read File', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'حذف ملف' : 'Delete File',
+                    title: 'Delete File',
                     onTap: () => _invoke('deleteFile'),
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'تشفير SHA-256' : 'SHA-256',
+                    title: 'SHA-256',
                     onTap: () async {
                       final res = await _invoke<String>('sha256', {'text': _input.text});
                       if (res != null) _showResultDialog('SHA-256', res);
@@ -641,7 +584,7 @@ class _DemoPageState extends State<DemoPage> {
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'تشفير Base64' : 'Base64',
+                    title: 'Base64',
                     onTap: () async {
                       final res = await _invoke<String>('base64', {'text': _input.text});
                       if (res != null) _showResultDialog('Base64', res);
@@ -653,34 +596,34 @@ class _DemoPageState extends State<DemoPage> {
             const SizedBox(height: 16),
 
             // Section: Security
-            _SectionTitle(widget.isRtl ? 'الأمان والبصمة' : 'Security & Biometric'),
+            const _SectionTitle('Security & Biometric'),
             _GlassPanel(
               isDark: widget.isDark,
               enabled: isGlass,
               child: Column(
                 children: [
                   _ActionTile(
-                    title: widget.isRtl ? 'التوقيعات الرقمية' : 'App Signatures',
+                    title: 'App Signatures',
                     onTap: () async {
                       final res = await _invoke<String>('signatures');
-                      if (res != null) _showResultDialog(widget.isRtl ? 'التوقيعات الرقمية' : 'App Signatures', res);
+                      if (res != null) _showResultDialog('App Signatures', res);
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'المصادقة بالبصمة' : 'Biometric Auth',
+                    title: 'Biometric Auth',
                     onTap: () async {
                       try {
                         final res = await _invoke<String>('biometric');
-                        if (res != null) _showResultDialog(widget.isRtl ? 'البصمة' : 'Biometric', res);
+                        if (res != null) _showResultDialog('Biometric', res);
                       } on PlatformException catch (e) {
-                        _showResultDialog(widget.isRtl ? 'خطأ في البصمة' : 'Biometric Error', '${e.code}: ${e.message}');
+                        _showResultDialog('Biometric Error', '${e.code}: ${e.message}');
                       }
                     },
                   ),
                   const Divider(height: 1),
                   _ActionTile(
-                    title: widget.isRtl ? 'سجل الأخطاء (Logger)' : 'Logger',
+                    title: 'Logger',
                     onTap: () => _invoke('logger'),
                   ),
                 ],
