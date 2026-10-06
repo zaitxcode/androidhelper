@@ -1,26 +1,23 @@
 # JitPack build configuration.
 #
-# The JitPack build image changed and now fails with:
+# The JitPack default image intermittently fails with:
 #   "An unexpected error occurred while trying to open file
 #    .../gradle/wrapper/gradle-wrapper.jar"
-# before Gradle even starts. Two mitigations are applied together, both taken
-# from projects that hit the same regression and confirmed to work:
+# before Gradle even starts. It is non-deterministic (identical commits
+# sometimes pass and sometimes fail) and is tracked upstream as
+# jitpack/jitpack.io#8096 and #8097.
 #
-#   1. Pin the stable build image ("build.image" is supported by JitPack but
-#      not listed in the public docs).
-#   2. Manage the JDK explicitly with SDKMAN in both stages. The "jdk:" field
-#      is unreliable and the environment is not guaranteed to carry JAVA_HOME
-#      across build stages, so the JDK is installed in "before_install" and
-#      re-activated inside the same shell that runs Gradle.
+# To make the build independent of the wrapper jar, Gradle is installed and
+# activated through SDKMAN and invoked directly. The version matches the one
+# pinned in gradle/wrapper/gradle-wrapper.properties, so the build is identical
+# to a normal ./gradlew run.
 
 before_install:
   - sdk install java 21.0.2-open || true
-
-build:
-  image: default
+  - sdk install gradle 9.6.0 || true
 
 install:
-  - . "${SDKMAN_DIR:-$HOME/.sdkman}/bin/sdkman-init.sh" && sdk use java 21.0.2-open && ./gradlew -Pgroup=com.github.zaitxcode -Pversion=${VERSION:-1.0.0-beta06} --no-daemon -xlint -xlintVitalRelease -xlintVitalAnalyzeRelease :library:publishReleasePublicationToMavenLocal
+  - . "${SDKMAN_DIR:-$HOME/.sdkman}/bin/sdkman-init.sh" && sdk use java 21.0.2-open && sdk use gradle 9.6.0 && gradle -Pgroup=com.github.zaitxcode -Pversion=${VERSION:-1.0.0-beta07} --no-daemon -xlint -xlintVitalRelease -xlintVitalAnalyzeRelease :library:publishReleasePublicationToMavenLocal
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2g -Dorg.gradle.parallel=true -Dkotlin.daemon.jvmargs=-Xmx1g"
