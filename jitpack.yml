@@ -1,9 +1,17 @@
 jdk:
   - openjdk21
 
+# Pin the stable build image. The "latest" image failed to resolve the Android
+# Gradle Plugin (com.android.application) during configuration, which aborted
+# the build before any compilation. "default" is the image that previously
+# built this project successfully.
+build:
+  image: default
+
 install:
-  # Build only the library and publish to local maven (JitPack will pick it up).
-  - ./gradlew -Pgroup=com.github.zaitxcode -Pversion=${VERSION:-1.0.0-beta04} --no-daemon -xlint -xlintVitalRelease -xlintVitalAnalyzeRelease :library:publishReleasePublicationToMavenLocal
+  # Build only the library and publish it to the local Maven repository so
+  # JitPack can pick up the artifacts.
+  - ./gradlew -Pgroup=com.github.zaitxcode -Pversion=${VERSION:-1.0.0-beta05} --no-daemon -xlint -xlintVitalRelease -xlintVitalAnalyzeRelease :library:publishReleasePublicationToMavenLocal
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2g -Dorg.gradle.parallel=true -Dkotlin.daemon.jvmargs=-Xmx1g"

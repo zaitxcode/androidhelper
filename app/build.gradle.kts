@@ -42,8 +42,10 @@ configure<ApplicationExtension> {
             signingConfig = signingConfigs.getByName("debug")
         }
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            // Obfuscation disabled to keep the demo app fully transparent and
+            // consistent with the library. The rules are kept as reference.
+            isMinifyEnabled = false
+            isShrinkResources = false
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

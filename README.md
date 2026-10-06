@@ -20,7 +20,7 @@ Android Helper provides clean Android category helpers — Network, Audio, Vibra
 
 ```toml
 [versions]
-androidHelper = "1.0.0-beta04"
+androidHelper = "1.0.0-beta05"
 
 [libraries]
 androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
@@ -88,12 +88,15 @@ val battery = Battery.getBatteryLevel()
 
 ---
 
-## 🔒 Code Obfuscation & Consumer Safety
+## 🔓 No Obfuscation — Safe to Call
 
-The published AAR ships with `consumer-rules.pro`, which is applied automatically
-to every app that depends on the library. Enabling R8/minification in a consumer
-project therefore never strips or renames the public API it calls — existing apps
-keep working even though the library implementation itself is shrunk and obfuscated.
+The published AAR is **not obfuscated**, so every helper can be called directly
+and safely out of the box. No extra configuration is required in a consumer
+project.
+
+For projects that enable their own R8/minification, the AAR also ships
+`consumer-rules.pro`, which is applied automatically and guarantees the public
+API is never stripped or renamed.
 
 ---
 

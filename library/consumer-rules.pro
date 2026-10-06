@@ -4,10 +4,11 @@
 # This file is packaged inside the AAR and is applied
 # automatically to every app that depends on the library.
 #
-# It guarantees that enabling minification / obfuscation in a
-# consumer project never removes or renames the public API the
-# consumer calls, so existing apps keep working after the library
-# itself has been obfuscated.
+# The library itself is NOT obfuscated, so consumers can call
+# every helper safely out of the box. These rules exist only to
+# protect the public API if a consumer enables minification in
+# their own project: they guarantee the API they call is never
+# stripped or renamed.
 # ============================================================
 
 # Keep the public API surface of every helper.

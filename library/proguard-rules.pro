@@ -1,11 +1,16 @@
 # ============================================================
 # AndroidHelper - Library R8 / ProGuard rules
 # ------------------------------------------------------------
-# Applied while building the library itself.
+# Reference rules for the library module.
 #
-# Strategy: the PUBLIC API (class names + public members) is kept
-# so Kotlin, Java and Flutter consumers keep compiling and running,
-# while the private implementation is left free to be optimized,
+# Obfuscation is DISABLED for the library (isMinifyEnabled = false),
+# so these rules are not applied to the published AAR. They are kept
+# as documentation of the public surface and as a ready-to-use
+# starting point should minification ever be enabled.
+#
+# Strategy if enabled: keep the PUBLIC API (class names + public
+# members) so Kotlin, Java and Flutter consumers keep compiling and
+# running, while the private implementation is free to be optimized,
 # shrunk and obfuscated.
 # ============================================================
 

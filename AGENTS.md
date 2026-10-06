@@ -83,23 +83,26 @@ pointing at the SDK's native ARM64 `aapt2`, configured **outside** the project
 Do not add this override to the project's own files — it is host-specific and
 would break x86_64 users.
 
-## Obfuscation and consumer safety
+## No obfuscation — consumer safety
 
-The library is released with R8/minification enabled, so its implementation is
-shrunk and its internal members are renamed. This is intentional.
+**Obfuscation is disabled for the library and for every demo module**
+(`isMinifyEnabled = false`). The published AAR is not shrunk and its names are
+not renamed, so consumers can call every helper safely out of the box with no
+extra configuration. Do not re-enable minification for the library.
 
-The critical rule: **the public API surface must survive obfuscation for
-consumers.** This is enforced two ways:
+The rule files are kept as documentation and as a safety net:
 
-- `library/proguard-rules.pro` protects the public API while building the
-  library itself, leaving internals free to be obfuscated.
+- `library/proguard-rules.pro` describes the public surface. It is not applied
+  while building the library (minification is off), but it is ready if that ever
+  changes.
 - `library/consumer-rules.pro` is packaged *inside* the AAR and is applied
   automatically to every app that depends on the library. It guarantees that a
-  consumer enabling minification never has the API it calls stripped or renamed.
+  consumer who enables their own minification never has the API stripped or
+  renamed.
 
-When editing these rules, keep the intent: **keep class names and public
-members of `com.zaitxcode.android.**`; keep the Kotlin `INSTANCE` field of
-singletons; keep `kotlin.Metadata`; keep `androidx.core.content.FileProvider`.**
+Keep the intent of both files: **keep class names and public members of
+`com.zaitxcode.android.**`; keep the Kotlin `INSTANCE` field of singletons; keep
+`kotlin.Metadata`; keep `androidx.core.content.FileProvider`.**
 
 ## Non-obvious facts and pitfalls
 
@@ -123,8 +126,8 @@ singletons; keep `kotlin.Metadata`; keep `androidx.core.content.FileProvider`.**
 - Keep the category/package structure and the singleton + `@JvmStatic` style.
 - Preserve Java interop: any new public helper must be callable cleanly from
   plain Java.
-- Any new public API must be reflected in the ProGuard keep rules so it
-  survives consumer obfuscation.
+- Any new public API must be reflected in the ProGuard keep rules so a
+  consumer who enables minification cannot strip it.
 - Keep modules self-consistent: a change to the library's public API may
   require updating `app`, `java_app`, `flutter_example`, and the bundled AAR.
 - Prefer editing existing files over adding scratch or staging files.

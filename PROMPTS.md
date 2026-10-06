@@ -64,10 +64,11 @@ Apply these when the task touches a published library.
 
 ```
 [OBFUSCATION AND CONSUMER SAFETY]
-- Enable R8/minify in the release build.
-- Ship consumer-rules.pro inside the AAR to protect the public API.
-- Rule: obfuscate the internals, keep the public surface intact.
-- Verify via mapping.txt that public names were not renamed.
+- Keep obfuscation OFF for the library and demo modules so consumers can call
+  the API safely with no extra configuration.
+- Keep the rule files (proguard-rules.pro, consumer-rules.pro) as documentation
+  and as a safety net for consumers who enable their own minification.
+- Rule: never rename or strip the public surface (com.zaitxcode.*).
 
 [JAVA INTEROP]
 - Every public helper must be callable cleanly from plain Java

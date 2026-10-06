@@ -19,8 +19,9 @@ configure<LibraryExtension> {
         minSdk = libs.versions.minSdk.get().toInt()
 
         // Keep rules shipped inside the AAR. They are automatically applied to
-        // every consumer app, so enabling R8/minification in a consumer project
-        // can never strip or rename the public API it calls.
+        // every consumer app. Obfuscation is intentionally disabled for the
+        // library itself, so these rules only document the public surface and
+        // guarantee consumers can never lose the API they call.
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -29,7 +30,10 @@ configure<LibraryExtension> {
             isMinifyEnabled = false
         }
         release {
-            isMinifyEnabled = true
+            // Obfuscation is intentionally disabled so every consumer can call
+            // the library safely. The rules below are kept as reference and are
+            // only applied if a consumer enables minification themselves.
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
