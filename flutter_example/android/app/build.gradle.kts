@@ -20,8 +20,8 @@ android {
         applicationId = "com.zaitxcode.android.apps.flutterapphelper"
         minSdk = 26
         targetSdk = 37
-        versionCode = 203
-        versionName = "1.0.0-beta3"
+        versionCode = 204
+        versionName = "1.0.0-beta04"
     }
 
     signingConfigs {
