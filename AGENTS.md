@@ -128,3 +128,5 @@ singletons; keep `kotlin.Metadata`; keep `androidx.core.content.FileProvider`.**
 - Keep modules self-consistent: a change to the library's public API may
   require updating `app`, `java_app`, `flutter_example`, and the bundled AAR.
 - Prefer editing existing files over adding scratch or staging files.
+- Reusable prompt templates and the working agreement for AI agents live in
+  `PROMPTS.md`. Read it when starting a new task.
