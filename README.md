@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/zaitxcode/androidhelper.svg)](https://jitpack.io/#zaitxcode/androidhelper)
+[![Maven Central](https://img.shields.io/maven-central/v/com.zaitxcode/androidhelper.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/com.zaitxcode/androidhelper)
 ![AndroidX](https://img.shields.io/badge/AndroidX-Required-blue)
 ![Kotlin](https://img.shields.io/badge/Kotlin-First-purple)
 ![C++ Engine](https://img.shields.io/badge/C++%20NDK-libandroidhelper.so-blueviolet)
@@ -33,7 +33,6 @@ androidhelper = { group = "com.zaitxcode", name = "androidhelper", version.ref =
 repositories {
     google()
     mavenCentral()
-    maven { url = uri("https://jitpack.io") }
 }
 ```
 
