@@ -59,12 +59,14 @@ configure<LibraryExtension> {
     }
 }
 
+group = "com.zaitxcode"
+
 mavenPublishing {
     publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
     signAllPublications()
 
     coordinates(
-        groupId = project.findProperty("group")?.toString() ?: "com.zaitxcode",
+        groupId = "com.zaitxcode",
         artifactId = "androidhelper",
         version = libs.versions.versionName.get()
     )
