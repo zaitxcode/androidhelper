@@ -1,16 +1,7 @@
 # JitPack build configuration.
 #
-# The JitPack default image intermittently fails with:
-#   "An unexpected error occurred while trying to open file
-#    .../gradle/wrapper/gradle-wrapper.jar"
-# before Gradle even starts. It is non-deterministic (identical commits
-# sometimes pass and sometimes fail) and is tracked upstream as
-# jitpack/jitpack.io#8096 and #8097.
-#
 # To make the build independent of the wrapper jar, Gradle is installed and
-# activated through SDKMAN and invoked directly. The version matches the one
-# pinned in gradle/wrapper/gradle-wrapper.properties, so the build is identical
-# to a normal ./gradlew run.
+# activated through SDKMAN and invoked directly.
 
 before_install:
   - sdk install java 21.0.2-open || true
