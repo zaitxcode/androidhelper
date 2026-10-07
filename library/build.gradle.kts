@@ -72,7 +72,7 @@ afterEvaluate {
     configure<PublishingExtension> {
         publications {
             create<MavenPublication>("release") {
-                groupId = "com.zaitxcode"
+                groupId = project.findProperty("group")?.toString() ?: "com.github.zaitxcode"
                 artifactId = "androidhelper"
                 version = libs.versions.versionName.get()
                 from(components["release"])

@@ -24,7 +24,7 @@ Android Helper provides clean Android category helpers — Network, Audio, Vibra
 androidHelper = "1.0.0-beta09"
 
 [libraries]
-androidhelper = { group = "com.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
+androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
 ```
 
 ### 2. Add Repository (settings.gradle.kts)
