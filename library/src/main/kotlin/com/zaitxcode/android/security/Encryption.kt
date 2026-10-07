@@ -8,11 +8,50 @@ import javax.crypto.spec.SecretKeySpec
 
 object Encryption {
 
+    private var isNativeLoaded = false
+
+    init {
+        try {
+            System.loadLibrary("androidhelper")
+            isNativeLoaded = nativeIsLoaded()
+        } catch (_: Throwable) {
+            isNativeLoaded = false
+        }
+    }
+
+    @JvmStatic
+    fun isNativeEngineAvailable(): Boolean = isNativeLoaded
+
+    @JvmStatic
+    @Suppress("KotlinJniMissingFunction")
+    private external fun nativeIsLoaded(): Boolean
+
+    @JvmStatic
+    @Suppress("KotlinJniMissingFunction")
+    private external fun nativeSha256(text: String): String
+
+    @JvmStatic
+    @Suppress("KotlinJniMissingFunction")
+    private external fun nativeBase64Encode(text: String): String
+
+    @JvmStatic
+    @Suppress("KotlinJniMissingFunction")
+    private external fun nativeBase64Decode(encodedText: String): String
+
     @JvmStatic fun md5(text: String): String = hash(text, "MD5")
 
     @JvmStatic fun sha1(text: String): String = hash(text, "SHA-1")
 
-    @JvmStatic fun sha256(text: String): String = hash(text, "SHA-256")
+    @JvmStatic fun sha256(text: String): String {
+        if (isNativeLoaded) {
+            try {
+                return nativeSha256(text)
+            } catch (_: Throwable) {
+                // Fallback
+            }
+        }
+        return hash(text, "SHA-256")
+    }
 
     @JvmStatic fun sha512(text: String): String = hash(text, "SHA-512")
 
@@ -55,6 +94,13 @@ object Encryption {
     }
 
     @JvmStatic fun base64Encode(text: String): String {
+        if (isNativeLoaded) {
+            try {
+                return nativeBase64Encode(text)
+            } catch (_: Throwable) {
+                // Fallback
+            }
+        }
         return try {
             Base64.encodeToString(text.toByteArray(Charsets.UTF_8), Base64.NO_WRAP)
         } catch (_: Throwable) {
@@ -63,6 +109,13 @@ object Encryption {
     }
 
     @JvmStatic fun base64Decode(encodedText: String): String {
+        if (isNativeLoaded) {
+            try {
+                return nativeBase64Decode(encodedText)
+            } catch (_: Throwable) {
+                // Fallback
+            }
+        }
         return try {
             String(Base64.decode(encodedText, Base64.NO_WRAP), Charsets.UTF_8)
         } catch (_: Throwable) {

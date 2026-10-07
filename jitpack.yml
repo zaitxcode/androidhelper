@@ -17,7 +17,7 @@ before_install:
   - sdk install gradle 9.6.0 || true
 
 install:
-  - . "${SDKMAN_DIR:-$HOME/.sdkman}/bin/sdkman-init.sh" && sdk use java 21.0.2-open && sdk use gradle 9.6.0 && gradle -Pgroup=com.github.zaitxcode -Pversion=${VERSION:-1.0.0-beta07} --no-daemon -xlint -xlintVitalRelease -xlintVitalAnalyzeRelease :library:publishReleasePublicationToMavenLocal
+  - . "${SDKMAN_DIR:-$HOME/.sdkman}/bin/sdkman-init.sh" && sdk use java 21.0.2-open && sdk use gradle 9.6.0 && gradle -Pgroup=com.zaitxcode -Pversion=${VERSION:-1.0.0-beta08} --no-daemon -xlint -xlintVitalRelease -xlintVitalAnalyzeRelease :library:publishReleasePublicationToMavenLocal
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2g -Dorg.gradle.parallel=true -Dkotlin.daemon.jvmargs=-Xmx1g"

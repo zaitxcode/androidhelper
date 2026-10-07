@@ -46,6 +46,8 @@ releases/
 ndkBuild/
 obj/
 jniLibs/
+.cxx/
+.externalNativeBuild/
 
 # Python helper scripts
 *.py

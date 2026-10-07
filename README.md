@@ -1,12 +1,13 @@
 [![](https://jitpack.io/v/zaitxcode/androidhelper.svg)](https://jitpack.io/#zaitxcode/androidhelper)
 ![AndroidX](https://img.shields.io/badge/AndroidX-Required-blue)
 ![Kotlin](https://img.shields.io/badge/Kotlin-First-purple)
+![C++ Engine](https://img.shields.io/badge/C++%20NDK-libandroidhelper.so-blueviolet)
 ![Platform](https://img.shields.io/badge/Platform-Android-green)
 ![Release](https://img.shields.io/badge/Release-orange)
 
 # Android Helper
 
-> Enterprise-grade, clean Android & Flutter utility library under `com.zaitxcode.android.*`.
+> Enterprise-grade, clean Android & Flutter utility library under `com.zaitxcode.android.*` backed by a high-performance C++ Native Engine (`libandroidhelper.so`).
 
 Android Helper provides clean Android category helpers — Network, Audio, Vibration, Display, Biometrics, Secure Intents, Clipboard, Notifications, File Management, Device/Battery info, and Cryptography.
 
@@ -20,10 +21,10 @@ Android Helper provides clean Android category helpers — Network, Audio, Vibra
 
 ```toml
 [versions]
-androidHelper = "1.0.0-beta07"
+androidHelper = "1.0.0-beta08"
 
 [libraries]
-androidhelper = { group = "com.github.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
+androidhelper = { group = "com.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }
 ```
 
 ### 2. Add Repository (settings.gradle.kts)
@@ -60,6 +61,12 @@ class ExampleApplication : Application() {
 
 ---
 
+## ⚡ High-Performance C++ Native Engine (`androidhelper.so`)
+
+Android Helper includes a native C++ JNI library (`libandroidhelper.so`) compiled via CMake for high-performance cryptographic operations (SHA-256, Base64, and security utils). If native binaries are unavailable on a target architecture, it automatically falls back to pure Kotlin execution without raising exceptions.
+
+---
+
 ## 🚀 Category Usage Examples
 
 ```kotlin
@@ -69,6 +76,7 @@ import com.zaitxcode.android.hardware.Vibration
 import com.zaitxcode.android.content.Clipboard
 import com.zaitxcode.android.hardware.Device
 import com.zaitxcode.android.hardware.Battery
+import com.zaitxcode.android.security.Encryption
 
 // Network checks
 val isOnline = Network.isConnected
@@ -77,6 +85,10 @@ val transport = Network.activeTransport()
 // Audio & Haptics
 Audio.playClickSound()
 Vibration.vibrate(200)
+
+// Cryptography & Native C++ Engine
+val hash = Encryption.sha256("AndroidHelper")
+val isNativeActive = Encryption.isNativeEngineAvailable()
 
 // Clipboard
 Clipboard.copyText("Hello Android Helper")

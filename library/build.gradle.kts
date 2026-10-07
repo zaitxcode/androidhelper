@@ -23,6 +23,21 @@ configure<LibraryExtension> {
         // library itself, so these rules only document the public surface and
         // guarantee consumers can never lose the API they call.
         consumerProguardFiles("consumer-rules.pro")
+
+        externalNativeBuild {
+            cmake {
+                cppFlags("-std=c++17")
+            }
+        }
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path("src/main/cpp/CMakeLists.txt")
+        }
     }
 
     buildTypes {
@@ -57,7 +72,7 @@ afterEvaluate {
     configure<PublishingExtension> {
         publications {
             create<MavenPublication>("release") {
-                groupId = "com.github.zaitxcode"
+                groupId = "com.zaitxcode"
                 artifactId = "androidhelper"
                 version = libs.versions.versionName.get()
                 from(components["release"])
