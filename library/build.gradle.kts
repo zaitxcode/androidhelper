@@ -64,7 +64,7 @@ mavenPublishing {
     signAllPublications()
 
     coordinates(
-        groupId = project.findProperty("group")?.toString() ?: "com.zaitxcode",
+        groupId = project.findProperty("group")?.toString() ?: "io.github.zaitxcode",
         artifactId = "androidhelper",
         version = libs.versions.versionName.get()
     )
