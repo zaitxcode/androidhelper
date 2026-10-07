@@ -1,12 +1,9 @@
 import com.android.build.api.dsl.LibraryExtension
-import org.gradle.api.publish.PublishingExtension
-import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.create
 
 plugins {
     alias(libs.plugins.android.library)
-    id("maven-publish")
+    alias(libs.plugins.maven.publish)
 }
 
 configure<LibraryExtension> {
@@ -56,27 +53,43 @@ configure<LibraryExtension> {
         }
     }
 
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
-afterEvaluate {
-    configure<PublishingExtension> {
-        publications {
-            create<MavenPublication>("release") {
-                groupId = project.findProperty("group")?.toString() ?: "com.github.zaitxcode"
-                artifactId = "androidhelper"
-                version = libs.versions.versionName.get()
-                from(components["release"])
+mavenPublishing {
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+
+    coordinates(
+        groupId = project.findProperty("group")?.toString() ?: "com.zaitxcode",
+        artifactId = "androidhelper",
+        version = libs.versions.versionName.get()
+    )
+
+    pom {
+        name.set("Android Helper")
+        description.set("Enterprise-grade, clean Android & Flutter utility library under com.zaitxcode.android.*")
+        url.set("https://github.com/zaitxcode/androidhelper")
+        licenses {
+            license {
+                name.set("The Apache Software License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
             }
+        }
+        developers {
+            developer {
+                id.set("zaitxcode")
+                name.set("ZaitXCode")
+                email.set("info@zaitxcode.com")
+            }
+        }
+        scm {
+            connection.set("scm:git:github.com/zaitxcode/androidhelper.git")
+            developerConnection.set("scm:git:ssh://github.com/zaitxcode/androidhelper.git")
+            url.set("https://github.com/zaitxcode/androidhelper")
         }
     }
 }
