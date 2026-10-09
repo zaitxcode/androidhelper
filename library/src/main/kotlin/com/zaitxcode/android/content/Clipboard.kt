@@ -12,6 +12,7 @@ object Clipboard {
     @JvmStatic
     @JvmOverloads
     fun copyText(text: String, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val clipboard =
             context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager ?: return
 
@@ -22,6 +23,7 @@ object Clipboard {
     @JvmStatic
     @JvmOverloads
     fun getText(context: Context = AppHelper.ctx()): String? {
+        AppHelper.checkInitialized()
         val clipboard =
             context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager ?: return null
 
@@ -36,6 +38,7 @@ object Clipboard {
     @JvmStatic
     @JvmOverloads
     fun hasCopiedText(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val clipboard =
             context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager ?: return false
         return clipboard.hasPrimaryClip() && (clipboard.primaryClip?.itemCount ?: 0) > 0
@@ -44,6 +47,7 @@ object Clipboard {
     @JvmStatic
     @JvmOverloads
     fun clear(context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val clipboard =
             context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager ?: return
 

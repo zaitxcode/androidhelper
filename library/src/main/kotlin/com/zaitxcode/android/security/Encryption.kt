@@ -1,6 +1,7 @@
 package com.zaitxcode.android.security
 
 import android.util.Base64
+import com.zaitxcode.android.core.AppHelper
 import java.security.MessageDigest
 import javax.crypto.Cipher
 import javax.crypto.Mac
@@ -20,7 +21,10 @@ object Encryption {
     }
 
     @JvmStatic
-    fun isNativeEngineAvailable(): Boolean = isNativeLoaded
+    fun isNativeEngineAvailable(): Boolean {
+        AppHelper.checkInitialized()
+        return isNativeLoaded
+    }
 
     @JvmStatic
     @Suppress("KotlinJniMissingFunction")
@@ -38,11 +42,18 @@ object Encryption {
     @Suppress("KotlinJniMissingFunction")
     private external fun nativeBase64Decode(encodedText: String): String
 
-    @JvmStatic fun md5(text: String): String = hash(text, "MD5")
+    @JvmStatic fun md5(text: String): String {
+        AppHelper.checkInitialized()
+        return hash(text, "MD5")
+    }
 
-    @JvmStatic fun sha1(text: String): String = hash(text, "SHA-1")
+    @JvmStatic fun sha1(text: String): String {
+        AppHelper.checkInitialized()
+        return hash(text, "SHA-1")
+    }
 
     @JvmStatic fun sha256(text: String): String {
+        AppHelper.checkInitialized()
         if (isNativeLoaded) {
             try {
                 return nativeSha256(text)
@@ -53,9 +64,13 @@ object Encryption {
         return hash(text, "SHA-256")
     }
 
-    @JvmStatic fun sha512(text: String): String = hash(text, "SHA-512")
+    @JvmStatic fun sha512(text: String): String {
+        AppHelper.checkInitialized()
+        return hash(text, "SHA-512")
+    }
 
     @JvmStatic fun hmacSha256(text: String, secret: String): String {
+        AppHelper.checkInitialized()
         return try {
             val hmac = Mac.getInstance("HmacSHA256")
             val key = SecretKeySpec(secret.toByteArray(Charsets.UTF_8), "HmacSHA256")
@@ -68,6 +83,7 @@ object Encryption {
     }
 
     @JvmStatic fun aesEncrypt(text: String, secretKey: String): String {
+        AppHelper.checkInitialized()
         return try {
             val keyBytes = MessageDigest.getInstance("SHA-256").digest(secretKey.toByteArray(Charsets.UTF_8))
             val keySpec = SecretKeySpec(keyBytes, "AES")
@@ -81,6 +97,7 @@ object Encryption {
     }
 
     @JvmStatic fun aesDecrypt(encryptedText: String, secretKey: String): String {
+        AppHelper.checkInitialized()
         return try {
             val keyBytes = MessageDigest.getInstance("SHA-256").digest(secretKey.toByteArray(Charsets.UTF_8))
             val keySpec = SecretKeySpec(keyBytes, "AES")
@@ -94,6 +111,7 @@ object Encryption {
     }
 
     @JvmStatic fun base64Encode(text: String): String {
+        AppHelper.checkInitialized()
         if (isNativeLoaded) {
             try {
                 return nativeBase64Encode(text)
@@ -109,6 +127,7 @@ object Encryption {
     }
 
     @JvmStatic fun base64Decode(encodedText: String): String {
+        AppHelper.checkInitialized()
         if (isNativeLoaded) {
             try {
                 return nativeBase64Decode(encodedText)
@@ -124,6 +143,7 @@ object Encryption {
     }
 
     @JvmStatic fun base64UrlEncode(text: String): String {
+        AppHelper.checkInitialized()
         return try {
             Base64.encodeToString(
                 text.toByteArray(Charsets.UTF_8),
@@ -135,6 +155,7 @@ object Encryption {
     }
 
     @JvmStatic fun base64UrlDecode(encodedText: String): String {
+        AppHelper.checkInitialized()
         return try {
             String(
                 Base64.decode(encodedText, Base64.URL_SAFE or Base64.NO_WRAP),

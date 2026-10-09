@@ -21,7 +21,7 @@ Android Helper provides clean Android category helpers — Network, Audio, Vibra
 
 ```toml
 [versions]
-androidHelper = "1.0.0-beta10"
+androidHelper = "1.0.0-beta11"
 
 [libraries]
 androidhelper = { group = "com.zaitxcode", name = "androidhelper", version.ref = "androidHelper" }

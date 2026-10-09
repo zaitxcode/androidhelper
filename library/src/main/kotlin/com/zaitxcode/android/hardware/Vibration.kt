@@ -14,6 +14,7 @@ object Vibration {
     @JvmStatic
     @JvmOverloads
     fun vibrate(ms: Long = 500, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val vibrator = getVibrator(context) ?: return
         if (!vibrator.hasVibrator()) return
 
@@ -36,6 +37,7 @@ object Vibration {
         repeat: Int = -1,
         context: Context = AppHelper.ctx()
     ) {
+        AppHelper.checkInitialized()
         val vibrator = getVibrator(context) ?: return
         if (!vibrator.hasVibrator()) return
 
@@ -51,6 +53,7 @@ object Vibration {
     @JvmStatic
     @JvmOverloads
     fun cancel(context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         getVibrator(context)?.cancel()
     }
 

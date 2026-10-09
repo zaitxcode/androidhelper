@@ -1,11 +1,18 @@
 package com.zaitxcode.android
 
+import com.zaitxcode.android.core.AppHelper
 import com.zaitxcode.android.io.File as AppFile
 import com.zaitxcode.android.io.Storage
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 
 class FileTest {
+
+    @Before
+    fun setUp() {
+        AppHelper.initializeForTesting()
+    }
 
     @Test
     fun testFileExtensionAndMimeType() {

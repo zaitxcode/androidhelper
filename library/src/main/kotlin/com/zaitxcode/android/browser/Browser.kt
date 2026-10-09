@@ -14,6 +14,7 @@ object Browser {
     @JvmStatic
     @JvmOverloads
     fun openUrl(url: String, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val safeUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
             "https://$url"
         } else {

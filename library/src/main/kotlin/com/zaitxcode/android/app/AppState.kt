@@ -10,6 +10,7 @@ object AppState {
     @JvmStatic
     @JvmOverloads
     fun isAppInForeground(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
             ?: return false
         val processes = am.runningAppProcesses ?: return false
@@ -20,11 +21,17 @@ object AppState {
         }
     }
 
-    @JvmStatic @JvmOverloads fun isAppInBackground(context: Context = AppHelper.ctx()): Boolean = !isAppInForeground(context)
+    @JvmStatic
+    @JvmOverloads
+    fun isAppInBackground(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
+        return !isAppInForeground(context)
+    }
 
     @JvmStatic
     @JvmOverloads
     fun isScreenOn(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val pm = context.getSystemService(Context.POWER_SERVICE) as? PowerManager
         return pm?.isInteractive == true
     }
@@ -32,6 +39,7 @@ object AppState {
     @JvmStatic
     @JvmOverloads
     fun isLowRamDevice(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
         return am?.isLowRamDevice == true
     }
@@ -39,6 +47,7 @@ object AppState {
     @JvmStatic
     @JvmOverloads
     fun isIgnoringBatteryOptimizations(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val pm = context.getSystemService(Context.POWER_SERVICE) as? PowerManager
         return pm?.isIgnoringBatteryOptimizations(context.packageName) == true
     }

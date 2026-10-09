@@ -30,6 +30,7 @@ object Notification {
         importance: Int = DEFAULT_CHANNEL_IMPORTANCE,
         context: Context = AppHelper.ctx()
     ) {
+        AppHelper.checkInitialized()
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE)
             as? NotificationManager
             ?: return
@@ -43,6 +44,7 @@ object Notification {
     @JvmStatic
     @JvmOverloads
     fun deleteChannel(channelId: String, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE)
             as? NotificationManager
             ?: return
@@ -62,6 +64,7 @@ object Notification {
         channelName: String = DEFAULT_CHANNEL_NAME,
         context: Context = AppHelper.ctx()
     ) {
+        AppHelper.checkInitialized()
         try {
             if (!hasPermission(context)) return
 
@@ -93,18 +96,23 @@ object Notification {
     @JvmStatic
     @JvmOverloads
     fun cancel(notificationId: Int, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         NotificationManagerCompat.from(context).cancel(notificationId)
     }
 
     @JvmStatic
     @JvmOverloads
     fun cancelAll(context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         NotificationManagerCompat.from(context).cancelAll()
     }
 
     @JvmStatic
     @JvmOverloads
-    fun canPostNotifications(context: Context = AppHelper.ctx()): Boolean = hasPermission(context)
+    fun canPostNotifications(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
+        return hasPermission(context)
+    }
 
     private fun hasPermission(context: Context): Boolean {
         if (!areNotificationsEnabled(context)) return false

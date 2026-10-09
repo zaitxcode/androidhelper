@@ -1,12 +1,19 @@
 package com.zaitxcode.android
 
+import com.zaitxcode.android.core.AppHelper
 import com.zaitxcode.android.security.Encryption
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 
 class EncryptionTest {
+
+    @Before
+    fun setUp() {
+        AppHelper.initializeForTesting()
+    }
 
     @Test
     fun testHashes() {

@@ -1,6 +1,7 @@
 package com.zaitxcode.android.util
 
 import android.util.Patterns
+import com.zaitxcode.android.core.AppHelper
 
 object Validation {
 
@@ -9,6 +10,7 @@ object Validation {
     private val URL_REGEX = "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$".toRegex(RegexOption.IGNORE_CASE)
 
     @JvmStatic fun isValidEmail(email: String): Boolean {
+        AppHelper.checkInitialized()
         if (email.isBlank()) return false
         return try {
             Patterns.EMAIL_ADDRESS?.matcher(email)?.matches() ?: EMAIL_REGEX.matches(email)
@@ -18,6 +20,7 @@ object Validation {
     }
 
     @JvmStatic fun isValidPhone(phone: String): Boolean {
+        AppHelper.checkInitialized()
         if (phone.isBlank()) return false
         return try {
             Patterns.PHONE?.matcher(phone)?.matches() ?: PHONE_REGEX.matches(phone)
@@ -27,6 +30,7 @@ object Validation {
     }
 
     @JvmStatic fun isValidUrl(url: String): Boolean {
+        AppHelper.checkInitialized()
         if (url.isBlank()) return false
         return try {
             Patterns.WEB_URL?.matcher(url)?.matches() ?: URL_REGEX.matches(url)
@@ -42,11 +46,13 @@ object Validation {
      * `Patterns.IP_ADDRESS` constant, which is deprecated as of API 35.
      */
     @JvmStatic fun isValidIpAddress(ip: String): Boolean {
+        AppHelper.checkInitialized()
         if (ip.isBlank()) return false
         return if (ip.contains(":")) isValidIPv6(ip) else isValidIPv4(ip)
     }
 
     @JvmStatic fun isValidIPv4(ip: String): Boolean {
+        AppHelper.checkInitialized()
         val parts = ip.split(".")
         if (parts.size != 4) return false
         return parts.all { part ->
@@ -60,6 +66,7 @@ object Validation {
     }
 
     @JvmStatic fun isValidIPv6(ip: String): Boolean {
+        AppHelper.checkInitialized()
         if (ip.isBlank()) return false
 
         // At most one "::" compression is allowed.
@@ -85,15 +92,18 @@ object Validation {
         c.isDigit() || c in 'a'..'f' || c in 'A'..'F'
 
     @JvmStatic fun isValidUsername(username: String): Boolean {
+        AppHelper.checkInitialized()
         val regex = "^[a-zA-Z0-9._-]{3,20}$".toRegex()
         return username.matches(regex)
     }
 
     @JvmStatic fun isPasswordValid(password: String): Boolean {
+        AppHelper.checkInitialized()
         return password.length >= 6
     }
 
     @JvmStatic fun isStrongPassword(password: String): Boolean {
+        AppHelper.checkInitialized()
         val hasUpper = password.any { it.isUpperCase() }
         val hasLower = password.any { it.isLowerCase() }
         val hasDigit = password.any { it.isDigit() }
@@ -102,6 +112,7 @@ object Validation {
     }
 
     @JvmStatic fun isValidCreditCard(cardNumber: String): Boolean {
+        AppHelper.checkInitialized()
         val cleaned = cardNumber.filter { it.isDigit() }
         if (cleaned.length < 13 || cleaned.length > 19) return false
 
@@ -120,6 +131,7 @@ object Validation {
     }
 
     @JvmStatic fun isValidEgyptianNationalId(id: String): Boolean {
+        AppHelper.checkInitialized()
         val cleaned = id.filter { it.isDigit() }
         if (cleaned.length != 14) return false
         val centuryChar = cleaned[0]
@@ -127,10 +139,12 @@ object Validation {
     }
 
     @JvmStatic fun isValidHexColor(color: String): Boolean {
+        AppHelper.checkInitialized()
         return "^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$".toRegex().matches(color)
     }
 
     @JvmStatic fun isValidJson(json: String): Boolean {
+        AppHelper.checkInitialized()
         val trimmed = json.trim()
         if (trimmed.isEmpty()) return false
         if (trimmed.startsWith("{") && trimmed.endsWith("}")) {

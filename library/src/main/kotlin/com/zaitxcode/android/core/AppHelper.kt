@@ -13,11 +13,13 @@ object AppHelper {
     private var applicationContext: Context? = null
     private var currentActivity: Activity? = null
     private var isLifecycleRegistered = false
+    private var initialized = false
 
     @JvmStatic
     fun initialize(context: Context) {
-        val appContext = context.applicationContext
+        val appContext = context.applicationContext ?: context
         applicationContext = appContext
+        initialized = true
 
         if (context is Activity) {
             currentActivity = context
@@ -38,6 +40,24 @@ object AppHelper {
         initialize(activity as Context)
     }
 
+    @JvmStatic
+    fun isInitialized(): Boolean = initialized || applicationContext != null || currentActivity != null
+
+    @JvmStatic
+    fun initializeForTesting() {
+        initialized = true
+    }
+
+    @JvmStatic
+    fun checkInitialized() {
+        if (!isInitialized()) {
+            throw IllegalStateException(
+                "AppHelper must be initialized before calling Android Helper functions: " +
+                "call AppHelper.initialize(context) in Application.onCreate()"
+            )
+        }
+    }
+
     /**
      * Returns the application context.
      * Public entry point so Kotlin and Java consumers can obtain the context
@@ -55,12 +75,14 @@ object AppHelper {
     fun getActivity(): Activity? = act()
 
     internal fun ctx(): Context {
+        checkInitialized()
         return applicationContext
             ?: currentActivity?.applicationContext
             ?: throw IllegalStateException("AppHelper must be initialized: AppHelper.initialize(context)")
     }
 
     internal fun act(): Activity? {
+        checkInitialized()
         return currentActivity
     }
 
@@ -92,14 +114,21 @@ object AppHelper {
     }
 
     @JvmStatic
-    fun log(tag: String, message: String) = Log.d(tag, message)
+    fun log(tag: String, message: String) {
+        checkInitialized()
+        Log.d(tag, message)
+    }
 
     @JvmStatic
-    fun logWarning(tag: String, message: String) = Log.w(tag, message)
+    fun logWarning(tag: String, message: String) {
+        checkInitialized()
+        Log.w(tag, message)
+    }
 
     @JvmStatic
     @JvmOverloads
     fun logError(tag: String, message: String, throwable: Throwable? = null) {
+        checkInitialized()
         if (throwable != null) {
             Log.e(tag, message, throwable)
             showLogDialog("Error", tag, "$message\n\n${throwable.localizedMessage}")

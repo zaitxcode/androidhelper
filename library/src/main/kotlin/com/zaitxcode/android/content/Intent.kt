@@ -12,6 +12,7 @@ object Intent {
     @JvmStatic
     @JvmOverloads
     fun openWhatsApp(phone: String, message: String? = null, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val formatted = phone.filter { it.isDigit() }
         val uri = if (!message.isNullOrEmpty()) {
             Uri.parse("https://api.whatsapp.com/send?phone=$formatted&text=${Uri.encode(message)}")
@@ -27,6 +28,7 @@ object Intent {
     @JvmStatic
     @JvmOverloads
     fun dial(phone: String, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val uri = Uri.parse("tel:$phone")
         val intent = Intent(Intent.ACTION_DIAL, uri).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -37,6 +39,7 @@ object Intent {
     @JvmStatic
     @JvmOverloads
     fun sendSms(phone: String, message: String = "", context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val uri = Uri.parse("smsto:$phone")
         val intent = Intent(Intent.ACTION_SENDTO, uri).apply {
             putExtra("sms_body", message)
@@ -53,6 +56,7 @@ object Intent {
         body: String = "",
         context: Context = AppHelper.ctx()
     ) {
+        AppHelper.checkInitialized()
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:$email")
             putExtra(Intent.EXTRA_SUBJECT, subject)
@@ -65,6 +69,7 @@ object Intent {
     @JvmStatic
     @JvmOverloads
     fun shareText(text: String, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, text)
@@ -84,6 +89,7 @@ object Intent {
         chooserTitle: String = "Share via",
         context: Context = AppHelper.ctx()
     ) {
+        AppHelper.checkInitialized()
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_STREAM, uri)
@@ -104,6 +110,7 @@ object Intent {
         label: String? = null,
         context: Context = AppHelper.ctx()
     ) {
+        AppHelper.checkInitialized()
         val query = if (!label.isNullOrEmpty()) {
             "geo:$latitude,$longitude?q=$latitude,$longitude(${Uri.encode(label)})"
         } else {
@@ -119,6 +126,7 @@ object Intent {
     @JvmStatic
     @JvmOverloads
     fun openAppSettings(context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val intent = Intent(
             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
             Uri.parse("package:${context.packageName}")
@@ -131,6 +139,7 @@ object Intent {
     @JvmStatic
     @JvmOverloads
     fun openPlayStore(packageName: String = AppHelper.ctx().packageName, context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val marketIntent = Intent(
             Intent.ACTION_VIEW,
             Uri.parse("market://details?id=$packageName")

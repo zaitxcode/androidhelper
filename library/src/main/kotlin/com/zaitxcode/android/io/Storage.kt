@@ -10,20 +10,24 @@ import java.util.Locale
 object Storage {
 
     @JvmStatic fun getFreeInternalStorage(): Long {
+        AppHelper.checkInitialized()
         val stat = StatFs(Environment.getDataDirectory().path)
         return stat.availableBlocksLong * stat.blockSizeLong
     }
 
     @JvmStatic fun getTotalInternalStorage(): Long {
+        AppHelper.checkInitialized()
         val stat = StatFs(Environment.getDataDirectory().path)
         return stat.blockCountLong * stat.blockSizeLong
     }
 
     @JvmStatic fun getUsedInternalStorage(): Long {
+        AppHelper.checkInitialized()
         return getTotalInternalStorage() - getFreeInternalStorage()
     }
 
     @JvmStatic @JvmOverloads fun getCacheSize(context: Context = AppHelper.ctx()): Long {
+        AppHelper.checkInitialized()
         var size = getDirSize(context.cacheDir)
         context.externalCacheDir?.let {
             size += getDirSize(it)
@@ -32,6 +36,7 @@ object Storage {
     }
 
     @JvmStatic @JvmOverloads fun clearCache(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         var result = deleteDir(context.cacheDir)
         context.externalCacheDir?.let {
             result = result && deleteDir(it)
@@ -40,6 +45,7 @@ object Storage {
     }
 
     @JvmStatic fun formatBytes(bytes: Long): String {
+        AppHelper.checkInitialized()
         if (bytes <= 0) return "0 B"
 
         val units = arrayOf("B", "KB", "MB", "GB", "TB")

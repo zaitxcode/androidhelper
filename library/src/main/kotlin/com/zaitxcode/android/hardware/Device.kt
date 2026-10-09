@@ -10,15 +10,39 @@ import java.util.Locale
 
 object Device {
 
-    @JvmStatic fun manufacturer(): String = Build.MANUFACTURER
-    @JvmStatic fun model(): String = Build.MODEL
-    @JvmStatic fun brand(): String = Build.BRAND
-    @JvmStatic fun sdk(): Int = Build.VERSION.SDK_INT
-    @JvmStatic fun androidVersion(): String = Build.VERSION.RELEASE
-    @JvmStatic fun supportedAbis(): List<String> = Build.SUPPORTED_ABIS.toList()
+    @JvmStatic fun manufacturer(): String {
+        AppHelper.checkInitialized()
+        return Build.MANUFACTURER
+    }
+
+    @JvmStatic fun model(): String {
+        AppHelper.checkInitialized()
+        return Build.MODEL
+    }
+
+    @JvmStatic fun brand(): String {
+        AppHelper.checkInitialized()
+        return Build.BRAND
+    }
+
+    @JvmStatic fun sdk(): Int {
+        AppHelper.checkInitialized()
+        return Build.VERSION.SDK_INT
+    }
+
+    @JvmStatic fun androidVersion(): String {
+        AppHelper.checkInitialized()
+        return Build.VERSION.RELEASE
+    }
+
+    @JvmStatic fun supportedAbis(): List<String> {
+        AppHelper.checkInitialized()
+        return Build.SUPPORTED_ABIS.toList()
+    }
 
     @JvmStatic
     fun deviceName(): String {
+        AppHelper.checkInitialized()
         return listOf(Build.MANUFACTURER, Build.MODEL)
             .filter { it.isNotBlank() }
             .joinToString(" ")
@@ -28,6 +52,7 @@ object Device {
     @JvmStatic
     @JvmOverloads
     fun getTotalRam(context: Context = AppHelper.ctx()): Long {
+        AppHelper.checkInitialized()
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager ?: return 0L
         val memoryInfo = ActivityManager.MemoryInfo()
         am.getMemoryInfo(memoryInfo)
@@ -37,23 +62,29 @@ object Device {
     @JvmStatic
     @JvmOverloads
     fun getFreeRam(context: Context = AppHelper.ctx()): Long {
+        AppHelper.checkInitialized()
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager ?: return 0L
         val memoryInfo = ActivityManager.MemoryInfo()
         am.getMemoryInfo(memoryInfo)
         return memoryInfo.availMem
     }
 
-    @JvmStatic fun getUptimeMillis(): Long = SystemClock.elapsedRealtime()
+    @JvmStatic fun getUptimeMillis(): Long {
+        AppHelper.checkInitialized()
+        return SystemClock.elapsedRealtime()
+    }
 
     @JvmStatic
     @JvmOverloads
     fun getDeviceLanguage(context: Context = AppHelper.ctx()): String {
+        AppHelper.checkInitialized()
         return context.resources.configuration.locales.get(0).language
     }
 
     @JvmStatic
     @JvmOverloads
     fun isDarkMode(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val mode = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return mode == Configuration.UI_MODE_NIGHT_YES
     }
@@ -61,6 +92,7 @@ object Device {
     @JvmStatic
     @JvmOverloads
     fun isTablet(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val screenLayout = context.resources.configuration.screenLayout and
             Configuration.SCREENLAYOUT_SIZE_MASK
         return screenLayout >= Configuration.SCREENLAYOUT_SIZE_LARGE
@@ -68,6 +100,7 @@ object Device {
 
     @JvmStatic
     fun isEmulator(): Boolean {
+        AppHelper.checkInitialized()
         val fingerprint = Build.FINGERPRINT.lowercase(Locale.US)
         val model = Build.MODEL.lowercase(Locale.US)
         val manufacturer = Build.MANUFACTURER.lowercase(Locale.US)

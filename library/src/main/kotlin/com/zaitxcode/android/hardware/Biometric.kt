@@ -12,6 +12,7 @@ object Biometric {
     @JvmStatic
     @JvmOverloads
     fun canAuthenticate(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val manager = BiometricManager.from(context)
         val authenticators =
             BiometricManager.Authenticators.BIOMETRIC_STRONG or
@@ -32,6 +33,7 @@ object Biometric {
         onError: (errorCode: Int, errString: CharSequence) -> Unit = { _, _ -> },
         onFailed: () -> Unit = {}
     ) {
+        AppHelper.checkInitialized()
         val host = (activity ?: AppHelper.act()) as? FragmentActivity
             ?: throw IllegalStateException("Biometric requires a FragmentActivity")
 

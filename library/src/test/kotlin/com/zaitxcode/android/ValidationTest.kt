@@ -1,11 +1,18 @@
 package com.zaitxcode.android
 
+import com.zaitxcode.android.core.AppHelper
 import com.zaitxcode.android.util.Validation
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 
 class ValidationTest {
+
+    @Before
+    fun setUp() {
+        AppHelper.initializeForTesting()
+    }
 
     @Test
     fun testEmailValidation() {

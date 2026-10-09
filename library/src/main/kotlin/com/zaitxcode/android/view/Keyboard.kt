@@ -23,6 +23,7 @@ object Keyboard {
     @JvmStatic
     @JvmOverloads
     fun hideKeyboard(context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         val activity = AppHelper.act() ?: context.getActivity()
         val view = activity?.currentFocus ?: View(context)
         val imm =
@@ -32,6 +33,7 @@ object Keyboard {
 
     @JvmStatic
     fun hideKeyboard(view: View) {
+        AppHelper.checkInitialized()
         val imm =
             view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
@@ -39,6 +41,7 @@ object Keyboard {
 
     @JvmStatic
     fun showKeyboard(view: View) {
+        AppHelper.checkInitialized()
         view.requestFocus()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             view.windowInsetsController?.show(WindowInsets.Type.ime())
@@ -49,6 +52,7 @@ object Keyboard {
 
     @JvmStatic
     fun isKeyboardOpen(view: View): Boolean {
+        AppHelper.checkInitialized()
         val imm =
             view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         return imm.isActive(view)

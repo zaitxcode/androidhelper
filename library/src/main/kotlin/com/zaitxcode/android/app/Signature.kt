@@ -22,6 +22,7 @@ object Signature {
     @SuppressLint("PackageManagerGetSignatures")
     @Suppress("DEPRECATION")
     fun getAppSignatures(context: Context = AppHelper.ctx()): List<String> {
+        AppHelper.checkInitialized()
         val signaturesList = mutableListOf<String>()
 
         try {
@@ -63,12 +64,14 @@ object Signature {
     @JvmStatic
     @JvmOverloads
     fun getAppPrimarySignatureSHA1(context: Context = AppHelper.ctx()): String {
+        AppHelper.checkInitialized()
         return getAppSignatures(context).firstOrNull() ?: ""
     }
 
     @JvmStatic
     @JvmOverloads
     fun validateAppSignature(expectedSHA1: String, context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val currentSHA1 = getAppPrimarySignatureSHA1(context)
         return currentSHA1.equals(expectedSHA1.trim().replace(":", ""), ignoreCase = true)
     }

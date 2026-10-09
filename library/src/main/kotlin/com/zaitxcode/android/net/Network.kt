@@ -40,7 +40,10 @@ object Network : DefaultLifecycleObserver {
 
     @get:JvmStatic
     val isConnected: Boolean
-        get() = hasValidatedInternet()
+        get() {
+            AppHelper.checkInitialized()
+            return hasValidatedInternet()
+        }
 
     @JvmStatic
     fun initialize(context: Context) {
@@ -69,6 +72,7 @@ object Network : DefaultLifecycleObserver {
 
     @JvmStatic
     fun addConnectionListener(listener: (Boolean) -> Unit) {
+        AppHelper.checkInitialized()
         updateCurrentConnectionState()
         listeners.add(listener)
         listener(isConnected)
@@ -76,11 +80,13 @@ object Network : DefaultLifecycleObserver {
 
     @JvmStatic
     fun removeConnectionListener(listener: (Boolean) -> Unit) {
+        AppHelper.checkInitialized()
         listeners.remove(listener)
     }
 
     @JvmStatic
     fun hasValidatedInternet(): Boolean {
+        AppHelper.checkInitialized()
         val capabilities = currentCapabilities() ?: return false
         return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
             capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
@@ -88,6 +94,7 @@ object Network : DefaultLifecycleObserver {
 
     @JvmStatic
     fun activeTransport(): String {
+        AppHelper.checkInitialized()
         val capabilities = currentCapabilities() ?: return "NONE"
         return when {
             capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> "WIFI"
@@ -100,29 +107,39 @@ object Network : DefaultLifecycleObserver {
     }
 
     @JvmStatic
-    fun isWifiConnected(): Boolean =
-        hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+    fun isWifiConnected(): Boolean {
+        AppHelper.checkInitialized()
+        return hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+    }
 
     @JvmStatic
-    fun isCellularConnected(): Boolean =
-        hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+    fun isCellularConnected(): Boolean {
+        AppHelper.checkInitialized()
+        return hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+    }
 
     @JvmStatic
-    fun isEthernetConnected(): Boolean =
-        hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+    fun isEthernetConnected(): Boolean {
+        AppHelper.checkInitialized()
+        return hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+    }
 
     @JvmStatic
-    fun isVpnConnected(): Boolean =
-        hasTransport(NetworkCapabilities.TRANSPORT_VPN)
+    fun isVpnConnected(): Boolean {
+        AppHelper.checkInitialized()
+        return hasTransport(NetworkCapabilities.TRANSPORT_VPN)
+    }
 
     @JvmStatic
     fun isConnectionMetered(): Boolean {
+        AppHelper.checkInitialized()
         if (!initialized) return false
         return connectivityManager.isActiveNetworkMetered
     }
 
     @JvmStatic
     fun getIpAddress(): String? {
+        AppHelper.checkInitialized()
         try {
             val interfaces = NetworkInterface.getNetworkInterfaces()
             while (interfaces.hasMoreElements()) {

@@ -11,6 +11,7 @@ object Audio {
     @JvmStatic
     @JvmOverloads
     fun playClickSound(context: Context = AppHelper.ctx()) {
+        AppHelper.checkInitialized()
         try {
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
             audioManager?.playSoundEffect(AudioManager.FX_KEY_CLICK)
@@ -22,6 +23,7 @@ object Audio {
     @JvmStatic
     @JvmOverloads
     fun isMuted(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         return try {
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
             val mode = audioManager?.ringerMode ?: AudioManager.RINGER_MODE_NORMAL
@@ -34,6 +36,7 @@ object Audio {
     @JvmStatic
     @JvmOverloads
     fun getMusicVolume(context: Context = AppHelper.ctx()): Int {
+        AppHelper.checkInitialized()
         return try {
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
             if (audioManager == null) return 0
@@ -48,6 +51,7 @@ object Audio {
     @JvmStatic
     @JvmOverloads
     fun isHeadphonesConnected(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)

@@ -17,6 +17,7 @@ object Battery {
     @JvmStatic
     @JvmOverloads
     fun getBatteryLevel(context: Context = AppHelper.ctx()): Int {
+        AppHelper.checkInitialized()
         val intent = getBatteryIntent(context) ?: return -1
         val level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
         val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
@@ -29,6 +30,7 @@ object Battery {
     @JvmStatic
     @JvmOverloads
     fun isCharging(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val intent = getBatteryIntent(context) ?: return false
         val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
 
@@ -39,6 +41,7 @@ object Battery {
     @JvmStatic
     @JvmOverloads
     fun getChargingType(context: Context = AppHelper.ctx()): String {
+        AppHelper.checkInitialized()
         val intent = getBatteryIntent(context) ?: return "NONE"
         val plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
 
@@ -53,6 +56,7 @@ object Battery {
     @JvmStatic
     @JvmOverloads
     fun getBatteryStatus(context: Context = AppHelper.ctx()): String {
+        AppHelper.checkInitialized()
         val intent = getBatteryIntent(context) ?: return "UNKNOWN"
 
         return when (intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)) {
@@ -67,6 +71,7 @@ object Battery {
     @JvmStatic
     @JvmOverloads
     fun getBatteryHealth(context: Context = AppHelper.ctx()): String {
+        AppHelper.checkInitialized()
         val intent = getBatteryIntent(context) ?: return "UNKNOWN"
 
         return when (intent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1)) {
@@ -83,6 +88,7 @@ object Battery {
     @JvmStatic
     @JvmOverloads
     fun isPowerSaveMode(context: Context = AppHelper.ctx()): Boolean {
+        AppHelper.checkInitialized()
         val pm = context.getSystemService(Context.POWER_SERVICE) as? PowerManager
         return pm?.isPowerSaveMode == true
     }
